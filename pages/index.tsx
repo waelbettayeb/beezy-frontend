@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { StatefulInput } from "baseui/input";
 
-export default function Home(): React.FC {
+const Home: React.FC = () => {
   return (
     <div>
       <Head>
@@ -11,4 +11,5 @@ export default function Home(): React.FC {
       <StatefulInput />
     </div>
   );
-}
+};
+export default Home;

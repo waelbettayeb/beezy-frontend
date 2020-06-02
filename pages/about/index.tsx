@@ -17,7 +17,8 @@ export interface Info {
   __typename: "Info";
   Name: string;
 }
-export default function about(): React.FC {
+
+const about: React.FC = () => {
   const { loading, data } = useQuery<TData, null>(query);
   return (
     <div>
@@ -28,4 +29,5 @@ export default function about(): React.FC {
       {loading ? "loading..." : data.info.Name}
     </div>
   );
-}
+};
+export default about;

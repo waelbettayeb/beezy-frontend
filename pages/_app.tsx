@@ -8,7 +8,7 @@ import { LightTheme, BaseProvider } from "baseui";
 
 import { styletron, debug } from "../styletron";
 
-function MyApp({ Component, pageProps }: AppProps) : React.FC {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ApolloProvider client={client}>
       <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
@@ -18,6 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) : React.FC {
       </StyletronProvider>
     </ApolloProvider>
   );
-}
+};
 
 export default MyApp;
