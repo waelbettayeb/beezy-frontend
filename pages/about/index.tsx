@@ -4,11 +4,11 @@ import { useQuery } from 'react-apollo'
 import gql from 'graphql-tag';
 
 const query = gql`
-query getInfo {
-  info{
-      Name
-  }
-}
+    query getInfo {
+        info{
+            Name
+        }
+    }
 `;
 export interface TData {
     info: Info;
