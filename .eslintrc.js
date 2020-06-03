@@ -23,7 +23,8 @@ module.export = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'baseui'
   ],
   settings: {
     "react": {
@@ -31,6 +32,9 @@ module.export = {
     }
   },
   rules: {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    'baseui/deprecated-theme-api': "warn",
+    'baseui/deprecated-component-api': "warn",
+    'baseui/no-deep-imports': "warn",
   }
 }
