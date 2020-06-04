@@ -13,6 +13,7 @@
     "@types/styletron-react": "^5.0.2",
     "@types/styletron-standard": "^2.0.0",
     "apollo-boost": "^0.4.9",
+    "axios": "^0.19.2",
     "baseui": "^9.81.1",
     "graphql": "^15.0.0",
     "next": "9.4.4",
