@@ -2,7 +2,8 @@ import { ApolloClient } from "apollo-client";
 
 export function getAuthToken(): string | null {
   try {
-    return localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    return token == "undefined" ? null : token;
   } catch {
     return null;
   }
