@@ -6,8 +6,9 @@ import client from "@utils/apolloClient";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider } from "baseui";
 
-import { styletron, debug } from "../styletron";
-import { useProvideAuth, authContext } from "@hooks/useAuth";
+import { styletron, debug } from "../../styletron";
+import { useProvideAuth, authContext, useAuth } from "@hooks/useAuth";
+import Start from "./start";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();
@@ -16,7 +17,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <authContext.Provider value={auth}>
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={LightTheme}>
-            <Component {...pageProps} />
+            <Start>
+              <Component {...pageProps} />
+            </Start>
           </BaseProvider>
         </StyletronProvider>
       </authContext.Provider>

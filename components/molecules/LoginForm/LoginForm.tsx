@@ -53,7 +53,11 @@ const LoginForm: React.FC = (props: Props) => {
       <FormControl disabled={loading} label={() => "Password"}>
         <Input type="password" value={password} onChange={onPasswordChange} />
       </FormControl>
-      <Button isLoading={loading} onClick={() => signIn()}>
+      <Button
+        isLoading={loading}
+        onClick={() => signIn()}
+        disabled={loading || (identifier == "" && password == "")}
+      >
         Sign in
       </Button>
 

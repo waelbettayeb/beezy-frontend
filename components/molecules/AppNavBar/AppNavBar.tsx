@@ -9,10 +9,12 @@ import { StyledLink } from "baseui/link";
 import { Button, SHAPE } from "baseui/button";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
+import { useAuth } from "@hooks/useAuth";
 
 interface Props {}
 
 const AppNavBar = (props: Props) => {
+  const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -27,21 +29,29 @@ const AppNavBar = (props: Props) => {
         </StyledNavigationItem>
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.right}>
-        <StyledNavigationItem>
-          <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
-            Get started
-          </Button>
-        </StyledNavigationItem>
+        {auth.user ? (
+          ""
+        ) : (
+          <StyledNavigationItem>
+            <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
+              Get started
+            </Button>
+          </StyledNavigationItem>
+        )}
       </StyledNavigationList>
-      <Drawer
-        isOpen={isOpen}
-        autoFocus
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      >
-        <LoginForm />
-      </Drawer>
+      {auth.user ? (
+        ""
+      ) : (
+        <Drawer
+          isOpen={isOpen}
+          autoFocus
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        >
+          <LoginForm />
+        </Drawer>
+      )}
     </HeaderNavigation>
   );
 };
