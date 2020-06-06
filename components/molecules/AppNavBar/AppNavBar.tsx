@@ -7,15 +7,13 @@ import {
 } from "baseui/header-navigation";
 import { StyledLink } from "baseui/link";
 import { Button, SHAPE } from "baseui/button";
-import { Drawer, ANCHOR, SIZE } from "baseui/drawer";
+import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
-import { useAuth } from "@hooks/useAuth";
 
 interface Props {}
 
 const AppNavBar = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const auth = useAuth();
 
   return (
     <HeaderNavigation>
@@ -40,7 +38,6 @@ const AppNavBar = (props: Props) => {
         autoFocus
         onClose={() => {
           setIsOpen(false);
-          auth.cleanErrors();
         }}
       >
         <LoginForm />

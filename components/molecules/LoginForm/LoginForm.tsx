@@ -5,25 +5,27 @@ import { Input } from "baseui/input";
 import { Button } from "baseui/button";
 import { StyledLink } from "baseui/link";
 import { useAuth } from "@hooks/useAuth";
-import { error } from "console";
 
 interface Props {}
 
 const LoginForm: React.FC = (props: Props) => {
-  const auth = useAuth();
-  const [username, setUsername] = React.useState("");
+  const [identifier, setIdentifier] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const auth = useAuth();
+  const [signIn, { user, error, loading }] = auth.useSignIn({
+    input: { identifier, password },
+  });
 
   const onUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
-    setUsername(value);
+    setIdentifier(value);
   };
   const onPasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setPassword(value);
   };
 
-  const usernameError = (errors) => {
+  const identifierError = (errors) => {
     return errors
       ? errors.find((element) => element.id === "Auth.form.error.email.provide")
           ?.message
@@ -36,35 +38,22 @@ const LoginForm: React.FC = (props: Props) => {
         )?.message
       : "";
   };
-  return auth.user ? (
+  return user ? (
     <span>authentificated</span>
   ) : (
     <React.Fragment>
       <Display2 marginBottom="scale500">Login</Display2>
-      <FormControl label={() => "Username"} error={usernameError(auth.errors)}>
+      <FormControl label={() => "Username"}>
         <Input
-          disabled={auth.loading}
-          value={username}
+          disabled={loading}
+          value={identifier}
           onChange={onUsernameChange}
-          error={usernameError(auth.errors)}
         />
       </FormControl>
-      <FormControl
-        disabled={auth.loading}
-        label={() => "Password"}
-        error={passwordError(auth.errors)}
-      >
-        <Input
-          type="password"
-          value={password}
-          onChange={onPasswordChange}
-          error={passwordError(auth.errors)}
-        />
+      <FormControl disabled={loading} label={() => "Password"}>
+        <Input type="password" value={password} onChange={onPasswordChange} />
       </FormControl>
-      <Button
-        isLoading={auth.loading}
-        onClick={() => auth.signin(username, password)}
-      >
+      <Button isLoading={loading} onClick={() => signIn()}>
         Sign in
       </Button>
 

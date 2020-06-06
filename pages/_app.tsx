@@ -12,15 +12,15 @@ import { useProvideAuth, authContext } from "@hooks/useAuth";
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();
   return (
-    <authContext.Provider value={auth}>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <authContext.Provider value={auth}>
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={LightTheme}>
             <Component {...pageProps} />
           </BaseProvider>
         </StyletronProvider>
-      </ApolloProvider>
-    </authContext.Provider>
+      </authContext.Provider>
+    </ApolloProvider>
   );
 };
 
