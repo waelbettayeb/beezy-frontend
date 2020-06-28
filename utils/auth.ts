@@ -10,6 +10,7 @@ export function getAuthToken(): string | null {
 }
 export function setAuthToken(token: string) {
   localStorage.setItem("token", token);
+  console.log(token);
 }
 
 export function removeAuthToken() {

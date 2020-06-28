@@ -19,8 +19,10 @@ export const useProvideAuth = () => {
 
   const getUser = () => {
     const { data, error, loading } = useQuery(userQuery);
-    if (!error) setUser(data?.me);
-    console.log(user);
+    console.log(data, loading, error);
+    if (data && !loading) {
+      error ? signOut() : setUser(data?.me);
+    }
     return { user, loading };
   };
   const useSignIn = (input) => {
@@ -31,13 +33,15 @@ export const useProvideAuth = () => {
     setAuthToken(data?.login?.jwt);
     return [signIn, { user, error, loading }];
   };
-  const useSignOut = () => {
+  const signOut = () => {
+    setUser(null);
     fireSignOut(client);
   };
   return {
     user,
     useSignIn,
     getUser,
+    signOut,
   };
 };
 export const useAuth = () => {

@@ -16,7 +16,7 @@ interface Props {}
 const AppNavBar = (props: Props) => {
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const signOut = auth.signOut;
   return (
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
@@ -30,7 +30,11 @@ const AppNavBar = (props: Props) => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.right}>
         {auth.user ? (
-          ""
+          <StyledNavigationItem>
+            <Button shape={SHAPE.pill} onClick={() => signOut()}>
+              Sign out
+            </Button>
+          </StyledNavigationItem>
         ) : (
           <StyledNavigationItem>
             <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
