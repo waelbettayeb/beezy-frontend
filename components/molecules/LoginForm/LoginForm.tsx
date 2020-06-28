@@ -56,7 +56,7 @@ const LoginForm: React.FC = (props: Props) => {
       <Button
         isLoading={loading}
         onClick={() => signIn()}
-        disabled={loading || (identifier == "" && password == "")}
+        disabled={loading || identifier == "" || password == ""}
       >
         Sign in
       </Button>
