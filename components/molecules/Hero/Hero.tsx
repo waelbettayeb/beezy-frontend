@@ -13,18 +13,7 @@ function Hero({}: Props): ReactElement {
   const textString = "We ignite bee hives by companying beekeepers.";
   const bodyString =
     "Good things happen when people can connect, find the right bee yard when your hives can produce more. ";
-  function Before() {
-    const [css, theme] = useStyletron();
-    return (
-      <div
-        className={css({
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: theme.sizing.scale700,
-        })}
-      ></div>
-    );
-  }
+
   return (
     <Grid
       align={ALIGNMENT.center}
@@ -41,7 +30,6 @@ function Hero({}: Props): ReactElement {
             type="search"
             startEnhancer={<Search size="18px" />}
             size={SIZE.large}
-            overrides={{ Before }}
             placeholder="Search a bee yard..."
           />
           <br />
