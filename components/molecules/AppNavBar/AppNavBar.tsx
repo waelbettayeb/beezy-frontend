@@ -10,7 +10,7 @@ import { Button, SHAPE } from "baseui/button";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { useAuth } from "@hooks/useAuth";
-
+import styles from "./sass/AppNavBar.module.sass";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -20,7 +20,9 @@ const AppNavBar = (props: Props) => {
   return (
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
-        <StyledNavigationItem>Beezy</StyledNavigationItem>
+        <StyledNavigationItem>
+          <img src="/Beeezy.svg" alt="Beeezy Logo" className={styles.logo} />
+        </StyledNavigationItem>
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
