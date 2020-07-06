@@ -5,6 +5,7 @@ import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
 import { Input } from "baseui/input";
 import { StyledLink } from "baseui/link";
+import { Block } from "baseui/block";
 
 interface Props {}
 
@@ -31,17 +32,19 @@ function Hero({}: Props): ReactElement {
       align={ALIGNMENT.center}
       gridUnit="rem"
       gridGutters={[1, 2, 8]}
-      gridMargins={[1, 2, 6]}
+      gridMargins={[1, 4, 6]}
     >
       <Cell span={[4, 4, 6]}>
-        <Label1>{"Service"}</Label1>
-        <Display2>{textString}</Display2>
-        <Paragraph1>{bodyString}</Paragraph1>
-        <Input overrides={{ After }} placeholder="Search a bee yard..." />
-        <br />
-        <StyledLink href="#">Learn more about beekeeping</StyledLink>
+        <Block paddingTop={"5vh"} paddingBottom={"5vh"}>
+          <Label1>{"Service"}</Label1>
+          <Display2>{textString}</Display2>
+          <Paragraph1>{bodyString}</Paragraph1>
+          <Input overrides={{ After }} placeholder="Search a bee yard..." />
+          <br />
+          <StyledLink href="#">Learn more about beekeeping</StyledLink>
+        </Block>
       </Cell>
-      <Cell span={[4, 4, 6]}>
+      <Cell span={[0, 4, 6]}>
         <Inner h={80}> </Inner>
       </Cell>
     </Grid>
@@ -62,6 +65,7 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         color: theme.colors.accent700,
         padding: ".25rem",
         height: h + "vh",
+        maxHeight: "700px",
       })}
     >
       {children}
