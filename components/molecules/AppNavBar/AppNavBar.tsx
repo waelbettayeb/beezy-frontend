@@ -26,11 +26,6 @@ const AppNavBar = (props: Props) => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
-        <StyledNavigationItem>
-          <StyledLink href="/about">About us</StyledLink>
-        </StyledNavigationItem>
-      </StyledNavigationList>
-      <StyledNavigationList $align={ALIGN.right}>
         {auth.user ? (
           <StyledNavigationItem>
             <Button shape={SHAPE.pill} onClick={() => signOut()}>
@@ -58,6 +53,7 @@ const AppNavBar = (props: Props) => {
           <LoginForm />
         </Drawer>
       )}
+      <StyledNavigationList $align={ALIGN.right} />
     </HeaderNavigation>
   );
 };
