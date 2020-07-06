@@ -3,7 +3,7 @@ import { Grid, Cell, ALIGNMENT } from "baseui/layout-grid";
 import { Label1, Display2, Paragraph1, Display4 } from "baseui/typography";
 import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
-import { Input } from "baseui/input";
+import { Input, SIZE } from "baseui/input";
 import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
 
@@ -13,18 +13,16 @@ function Hero({}: Props): ReactElement {
   const textString = "We ignite bee hives by companying beekeepers.";
   const bodyString =
     "Good things happen when people can connect, find the right bee yard when your hives can produce more. ";
-  function After() {
+  function Before() {
     const [css, theme] = useStyletron();
     return (
       <div
         className={css({
           display: "flex",
           alignItems: "center",
-          paddingRight: theme.sizing.scale500,
+          paddingLeft: theme.sizing.scale700,
         })}
-      >
-        <Search size="18px" />
-      </div>
+      ></div>
     );
   }
   return (
@@ -39,7 +37,13 @@ function Hero({}: Props): ReactElement {
           <Label1>{"Service"}</Label1>
           <Display2>{textString}</Display2>
           <Paragraph1>{bodyString}</Paragraph1>
-          <Input overrides={{ After }} placeholder="Search a bee yard..." />
+          <Input
+            type="search"
+            startEnhancer={<Search size="18px" />}
+            size={SIZE.large}
+            overrides={{ Before }}
+            placeholder="Search a bee yard..."
+          />
           <br />
           <StyledLink href="#">Learn more about beekeeping</StyledLink>
         </Block>
