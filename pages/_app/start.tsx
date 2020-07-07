@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { Spinner } from "baseui/spinner";
 import { isServer } from "styletron";
-import { Grid, Cell, ALIGNMENT } from "baseui/layout-grid";
+import { Grid, Cell, ALIGNMENT, BEHAVIOR } from "baseui/layout-grid";
 import { useStyletron } from "baseui";
 
 const Start: React.FC = ({ children }) => {
@@ -15,12 +15,13 @@ const Start: React.FC = ({ children }) => {
       className={css({
         backgroundColor: theme.colors.background,
         minHeight: "100vh",
+        minWidth: "100%",
       })}
     >
       {loading ? (
         <React.Fragment>
-          <Grid align={ALIGNMENT.center}>
-            <Cell span={[4, 8, 12]}>
+          <Grid behavior={BEHAVIOR.fluid} align={ALIGNMENT.center}>
+            <Cell span={12}>
               <Inner h={100}>
                 <Spinner />
               </Inner>
