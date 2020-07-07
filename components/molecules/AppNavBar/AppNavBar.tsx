@@ -11,6 +11,7 @@ import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { useAuth } from "@hooks/useAuth";
 import styles from "./sass/AppNavBar.module.sass";
+import DarkModeToggle from "@components/atoms/DarkModeToggle";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -26,6 +27,9 @@ const AppNavBar = (props: Props) => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
+        <StyledNavigationItem>
+          <DarkModeToggle />
+        </StyledNavigationItem>
         {auth.user ? (
           <StyledNavigationItem>
             <Button shape={SHAPE.pill} onClick={() => signOut()}>
