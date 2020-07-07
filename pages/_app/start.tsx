@@ -3,16 +3,20 @@ import { useAuth } from "@hooks/useAuth";
 import { Spinner } from "baseui/spinner";
 import { isServer } from "styletron";
 import { Grid, Cell, ALIGNMENT } from "baseui/layout-grid";
-import { useStyletron, LightTheme, DarkTheme } from "baseui";
-import { BaseProvider } from "baseui";
-import { useTheme, THEME } from "@hooks/Theme";
+import { useStyletron } from "baseui";
 
 const Start: React.FC = ({ children }) => {
   const auth = useAuth();
-  const { theme } = useTheme();
   const { loading } = !isServer && auth.getUser();
+
+  const [css, theme] = useStyletron();
   return (
-    <BaseProvider theme={theme === THEME.Light ? LightTheme : DarkTheme}>
+    <div
+      className={css({
+        backgroundColor: theme.colors.background,
+        minHeight: "100vh",
+      })}
+    >
       {loading ? (
         <React.Fragment>
           <Grid gridColumns={1} align={ALIGNMENT.center}>
@@ -26,7 +30,7 @@ const Start: React.FC = ({ children }) => {
       ) : (
         <React.Fragment>{children}</React.Fragment>
       )}
-    </BaseProvider>
+    </div>
   );
 };
 const Inner: React.FunctionComponent<{ h: number }> = ({
