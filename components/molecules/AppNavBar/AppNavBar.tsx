@@ -10,8 +10,8 @@ import { Button, SHAPE } from "baseui/button";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { useAuth } from "@hooks/useAuth";
-import styles from "./sass/AppNavBar.module.sass";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
+import Logo from "@components/atoms/Logo";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -22,7 +22,7 @@ const AppNavBar = (props: Props) => {
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
         <StyledNavigationItem>
-          <img src="/Beeezy.svg" alt="Beeezy Logo" className={styles.logo} />
+          <Logo />
         </StyledNavigationItem>
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
