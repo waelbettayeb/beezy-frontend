@@ -46,6 +46,7 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         alignItems: "center",
         padding: ".25rem",
         height: h + "vh",
+        width: "100%",
       })}
     >
       {children}
