@@ -20,7 +20,7 @@ const Start: React.FC = ({ children }) => {
       {loading ? (
         <React.Fragment>
           <Grid align={ALIGNMENT.center}>
-            <Cell span={12}>
+            <Cell span={[4, 8, 12]}>
               <Inner h={100}>
                 <Spinner />
               </Inner>
@@ -46,6 +46,7 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         alignItems: "center",
         padding: ".25rem",
         height: h + "vh",
+        width: "100%",
       })}
     >
       {children}
