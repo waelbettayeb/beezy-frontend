@@ -40,4 +40,5 @@ manageTranslations({
   singleMessagesFile: true,
   sortKeys,
   translationsDirectory,
+  languages: ["ar", "fr"],
 });
