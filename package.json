@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "extract-json-messages": "rimraf build/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null"
+    "extract-json-messages": "rimraf build/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null",
+    "transpile-messages": "node scripts/transpile-messages.js",
+    "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -17,7 +19,6 @@
     "apollo-link-context": "^1.0.20",
     "axios": "^0.19.2",
     "babel-plugin-react-intl": "^7.5.28",
-    "babel-plugin-react-intl-auto": "^3.3.0",
     "baseui": "^9.85.0",
     "cross-env": "^7.0.2",
     "eslint-plugin-formatjs": "^2.3.21",
@@ -27,6 +28,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "16.13.1",
     "react-intl": "^5.0.2",
+    "react-intl-translations-manager": "^5.0.3",
     "rimraf": "^3.0.2",
     "sass": "^1.26.9",
     "styletron-engine-atomic": "^1.4.6",
@@ -40,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-react-intl-auto": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-baseui": "^9.81.1",
