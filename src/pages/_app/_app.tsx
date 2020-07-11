@@ -10,6 +10,7 @@ import { useProvideAuth, authContext } from "src/hooks/useAuth";
 import Start from "./start";
 import { ThemeProvider } from "src/hooks/Theme";
 import BaseUIProvider from "./BaseUIProvider";
+import { LocaleProvider } from "@components/providers/Locale";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();
@@ -17,13 +18,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ApolloProvider client={client}>
       <authContext.Provider value={auth}>
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
-          <ThemeProvider>
-            <BaseUIProvider>
-              <Start>
-                <Component {...pageProps} />
-              </Start>
-            </BaseUIProvider>
-          </ThemeProvider>
+          <LocaleProvider>
+            <ThemeProvider>
+              <BaseUIProvider>
+                <Start>
+                  <Component {...pageProps} />
+                </Start>
+              </BaseUIProvider>
+            </ThemeProvider>
+          </LocaleProvider>
         </StyletronProvider>
       </authContext.Provider>
     </ApolloProvider>

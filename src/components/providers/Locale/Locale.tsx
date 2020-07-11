@@ -57,7 +57,7 @@ export function getMatchingLocale(languages: readonly string[]): Locale {
   return undefined;
 }
 
-const defaultLocale = Locale.FR;
+const defaultLocale = Locale.EN;
 
 export interface LocaleContextType {
   locale: Locale;
@@ -71,8 +71,10 @@ export const LocaleContext = React.createContext<LocaleContextType>({
 const { Consumer: LocaleConsumer, Provider: RawLocaleProvider } = LocaleContext;
 
 const LocaleProvider: React.FC = ({ children }) => {
-  const [locale, setLocale] = useLocalStorage("locale", defaultLocale);
-
+  const [locale, setLocale] = useLocalStorage(
+    "locale",
+    getMatchingLocale(navigator.languages) || defaultLocale
+  );
   return (
     <IntlProvider
       defaultLocale={defaultLocale}
