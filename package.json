@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "extract-json-messages": "rimraf build/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -16,7 +17,9 @@
     "apollo-link-context": "^1.0.20",
     "axios": "^0.19.2",
     "babel-plugin-react-intl": "^7.5.28",
+    "babel-plugin-react-intl-auto": "^3.3.0",
     "baseui": "^9.85.0",
+    "cross-env": "^7.0.2",
     "eslint-plugin-formatjs": "^2.3.21",
     "graphql": "^15.3.0",
     "next": "9.4.4",
@@ -24,11 +27,14 @@
     "react-apollo": "^3.1.5",
     "react-dom": "16.13.1",
     "react-intl": "^5.0.2",
+    "rimraf": "^3.0.2",
     "sass": "^1.26.9",
     "styletron-engine-atomic": "^1.4.6",
     "styletron-react": "^5.2.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
     "@types/node": "^14.0.6",
     "@types/react": "^16.9.35",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
