@@ -10,7 +10,7 @@ import { useProvideAuth, authContext } from "src/hooks/useAuth";
 import Start from "./start";
 import { ThemeProvider } from "src/hooks/Theme";
 import BaseUIProvider from "./BaseUIProvider";
-import { LocaleProvider } from "@components/providers/Locale";
+import { LocaleProvider } from "@components/containers/Locale";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();

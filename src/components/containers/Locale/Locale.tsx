@@ -5,6 +5,7 @@ import locale_AR from "@locale/ar.json";
 import locale_FR from "@locale/fr.json";
 
 import { useLocalStorage } from "@hooks";
+import { isServer } from "styletron";
 
 export enum Locale {
   AR = "ar",
@@ -73,7 +74,7 @@ const { Consumer: LocaleConsumer, Provider: RawLocaleProvider } = LocaleContext;
 const LocaleProvider: React.FC = ({ children }) => {
   const [locale, setLocale] = useLocalStorage(
     "locale",
-    getMatchingLocale(navigator.languages) || defaultLocale
+    (!isServer && getMatchingLocale(navigator.languages)) || defaultLocale
   );
   return (
     <IntlProvider
