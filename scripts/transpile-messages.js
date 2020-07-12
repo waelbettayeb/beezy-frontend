@@ -7,9 +7,10 @@ const {
 const dotSeparator = "_dot_";
 const sortKeys = true;
 const translationsDirectory = "locale";
+const messagesDirectory = "build/locale/src";
 
 manageTranslations({
-  messagesDirectory: "build/locale/src",
+  messagesDirectory: messagesDirectory,
   overrideCoreMethods: {
     outputSingleFile: (combinedFiles) => {
       const msgDescriptors = combinedFiles.reduce(
@@ -40,5 +41,4 @@ manageTranslations({
   singleMessagesFile: true,
   sortKeys,
   translationsDirectory,
-  languages: ["ar", "fr"],
 });

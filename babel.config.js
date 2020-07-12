@@ -7,7 +7,8 @@ module.exports = api => {
             "react-intl-auto",
             {
                 "filebase": true,
-                "includeExportName": "all"
+                "includeExportName": "all",
+                "separator": "_dot_"
             }
         ],
     ]
