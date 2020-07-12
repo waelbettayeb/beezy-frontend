@@ -12,6 +12,7 @@ import LoginForm from "../LoginForm";
 import { useAuth } from "src/hooks/useAuth";
 import DarkModeToggle from "src/components/atoms/DarkModeToggle";
 import Logo from "src/components/atoms/Logo";
+import ChangeLocaleButton from "@components/atoms/ChangeLocaleButton";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -27,6 +28,9 @@ const AppNavBar = (props: Props) => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
+        <StyledNavigationItem>
+          <ChangeLocaleButton />
+        </StyledNavigationItem>
         <StyledNavigationItem>
           <DarkModeToggle />
         </StyledNavigationItem>

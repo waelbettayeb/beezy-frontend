@@ -31,6 +31,7 @@
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],
       "@utils/*": ["src/utils/*"],
+      "@hooks": ["src/hooks/index.ts"],
       "@hooks/*": ["src/hooks/*"],
       "@types": ["./types/index.ts"],
       "@assets/*": ["assets/*"],
@@ -43,6 +44,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "src/pages/_document.js"
+    "**/*.tsx", "src/pages/_document.js", "scripts/transpile_messages.js",
+    "node_modules/babel-plugin-react-intl-auto/**/*.d.ts"
   ]
 }

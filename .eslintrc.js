@@ -25,7 +25,8 @@ module.export = {
   plugins: [
     'react',
     '@typescript-eslint',
-    'baseui'
+    'baseui',
+    "formatjs"
   ],
   settings: {
     "react": {
@@ -37,5 +38,6 @@ module.export = {
     'baseui/deprecated-theme-api': "warn",
     'baseui/deprecated-component-api': "warn",
     'baseui/no-deep-imports': "warn",
+    "formatjs/no-offset": "error"
   }
 }

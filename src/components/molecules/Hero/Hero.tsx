@@ -6,6 +6,7 @@ import { Search } from "baseui/icon";
 import { Input, SIZE } from "baseui/input";
 import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
+import { FormattedMessage } from "react-intl";
 
 interface Props {}
 
@@ -33,7 +34,9 @@ function Hero({}: Props): ReactElement {
             placeholder="Search a bee yard..."
           />
           <br />
-          <StyledLink href="#">Learn more about beekeeping</StyledLink>
+          <StyledLink href="#">
+            <FormattedMessage defaultMessage={"Learn more about beekeeping"} />
+          </StyledLink>
         </Block>
       </Cell>
       <Cell span={[0, 4, 6]}>
