@@ -28,7 +28,7 @@ const localeData: Record<Locale, LocaleMessages> = {
 export const localeNames: Record<Locale, string> = {
   [Locale.AR]: "العربيّة",
   [Locale.EN]: "English",
-  [Locale.FR]: "français",
+  [Locale.FR]: "Français",
 };
 
 const dotSeparator = "_dot_";
