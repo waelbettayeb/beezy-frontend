@@ -57,6 +57,15 @@ const LoginForm: React.FC = (props: Props) => {
         isLoading={loading}
         onClick={() => signIn()}
         disabled={loading || identifier == "" || password == ""}
+        overrides={{
+          BaseButton: {
+            style: ({ $theme }) => {
+              return {
+                width: "100%",
+              };
+            },
+          },
+        }}
       >
         Sign in
       </Button>
