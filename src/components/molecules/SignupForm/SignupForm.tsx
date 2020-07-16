@@ -6,6 +6,8 @@ import React from "react";
 import { PhoneInputNext, COUNTRIES, PhoneInput } from "baseui/phone-input";
 import { Button } from "baseui/button";
 import * as Yup from "yup";
+import { useAuth } from "@hooks/useAuth";
+import Router from "next/router";
 
 interface Props {}
 const SignupSchema = Yup.object().shape({
@@ -29,6 +31,9 @@ const SignupSchema = Yup.object().shape({
   phone: Yup.string().matches(/^[0-9]{9}$/g, "Invalid phone number"),
 });
 const SignupForm = (props: Props) => {
+  const auth = useAuth();
+  const [signUp, { user, error, loading }] = auth.useSignUp();
+  if (user) Router.push("/");
   return (
     <React.Fragment>
       <Grid>
@@ -59,9 +64,8 @@ const SignupForm = (props: Props) => {
             //   return errors;
             // }}
             onSubmit={(values, { setSubmitting }) => {
-              () => {
-                alert(JSON.stringify(values, null, 2));
-              };
+              signUp({ variables: { input: { ...values } } });
+              setSubmitting(false);
             }}
           >
             {({
@@ -134,7 +138,15 @@ const SignupForm = (props: Props) => {
                   type="submit"
                   disabled={isSubmitting}
                   onClick={() => {
-                    alert(JSON.stringify(values, null, 2));
+                    signUp({
+                      variables: {
+                        input: {
+                          username: values.username,
+                          email: values.email,
+                          password: values.password,
+                        },
+                      },
+                    });
                   }}
                 >
                   Sign up
