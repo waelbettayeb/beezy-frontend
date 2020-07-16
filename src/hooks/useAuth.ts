@@ -4,6 +4,7 @@ import { loginMutation } from "src/mutations/auth";
 import { setAuthToken, fireSignOut } from "src/utils/auth";
 import client from "src/utils/apolloClient";
 import { userQuery } from "src/queries/user";
+import { LoginVariables } from "src/mutations/gqlTypes/Login";
 declare global {
   interface Window {
     PasswordCredential: any;
@@ -24,10 +25,13 @@ export const useProvideAuth = () => {
     }
     return { user, loading };
   };
-  const useSignIn = (input) => {
-    const [signIn, { data, error, loading }] = useMutation(loginMutation, {
-      variables: input,
-    });
+  const useSignIn = (input: LoginVariables) => {
+    const [signIn, { data, error, loading }] = useMutation<any, LoginVariables>(
+      loginMutation,
+      {
+        variables: input,
+      }
+    );
     setUser(data?.login?.user);
     setAuthToken(data?.login?.jwt);
     return [signIn, { user, error, loading }];

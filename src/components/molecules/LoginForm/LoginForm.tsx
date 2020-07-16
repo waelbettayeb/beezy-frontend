@@ -5,6 +5,7 @@ import { Input } from "baseui/input";
 import { Button } from "baseui/button";
 import { StyledLink } from "baseui/link";
 import { useAuth } from "src/hooks/useAuth";
+import Divider from "@components/atoms/Divider";
 
 interface Props {}
 
@@ -77,6 +78,28 @@ const LoginForm: React.FC = (props: Props) => {
         Have you forgotten your password?{" "}
         <StyledLink href="/about">Click Here</StyledLink>
       </Paragraph3>
+      <Divider>Or</Divider>
+      <Button
+        isLoading={loading}
+        onClick={() =>
+          signIn({
+            variables: {
+              input: { identifier, password, provider: "facebook" },
+            },
+          })
+        }
+        overrides={{
+          BaseButton: {
+            style: ({ $theme }) => {
+              return {
+                width: "100%",
+              };
+            },
+          },
+        }}
+      >
+        Sign in with Facebook
+      </Button>
     </React.Fragment>
   );
 };

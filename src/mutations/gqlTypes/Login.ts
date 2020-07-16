@@ -8,7 +8,7 @@ export interface Login {
 export interface LoginVariables_input {
   identifier: string;
   password: string;
-  provider: string | null;
+  provider?: string;
 }
 export interface LoginVariables {
   input: LoginVariables_input;
