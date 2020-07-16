@@ -6,10 +6,13 @@ import { Button } from "baseui/button";
 import { StyledLink } from "baseui/link";
 import { useAuth } from "src/hooks/useAuth";
 import Divider from "@components/atoms/Divider";
+import { useRouter } from "next/router";
 
 interface Props {}
 
 const LoginForm: React.FC = (props: Props) => {
+  const router = useRouter();
+
   const [identifier, setIdentifier] = React.useState("");
   const [password, setPassword] = React.useState("");
   const auth = useAuth();
@@ -72,7 +75,10 @@ const LoginForm: React.FC = (props: Props) => {
       </Button>
 
       <Paragraph3>
-        Don't have an account? <StyledLink href="/about">Sign up</StyledLink>
+        Don't have an account?{" "}
+        <StyledLink onClick={() => router.push("/auth/signup")}>
+          Sign up
+        </StyledLink>
       </Paragraph3>
       <Paragraph3>
         Have you forgotten your password?{" "}
