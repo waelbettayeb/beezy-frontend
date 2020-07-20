@@ -1,17 +1,21 @@
+import React from "react";
+
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Grid, Cell } from "baseui/layout-grid";
 import { Form, Formik } from "formik";
-import React from "react";
-import { PhoneInputNext, COUNTRIES, PhoneInput } from "baseui/phone-input";
+
 import { Button } from "baseui/button";
 import * as Yup from "yup";
 import { useAuth } from "@hooks/useAuth";
 import Router from "next/router";
 import { Display2 } from "baseui/typography";
+import { useIntl } from "react-intl";
+
+import { ErrorMessage } from "./ErrorMessage";
 
 interface Props {}
-interface IFormValues {
+export interface IFormValues {
   username: string;
   password: string;
   email: string;
@@ -39,7 +43,7 @@ const SignupForm = (props: Props) => {
   const auth = useAuth();
   const [signUp, { user, error, loading }] = auth.useSignUp();
   if (user) Router.push("/");
-
+  const intl = useIntl();
   const initialValues: IFormValues = {
     username: "",
     email: "",
@@ -55,7 +59,6 @@ const SignupForm = (props: Props) => {
             initialValues={initialValues}
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
-              console.log({ values, actions });
               signUp({
                 variables: {
                   input: {
@@ -77,69 +80,74 @@ const SignupForm = (props: Props) => {
               handleSubmit,
               isSubmitting,
               /* and other goodies */
-            }) => (
-              <Form onSubmit={handleSubmit}>
-                <FormControl
-                  label={() => "Username"}
-                  error={() =>
-                    errors.username && touched.username && errors.username
-                  }
-                >
-                  <Input
-                    type="text"
-                    name="username"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.username}
-                    error={errors.username && touched.username}
-                  />
-                </FormControl>
-                <FormControl
-                  label={() => "Email"}
-                  error={() => errors.email && touched.email && errors.email}
-                >
-                  <Input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    error={errors.email && touched.email}
-                  />
-                </FormControl>
-                <FormControl
-                  label={() => "Password"}
-                  error={errors.password && touched.password && errors.password}
-                >
-                  <Input
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                    error={errors.password && touched.password}
-                  />
-                </FormControl>
-                <FormControl
-                  label={() => "Phone"}
-                  error={errors.phone && touched.phone && errors.phone}
-                >
-                  <Input
-                    type={"tel"}
-                    name="phone"
-                    startEnhancer={"+213"}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.phone}
-                    error={errors.phone && touched.phone}
-                  />
-                </FormControl>
-                <Button type="submit" disabled={isSubmitting}>
-                  Sign up
-                </Button>
-              </Form>
-            )}
+            }) => {
+              return (
+                <Form onSubmit={handleSubmit}>
+                  <FormControl
+                    label={() => "Username"}
+                    error={() =>
+                      errors.username && touched.username && errors.username
+                    }
+                  >
+                    <Input
+                      type="text"
+                      name="username"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
+                      error={errors.username && touched.username}
+                    />
+                  </FormControl>
+                  <FormControl
+                    label={() => "Email"}
+                    error={() => errors.email && touched.email && errors.email}
+                  >
+                    <Input
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      error={errors.email && touched.email}
+                    />
+                  </FormControl>
+                  <FormControl
+                    label={() => "Password"}
+                    error={
+                      errors.password && touched.password && errors.password
+                    }
+                  >
+                    <Input
+                      type="password"
+                      name="password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password}
+                      error={errors.password && touched.password}
+                    />
+                  </FormControl>
+                  <FormControl
+                    label={() => "Phone"}
+                    error={errors.phone && touched.phone && errors.phone}
+                  >
+                    <Input
+                      type={"tel"}
+                      name="phone"
+                      startEnhancer={"+213"}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.phone}
+                      error={errors.phone && touched.phone}
+                    />
+                  </FormControl>
+                  <Button type="submit" disabled={isSubmitting}>
+                    Sign up
+                  </Button>
+                </Form>
+              );
+            }}
           </Formik>
+          <ErrorMessage errors={error} />
         </Cell>
       </Grid>
     </React.Fragment>
