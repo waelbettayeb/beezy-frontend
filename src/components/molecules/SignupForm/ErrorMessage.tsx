@@ -16,6 +16,8 @@ export const getErrorMessage = (errors) => {
   switch (id) {
     case "Auth.form.error.email.taken":
       return errorMessages.emailTaken;
+    case "Auth.form.error.username.taken":
+      return errorMessages.usernameTaken;
     default:
       return null;
   }
