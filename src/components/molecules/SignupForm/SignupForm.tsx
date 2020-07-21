@@ -124,6 +124,7 @@ const SignupForm = (props: Props) => {
                       onBlur={handleBlur}
                       value={values.password}
                       error={errors.password && touched.password}
+                      placeholder="8+ characters"
                     />
                   </FormControl>
                   <FormControl
