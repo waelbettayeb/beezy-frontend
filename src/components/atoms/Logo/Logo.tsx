@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 import { useStyletron } from "baseui";
 import { useTheme, THEME } from "src/hooks/Theme";
-
 interface Props {}
 
 function Logo({}: Props): ReactElement {
@@ -11,7 +10,7 @@ function Logo({}: Props): ReactElement {
     <React.Fragment>
       <img
         src={
-          theme === THEME.Light ? "beeezyLogoLight.svg" : "/beeezyLogoDark.svg"
+          theme === THEME.Light ? "/beeezyLogoLight.svg" : "/beeezyLogoDark.svg"
         }
         alt="Beeezy Logo"
         className={css({
