@@ -12,3 +12,14 @@ export const loginMutation = gql`
     }
   }
 `;
+export const registerMutation = gql`
+  ${userFragment}
+  mutation Register($input: UsersPermissionsSignUpInput!) {
+    signup(input: $input) {
+      jwt
+      user {
+        ...User
+      }
+    }
+  }
+`;

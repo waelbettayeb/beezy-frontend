@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { useMutation, useQuery } from "react-apollo";
-import { loginMutation } from "src/mutations/auth";
+import { loginMutation, registerMutation } from "src/mutations/auth";
 import { setAuthToken, fireSignOut } from "src/utils/auth";
 import client from "src/utils/apolloClient";
 import { userQuery } from "src/queries/user";
-import { LoginVariables } from "src/mutations/gqlTypes/Login";
+import { Login, LoginVariables } from "src/mutations/gqlTypes/Login";
+import {
+  SignUpVariables,
+  UsersPermissionsLoginPayload,
+} from "src/mutations/gqlTypes/Signup";
 declare global {
   interface Window {
     PasswordCredential: any;
@@ -26,15 +30,26 @@ export const useProvideAuth = () => {
     return { user, loading };
   };
   const useSignIn = (input: LoginVariables) => {
-    const [signIn, { data, error, loading }] = useMutation<any, LoginVariables>(
-      loginMutation,
-      {
-        variables: input,
-      }
-    );
+    const [signIn, { data, error, loading }] = useMutation<
+      Login,
+      LoginVariables
+    >(loginMutation, {
+      variables: input,
+    });
     setUser(data?.login?.user);
     setAuthToken(data?.login?.jwt);
     return [signIn, { user, error, loading }];
+  };
+  const useSignUp = (input: SignUpVariables) => {
+    const [signUp, { data, error, loading }] = useMutation<
+      UsersPermissionsLoginPayload,
+      SignUpVariables
+    >(registerMutation, {
+      variables: input,
+    });
+    setUser(data?.signup.user);
+    setAuthToken(data?.signup.jwt);
+    return [signUp, { user, error, loading }];
   };
   const signOut = () => {
     setUser(null);
@@ -45,6 +60,7 @@ export const useProvideAuth = () => {
     useSignIn,
     getUser,
     signOut,
+    useSignUp,
   };
 };
 export const useAuth = () => {

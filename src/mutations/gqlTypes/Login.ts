@@ -1,8 +1,10 @@
 import { UsersPermissionsMe } from "src/fragments/gqlTypes/User";
 
 export interface Login {
-  jwt: string;
-  user: UsersPermissionsMe;
+  login: {
+    jwt: string;
+    user: UsersPermissionsMe;
+  };
 }
 
 export interface LoginVariables_input {
