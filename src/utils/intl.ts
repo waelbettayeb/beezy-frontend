@@ -13,4 +13,7 @@ export const errorMessages = defineMessages({
     id: "Auth.advanced.allow_register",
     defaultMessage: "Register action is currently disabled",
   },
+  serverError: {
+    defaultMessage: "A technical error has occurred",
+  },
 });
