@@ -1,5 +1,5 @@
 import React from "react";
-import { Display2, Paragraph3 } from "baseui/typography";
+import { Display4, Paragraph3 } from "baseui/typography";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
@@ -46,7 +46,7 @@ const LoginForm: React.FC = (props: Props) => {
     <span>authentificated</span>
   ) : (
     <React.Fragment>
-      <Display2 marginBottom="scale500">Login</Display2>
+      <Display4 marginBottom="scale500">Login</Display4>
       <FormControl label={() => "Username"}>
         <Input
           disabled={loading}
