@@ -4,11 +4,15 @@ import { Grid, Cell, ALIGNMENT } from "baseui/layout-grid";
 import { Block } from "baseui/block";
 import Logo from "@components/atoms/Logo";
 import { useStyletron } from "baseui";
+import { useAuth } from "@hooks/useAuth";
+import Router from "next/router";
 
 interface Props {}
 
 const Signup = (props: Props) => {
   const [css, theme] = useStyletron();
+  const auth = useAuth();
+  if (auth.user) Router.push("/");
   return (
     <React.Fragment>
       <Grid align={ALIGNMENT.center}>
@@ -20,7 +24,7 @@ const Signup = (props: Props) => {
             marginBottom={theme.sizing.scale800}
             width={"100%"}
           >
-            <Logo />
+            <Logo onClick={() => Router.push("/")} />
           </Block>
         </Cell>
         <Cell span={[0, 0, 6]}>
