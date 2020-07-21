@@ -11,44 +11,63 @@ import { useAuth } from "@hooks/useAuth";
 import Router from "next/router";
 import { Display2 } from "baseui/typography";
 import { useIntl } from "react-intl";
+import { Radio, RadioGroup } from "baseui/radio";
+import { DatePicker } from "baseui/datepicker";
 
 import { ErrorMessage } from "./ErrorMessage";
 
-interface Props {}
 export interface IFormValues {
-  username: string;
-  password: string;
   email: string;
-  phone: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  gender: GENDER;
+  dateOfBirth: Date;
 }
+enum GENDER {
+  male = "male",
+  female = "female",
+}
+const formateDate = (Date) => {
+  const year = Date.getFullYear();
+  const month = Date.getMonth() < 10 ? "0" + Date.getMonth() : Date.getMonth();
+  const date = Date.getDate();
+  return `${year}-${month}-${date}`;
+};
 const SignupSchema = Yup.object().shape({
-  username: Yup.string()
-    .matches(
-      /^(?=[a-zA-Z0-9._]+$)(?!.*[_.]{2})[^_.].*[^_.]$/g,
-      "Invalid username"
-    )
-    .min(8, "Too Short!")
-    .max(25, "Too Long!")
-    .required("Required"),
+  // username: Yup.string()
+  //   .matches(
+  //     /^(?=[a-zA-Z0-9._]+$)(?!.*[_.]{2})[^_.].*[^_.]$/g,
+  //     "Invalid username"
+  //   )
+  //   .min(8, "Too Short!")
+  //   .max(25, "Too Long!")
+  //   .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
     .min(8, "Too Short!")
     .max(48, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  phone: Yup.string()
-    .matches(/^[0-9]{9}$/g, "Invalid phone number")
-    .required("Required"),
+  firstName: Yup.string().required("Required"),
+  lastName: Yup.string().required("Required"),
+  // phone: Yup.string()
+  //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
+  //   .required("Required"),
 });
-const SignupForm = (props: Props) => {
+const SignupForm = (props) => {
   const auth = useAuth();
   const [signUp, { user, error, loading }] = auth.useSignUp();
-  if (user) Router.push("/");
+  // if (user) Router.push("/");
+
   const intl = useIntl();
+
   const initialValues: IFormValues = {
-    username: "",
     email: "",
     password: "",
-    phone: "",
+    firstName: "",
+    lastName: "",
+    gender: GENDER.male,
+    dateOfBirth: new Date(),
   };
   return (
     <React.Fragment>
@@ -62,9 +81,8 @@ const SignupForm = (props: Props) => {
               signUp({
                 variables: {
                   input: {
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
+                    ...values,
+                    dateOfBirth: formateDate(values.dateOfBirth),
                   },
                 },
               });
@@ -83,67 +101,133 @@ const SignupForm = (props: Props) => {
             }) => {
               return (
                 <Form onSubmit={handleSubmit}>
-                  <FormControl
-                    label={() => "Username"}
-                    error={() =>
-                      errors.username && touched.username && errors.username
-                    }
-                  >
-                    <Input
-                      type="text"
-                      name="username"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.username}
-                      error={errors.username && touched.username}
-                    />
-                  </FormControl>
-                  <FormControl
-                    label={() => "Email"}
-                    error={() => errors.email && touched.email && errors.email}
-                  >
-                    <Input
-                      type="email"
-                      name="email"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.email}
-                      error={errors.email && touched.email}
-                    />
-                  </FormControl>
-                  <FormControl
-                    label={() => "Password"}
-                    error={
-                      errors.password && touched.password && errors.password
-                    }
-                  >
-                    <Input
-                      type="password"
-                      name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                      error={errors.password && touched.password}
-                      placeholder="8+ characters"
-                    />
-                  </FormControl>
-                  <FormControl
-                    label={() => "Phone"}
-                    error={errors.phone && touched.phone && errors.phone}
-                  >
-                    <Input
-                      type={"tel"}
-                      name="phone"
-                      startEnhancer={"+213"}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.phone}
-                      error={errors.phone && touched.phone}
-                    />
-                  </FormControl>
-                  <Button type="submit" disabled={isSubmitting}>
-                    Sign up
-                  </Button>
+                  <Grid gridMargins={0} gridGaps={0}>
+                    <Cell span={[4, 4, 6]}>
+                      <FormControl
+                        label={() => "First name"}
+                        error={() =>
+                          errors.firstName &&
+                          touched.firstName &&
+                          errors.firstName
+                        }
+                      >
+                        <Input
+                          type="text"
+                          name="firstName"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.firstName}
+                          error={errors.firstName && touched.firstName}
+                        />
+                      </FormControl>
+                    </Cell>
+                    <Cell span={[4, 4, 6]}>
+                      <FormControl
+                        label={() => "Last name"}
+                        error={() =>
+                          errors.lastName && touched.lastName && errors.lastName
+                        }
+                      >
+                        <Input
+                          type="text"
+                          name="lastName"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.lastName}
+                          error={errors.lastName && touched.lastName}
+                        />
+                      </FormControl>
+                    </Cell>
+                    <Cell span={12}>
+                      <FormControl
+                        label={() => "Email"}
+                        error={() =>
+                          errors.email && touched.email && errors.email
+                        }
+                      >
+                        <Input
+                          type="email"
+                          name="email"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.email}
+                          error={errors.email && touched.email}
+                        />
+                      </FormControl>
+                    </Cell>
+                    <Cell span={12}>
+                      <FormControl
+                        label={() => "Password"}
+                        error={
+                          errors.password && touched.password && errors.password
+                        }
+                      >
+                        <Input
+                          type="password"
+                          name="password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.password}
+                          error={errors.password && touched.password}
+                          placeholder="8+ characters"
+                        />
+                      </FormControl>
+                    </Cell>
+                    <Cell span={[4, 4, 6]}>
+                      <FormControl
+                        label={() => "Date of birth"}
+                        error={
+                          errors.dateOfBirth &&
+                          touched.dateOfBirth &&
+                          errors.dateOfBirth
+                        }
+                      >
+                        <DatePicker
+                          value={values.dateOfBirth}
+                          onChange={handleChange}
+                          maxDate={new Date()}
+                          error={
+                            errors.dateOfBirth && touched.dateOfBirth && true
+                          }
+                        />
+                      </FormControl>
+                    </Cell>
+                    <Cell span={[4, 4, 6]}>
+                      <FormControl
+                        label={() => "Gender"}
+                        error={errors.gender && touched.gender && errors.gender}
+                      >
+                        <RadioGroup
+                          align="horizontal"
+                          name="gender"
+                          onChange={handleChange}
+                          value={values.gender}
+                          error={errors.gender && touched.gender}
+                        >
+                          <Radio value={GENDER.male}>Male</Radio>
+                          <Radio value={GENDER.female}>Female</Radio>
+                        </RadioGroup>
+                      </FormControl>
+                    </Cell>
+
+                    <Cell span={12}>
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        overrides={{
+                          BaseButton: {
+                            style: ({ $theme }) => {
+                              return {
+                                width: "100%",
+                              };
+                            },
+                          },
+                        }}
+                      >
+                        Sign up
+                      </Button>
+                    </Cell>
+                  </Grid>
                 </Form>
               );
             }}
