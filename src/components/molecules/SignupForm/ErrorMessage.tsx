@@ -13,6 +13,9 @@ export const getErrorMessage = (errors) => {
   const id =
     errors?.graphQLErrors[0]?.extensions?.exception?.data?.message[0]
       ?.messages[0]?.id;
+  const defaultMessage =
+    errors?.graphQLErrors[0]?.extensions?.exception?.data?.message[0]
+      ?.messages[0]?.message;
   switch (id) {
     case "Auth.form.error.email.taken":
       return errorMessages.emailTaken;
@@ -21,7 +24,7 @@ export const getErrorMessage = (errors) => {
     case "Auth.advanced.allow_register":
       return errorMessages.registreDisabled;
     default:
-      return null;
+      return errors ? { id, defaultMessage } : null;
   }
 };
 
