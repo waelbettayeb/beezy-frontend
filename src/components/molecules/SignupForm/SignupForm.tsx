@@ -9,12 +9,13 @@ import { Button, SIZE } from "baseui/button";
 import * as Yup from "yup";
 import { useAuth } from "@hooks/useAuth";
 import Router from "next/router";
-import { Display4 } from "baseui/typography";
+import { Display4, Paragraph3 } from "baseui/typography";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Radio, RadioGroup } from "baseui/radio";
 import { DatePicker } from "baseui/datepicker";
 
 import { ErrorMessage } from "./ErrorMessage";
+import { StyledLink } from "baseui/link";
 
 export interface IFormValues {
   email: string;
@@ -223,6 +224,14 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <ErrorMessage errors={error} />
+                </Cell>
+                <Cell span={12}>
+                  <Paragraph3>
+                    Already a member?{" "}
+                    <StyledLink onClick={() => Router.push("/auth/signin")}>
+                      Sign In
+                    </StyledLink>
+                  </Paragraph3>
                 </Cell>
               </Grid>
             </Form>
