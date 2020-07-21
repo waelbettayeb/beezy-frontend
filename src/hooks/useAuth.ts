@@ -47,8 +47,8 @@ export const useProvideAuth = () => {
     >(registerMutation, {
       variables: input,
     });
-    setUser(data?.register.user);
-    setAuthToken(data?.register.jwt);
+    setUser(data?.signup.user);
+    setAuthToken(data?.signup.jwt);
     return [signUp, { user, error, loading }];
   };
   const signOut = () => {
