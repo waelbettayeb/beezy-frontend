@@ -27,6 +27,7 @@
       "@components/containers": ["src/components/containers/index.ts"],
       "@pages": ["src/pages/index.ts"],
       "@pages/*": ["src/pages/*"],
+      "@public/*": ["public/*"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],
