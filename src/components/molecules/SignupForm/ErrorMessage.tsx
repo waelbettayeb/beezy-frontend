@@ -13,9 +13,6 @@ export const getErrorMessage = (errors) => {
   const id =
     errors?.graphQLErrors[0]?.extensions?.exception?.data?.message[0]
       ?.messages[0]?.id;
-  const defaultMessage =
-    errors?.graphQLErrors[0]?.extensions?.exception?.data?.message[0]
-      ?.messages[0]?.message;
   switch (id) {
     case "Auth.form.error.email.taken":
       return errorMessages.emailTaken;
@@ -24,7 +21,7 @@ export const getErrorMessage = (errors) => {
     case "Auth.advanced.allow_register":
       return errorMessages.registreDisabled;
     default:
-      return errors ? { id, defaultMessage } : null;
+      return errorMessages.serverError;
   }
 };
 
@@ -32,8 +29,11 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
   const { errors } = props;
   const intl = useIntl();
   const message = getErrorMessage(errors);
-  if (getErrorMessage(errors)) return <Em>{intl.formatMessage(message)}</Em>;
-  else return <React.Fragment></React.Fragment>;
+  return errors ? (
+    <Em>{intl.formatMessage(message)}</Em>
+  ) : (
+    <React.Fragment></React.Fragment>
+  );
 };
 
 export default ErrorMessage;
