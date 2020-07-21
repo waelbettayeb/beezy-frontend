@@ -57,7 +57,6 @@ const SignupSchema = Yup.object().shape({
 const SignupForm = (props) => {
   const auth = useAuth();
   const [signUp, { user, error, loading }] = auth.useSignUp();
-  // if (user) Router.push("/");
 
   const intl = useIntl();
 
@@ -222,12 +221,14 @@ const SignupForm = (props) => {
                     <FormattedMessage defaultMessage={"Create Account"} />
                   </Button>
                 </Cell>
+                <Cell span={12}>
+                  <ErrorMessage errors={error} />
+                </Cell>
               </Grid>
             </Form>
           );
         }}
       </Formik>
-      <ErrorMessage errors={error} />
     </React.Fragment>
   );
 };
