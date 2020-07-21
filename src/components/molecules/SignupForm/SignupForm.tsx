@@ -5,12 +5,12 @@ import { Input } from "baseui/input";
 import { Grid, Cell } from "baseui/layout-grid";
 import { Form, Formik } from "formik";
 
-import { Button } from "baseui/button";
+import { Button, SIZE } from "baseui/button";
 import * as Yup from "yup";
 import { useAuth } from "@hooks/useAuth";
 import Router from "next/router";
 import { Display2 } from "baseui/typography";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Radio, RadioGroup } from "baseui/radio";
 import { DatePicker } from "baseui/datepicker";
 
@@ -214,6 +214,7 @@ const SignupForm = (props) => {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
+                        size={SIZE.large}
                         overrides={{
                           BaseButton: {
                             style: ({ $theme }) => {
@@ -224,7 +225,7 @@ const SignupForm = (props) => {
                           },
                         }}
                       >
-                        Sign up
+                        <FormattedMessage defaultMessage={"Create Account"} />
                       </Button>
                     </Cell>
                   </Grid>
