@@ -16,7 +16,7 @@ const Signup = (props: Props) => {
   return (
     <React.Fragment>
       <Grid align={ALIGNMENT.center}>
-        <Cell span={[4, 8, 0]}>
+        <Cell span={[4, 8, 12]}>
           <Block
             display={"flex"}
             justifyContent={"center"}
@@ -27,8 +27,8 @@ const Signup = (props: Props) => {
             <Logo onClick={() => Router.push("/")} />
           </Block>
         </Cell>
-        <Cell span={[0, 0, 6]}>
-          <Block minHeight={"100vh"}></Block>
+        <Cell span={[0, 0, 3]}>
+          <Block minHeight={"80vh"}></Block>
         </Cell>
         <Cell span={[4, 8, 6]}>
           <SignupForm />
