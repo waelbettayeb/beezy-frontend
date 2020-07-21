@@ -18,6 +18,8 @@ export const getErrorMessage = (errors) => {
       return errorMessages.emailTaken;
     case "Auth.form.error.username.taken":
       return errorMessages.usernameTaken;
+    case "Auth.advanced.allow_register":
+      return errorMessages.registreDisabled;
     default:
       return null;
   }
