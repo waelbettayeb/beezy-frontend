@@ -1,9 +1,13 @@
 import React, { ReactElement } from "react";
 import { useStyletron } from "baseui";
 import { useTheme, THEME } from "src/hooks/Theme";
-interface Props {}
+interface Props {
+  children?: any;
+  height?: string;
+}
 
-function Logo({}: Props): ReactElement {
+const Logo: React.FC<Props> = (props) => {
+  const { height } = props;
   const { theme } = useTheme();
   const [css, _theme] = useStyletron();
   return (
@@ -14,11 +18,11 @@ function Logo({}: Props): ReactElement {
         }
         alt="Beeezy Logo"
         className={css({
-          height: _theme.sizing.scale1000,
+          height: height ? height : _theme.sizing.scale1000,
         })}
       />
     </React.Fragment>
   );
-}
+};
 
 export default Logo;
