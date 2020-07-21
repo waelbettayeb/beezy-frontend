@@ -1,17 +1,24 @@
 import { UsersPermissionsMe } from "src/fragments/gqlTypes/User";
 
 export interface UsersPermissionsLoginPayload {
-  register: {
+  signup: {
     jwt: string;
     user: UsersPermissionsMe;
   };
 }
 
-export interface UsersPermissionsRegisterInput {
-  identifier: string;
-  password: string;
+export interface UsersPermissionsSignUpInput {
   email: string;
+  password: string;
+  firstName: String;
+  lastName: String;
+  gender: GENDER;
+  dateOfBirth: Date;
 }
 export interface SignUpVariables {
-  input: UsersPermissionsRegisterInput;
+  input: UsersPermissionsSignUpInput;
+}
+enum GENDER {
+  male,
+  female,
 }
