@@ -8,9 +8,12 @@ import { useAuth } from "src/hooks/useAuth";
 import Divider from "@components/atoms/Divider";
 import { useRouter } from "next/router";
 
-interface Props {}
+interface Props {
+  onCompleted?: () => void;
+}
 
-const LoginForm: React.FC = (props: Props) => {
+const LoginForm: React.FC<Props> = (props: Props) => {
+  const { onCompleted } = props;
   const router = useRouter();
 
   const [identifier, setIdentifier] = React.useState("");
@@ -59,7 +62,9 @@ const LoginForm: React.FC = (props: Props) => {
       </FormControl>
       <Button
         isLoading={loading}
-        onClick={() => signIn()}
+        onClick={() => {
+          signIn().then((res) => onCompleted());
+        }}
         disabled={loading || identifier == "" || password == ""}
         overrides={{
           BaseButton: {
@@ -87,13 +92,6 @@ const LoginForm: React.FC = (props: Props) => {
       <Divider>Or</Divider>
       <Button
         isLoading={loading}
-        onClick={() =>
-          signIn({
-            variables: {
-              input: { identifier, password, provider: "facebook" },
-            },
-          })
-        }
         overrides={{
           BaseButton: {
             style: ({ $theme }) => {
