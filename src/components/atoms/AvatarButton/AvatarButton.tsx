@@ -14,6 +14,7 @@ interface Props {}
 
 const AvatarButton = (props: Props) => {
   const auth = useAuth();
+  const user = auth.user;
   const signOut = auth.signOut;
   const [css, theme] = useStyletron();
   const content = () => {
@@ -60,7 +61,7 @@ const AvatarButton = (props: Props) => {
             },
           }}
         >
-          <Avatar name="Jane Doe" />
+          <Avatar name={`${user.firstName} ${user.lastName}`} />
         </Button>
       </StatefulPopover>
     </React.Fragment>

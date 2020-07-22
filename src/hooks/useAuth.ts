@@ -9,6 +9,7 @@ import {
   SignUpVariables,
   UsersPermissionsLoginPayload,
 } from "src/mutations/gqlTypes/Signup";
+import { UserMe } from "src/fragments/gqlTypes/User";
 declare global {
   interface Window {
     PasswordCredential: any;
@@ -20,7 +21,7 @@ declare global {
 export const authContext = createContext(null);
 
 export const useProvideAuth = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserMe>(null);
 
   const getUser = () => {
     const { data, error, loading } = useQuery(userQuery);
