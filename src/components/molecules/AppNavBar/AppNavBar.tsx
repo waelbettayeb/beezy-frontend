@@ -13,11 +13,12 @@ import { useAuth } from "src/hooks/useAuth";
 import DarkModeToggle from "src/components/atoms/DarkModeToggle";
 import Logo from "src/components/atoms/Logo";
 import ChangeLocaleButton from "@components/atoms/ChangeLocaleButton";
+import AvatarButton from "@components/atoms/AvatarButton";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
-  const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
+  const auth = useAuth();
   const signOut = auth.signOut;
   return (
     <HeaderNavigation>
@@ -36,9 +37,7 @@ const AppNavBar = (props: Props) => {
         </StyledNavigationItem>
         {auth.user ? (
           <StyledNavigationItem>
-            <Button shape={SHAPE.pill} onClick={() => signOut()}>
-              Sign out
-            </Button>
+            <AvatarButton />
           </StyledNavigationItem>
         ) : (
           <StyledNavigationItem>
@@ -51,14 +50,8 @@ const AppNavBar = (props: Props) => {
       {auth.user ? (
         ""
       ) : (
-        <Drawer
-          isOpen={isOpen}
-          autoFocus
-          onClose={() => {
-            setIsOpen(false);
-          }}
-        >
-          <LoginForm />
+        <Drawer isOpen={isOpen} autoFocus onClose={() => setIsOpen(false)}>
+          <LoginForm onCompleted={() => setIsOpen(false)} />
         </Drawer>
       )}
       <StyledNavigationList $align={ALIGN.right} />
