@@ -32,19 +32,21 @@ const AppNavBar = (props: Props) => {
         <StyledNavigationItem>
           <ChangeLocaleButton />
         </StyledNavigationItem>
-        <StyledNavigationItem>
-          <DarkModeToggle />
-        </StyledNavigationItem>
         {auth.user ? (
           <StyledNavigationItem>
             <AvatarButton />
           </StyledNavigationItem>
         ) : (
-          <StyledNavigationItem>
-            <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
-              Get started
-            </Button>
-          </StyledNavigationItem>
+          <>
+            <StyledNavigationItem>
+              <DarkModeToggle />
+            </StyledNavigationItem>
+            <StyledNavigationItem>
+              <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
+                Get started
+              </Button>
+            </StyledNavigationItem>
+          </>
         )}
       </StyledNavigationList>
       {auth.user ? (
