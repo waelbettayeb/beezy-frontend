@@ -1,9 +1,9 @@
-import { UsersPermissionsMe } from "src/fragments/gqlTypes/User";
+import { UserMe } from "src/fragments/gqlTypes/User";
 
 export interface UsersPermissionsLoginPayload {
   signup: {
     jwt: string;
-    user: UsersPermissionsMe;
+    user: UserMe;
   };
 }
 

@@ -4,7 +4,7 @@ import { userFragment } from "../fragments/auth";
 export const loginMutation = gql`
   ${userFragment}
   mutation Login($input: UsersPermissionsLoginInput!) {
-    login(input: $input) {
+    signin(input: $input) {
       jwt
       user {
         ...User

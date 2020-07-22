@@ -25,7 +25,7 @@ export const useProvideAuth = () => {
   const getUser = () => {
     const { data, error, loading } = useQuery(userQuery);
     if (data && !loading) {
-      error ? signOut() : setUser(data?.me);
+      error ? signOut() : setUser(data?._me);
     }
     return { user, loading };
   };
@@ -36,8 +36,8 @@ export const useProvideAuth = () => {
     >(loginMutation, {
       variables: input,
     });
-    setUser(data?.login?.user);
-    setAuthToken(data?.login?.jwt);
+    setUser(data?.signin?.user);
+    setAuthToken(data?.signin?.jwt);
     return [signIn, { user, error, loading }];
   };
   const useSignUp = (input: SignUpVariables) => {
