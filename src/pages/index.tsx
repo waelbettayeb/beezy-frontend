@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Beeezy - Home</title>
+        <title>Beeesy - Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppNavBar />
