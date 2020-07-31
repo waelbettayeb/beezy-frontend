@@ -14,10 +14,8 @@ const Logo: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <img
-        src={
-          theme === THEME.Light ? "/beeezyLogoLight.svg" : "/beeezyLogoDark.svg"
-        }
-        alt="Beeezy Logo"
+        src={theme === THEME.Light ? "/logo-light.svg" : "/logo-dark.svg"}
+        alt="Beeesy Logo"
         className={css({
           height: height ? height : _theme.sizing.scale1000,
         })}
