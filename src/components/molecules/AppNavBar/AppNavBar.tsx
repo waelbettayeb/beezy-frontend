@@ -6,7 +6,7 @@ import {
   StyledNavigationItem,
 } from "baseui/header-navigation";
 import { StyledLink } from "baseui/link";
-import { Button, SHAPE } from "baseui/button";
+import { Button, KIND, SHAPE } from "baseui/button";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { useAuth } from "src/hooks/useAuth";
@@ -27,7 +27,23 @@ const AppNavBar = (props: Props) => {
           <Logo />
         </StyledNavigationItem>
       </StyledNavigationList>
-      <StyledNavigationList $align={ALIGN.center} />
+      <StyledNavigationList $align={ALIGN.center}>
+        {/* <StyledNavigationItem>
+          <Button onClick={() => alert("click")} disabled kind={KIND.minimal}>
+            Shop
+          </Button>
+        </StyledNavigationItem>
+        <StyledNavigationItem>
+          <Button onClick={() => alert("click")} disabled kind={KIND.minimal}>
+            Blog
+          </Button>
+        </StyledNavigationItem>
+        <StyledNavigationItem>
+          <Button onClick={() => alert("click")} disabled kind={KIND.minimal}>
+            Ressources
+          </Button>
+        </StyledNavigationItem> */}
+      </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.right}>
         <StyledNavigationItem>
           <ChangeLocaleButton />
@@ -38,9 +54,9 @@ const AppNavBar = (props: Props) => {
           </StyledNavigationItem>
         ) : (
           <>
-            <StyledNavigationItem>
+            {/* <StyledNavigationItem>
               <DarkModeToggle />
-            </StyledNavigationItem>
+            </StyledNavigationItem> */}
             <StyledNavigationItem>
               <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
                 Get started
@@ -56,7 +72,6 @@ const AppNavBar = (props: Props) => {
           <LoginForm onCompleted={() => setIsOpen(false)} />
         </Drawer>
       )}
-      <StyledNavigationList $align={ALIGN.right} />
     </HeaderNavigation>
   );
 };
