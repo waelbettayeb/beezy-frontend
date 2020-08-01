@@ -20,7 +20,7 @@ const ChangeLocaleButton = (props: Props) => {
     <React.Fragment>
       <Button
         onClick={() => setIsOpen(true)}
-        kind={KIND.minimal}
+        kind={KIND.secondary}
         shape={SHAPE.round}
       >
         <GlobalOutlined style={{ fontSize: theme.sizing.scale700 }} />
