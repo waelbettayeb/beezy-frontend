@@ -14,6 +14,7 @@ import { ChevronRight } from "baseui/icon";
 import { StyledLink } from "baseui/link";
 import Divider from "@components/atoms/Divider";
 import { ORIENTATION } from "@components/atoms/Divider/Divider";
+import { Block } from "baseui/block";
 
 interface Props extends DrawerProps {}
 
@@ -30,7 +31,6 @@ const SearchDrawer = (props: Props) => {
   };
   return (
     <Drawer {...props} autoFocus anchor={ANCHOR.left}>
-      <Display4 marginBottom="scale500">Search</Display4>
       <SearchProvider config={config}>
         <WithSearch
           mapContextToProps={({
@@ -57,12 +57,15 @@ const SearchDrawer = (props: Props) => {
             setResultsPerPage(10);
             setCurrent(1);
             return (
-              <div>
+              <Block display="flex" flexDirection="column" height="100%">
+                <Display4 marginBottom="scale500">Search</Display4>
                 <Input
                   type="search"
                   placeholder="Search..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) =>
+                    setSearchTerm((e.target as HTMLTextAreaElement).value)
+                  }
                 />
 
                 <ul
@@ -70,20 +73,36 @@ const SearchDrawer = (props: Props) => {
                     width: "100%",
                     paddingLeft: 0,
                     paddingRight: 0,
+                    flex: "1 0 auto",
                   })}
                 >
-                  <div
-                    className={css({
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignContent: "center",
-                    })}
-                  >
-                    <Label3>People</Label3>
-                    <StyledLink href="#">Show more</StyledLink>
-                  </div>
+                  {!results.length ? (
+                    <Block
+                      width="100%"
+                      height="100%"
+                      display={"flex"}
+                      flexDirection="column"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Label3 color={theme.colors.contentInverseSecondary}>
+                        No data
+                      </Label3>
+                    </Block>
+                  ) : (
+                    <div
+                      className={css({
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignContent: "center",
+                      })}
+                    >
+                      <Label3>People</Label3>
+                      <StyledLink href="#">Show more</StyledLink>
+                    </div>
+                  )}
                   {results.map((r) => (
                     <ListItem
                       endEnhancer={() => <ChevronRight />}
@@ -101,7 +120,7 @@ const SearchDrawer = (props: Props) => {
                     </ListItem>
                   ))}
                 </ul>
-              </div>
+              </Block>
             );
           }}
         </WithSearch>
