@@ -1,15 +1,21 @@
 import React from "react";
-import { Display2, Paragraph3 } from "baseui/typography";
+import { Display4, Paragraph3 } from "baseui/typography";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
 import { StyledLink } from "baseui/link";
 import { useAuth } from "src/hooks/useAuth";
 import Divider from "@components/atoms/Divider";
+import { useRouter } from "next/router";
 
-interface Props {}
+interface Props {
+  onCompleted?: () => void;
+}
 
-const LoginForm: React.FC = (props: Props) => {
+const LoginForm: React.FC<Props> = (props: Props) => {
+  const { onCompleted } = props;
+  const router = useRouter();
+
   const [identifier, setIdentifier] = React.useState("");
   const [password, setPassword] = React.useState("");
   const auth = useAuth();
@@ -43,7 +49,7 @@ const LoginForm: React.FC = (props: Props) => {
     <span>authentificated</span>
   ) : (
     <React.Fragment>
-      <Display2 marginBottom="scale500">Login</Display2>
+      <Display4 marginBottom="scale500">Login</Display4>
       <FormControl label={() => "Username"}>
         <Input
           disabled={loading}
@@ -56,7 +62,9 @@ const LoginForm: React.FC = (props: Props) => {
       </FormControl>
       <Button
         isLoading={loading}
-        onClick={() => signIn()}
+        onClick={() => {
+          signIn().then((res) => onCompleted());
+        }}
         disabled={loading || identifier == "" || password == ""}
         overrides={{
           BaseButton: {
@@ -72,7 +80,10 @@ const LoginForm: React.FC = (props: Props) => {
       </Button>
 
       <Paragraph3>
-        Don't have an account? <StyledLink href="/about">Sign up</StyledLink>
+        Don't have an account?{" "}
+        <StyledLink onClick={() => router.push("/auth/signup")}>
+          Sign up
+        </StyledLink>
       </Paragraph3>
       <Paragraph3>
         Have you forgotten your password?{" "}
@@ -81,13 +92,6 @@ const LoginForm: React.FC = (props: Props) => {
       <Divider>Or</Divider>
       <Button
         isLoading={loading}
-        onClick={() =>
-          signIn({
-            variables: {
-              input: { identifier, password, provider: "facebook" },
-            },
-          })
-        }
         overrides={{
           BaseButton: {
             style: ({ $theme }) => {

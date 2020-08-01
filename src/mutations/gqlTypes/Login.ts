@@ -1,8 +1,10 @@
-import { UsersPermissionsMe } from "src/fragments/gqlTypes/User";
+import { UserMe } from "src/fragments/gqlTypes/User";
 
 export interface Login {
-  jwt: string;
-  user: UsersPermissionsMe;
+  signin: {
+    jwt: string;
+    user: UserMe;
+  };
 }
 
 export interface LoginVariables_input {
