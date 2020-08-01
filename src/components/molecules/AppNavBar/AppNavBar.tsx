@@ -14,14 +14,28 @@ import DarkModeToggle from "src/components/atoms/DarkModeToggle";
 import Logo from "src/components/atoms/Logo";
 import ChangeLocaleButton from "@components/atoms/ChangeLocaleButton";
 import AvatarButton from "@components/atoms/AvatarButton";
+import { useStyletron } from "baseui";
+import { Theme } from "baseui/theme";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const auth = useAuth();
   const signOut = auth.signOut;
+
   return (
-    <HeaderNavigation>
+    <HeaderNavigation
+      overrides={{
+        Root: {
+          style: ({ $theme }) => {
+            const theme: Theme = $theme;
+            return {
+              padding: theme.sizing.scale300,
+            };
+          },
+        },
+      }}
+    >
       <StyledNavigationList $align={ALIGN.left}>
         <StyledNavigationItem>
           <Logo />
