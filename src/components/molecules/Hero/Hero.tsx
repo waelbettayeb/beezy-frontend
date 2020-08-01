@@ -7,13 +7,16 @@ import { Input, SIZE } from "baseui/input";
 import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
 import { FormattedMessage } from "react-intl";
+import { ANCHOR, Drawer } from "baseui/drawer";
+import SearchDrawer from "@components/organisms/SearchDrawer";
 
 interface Props {}
 
 function Hero({}: Props): ReactElement {
   const textString = "We ignite bee hives by companying beekeepers.";
   const bodyString =
-    "Good things happen when people can connect, find the right bee yard when your hives can produce more. ";
+    "Good things happen when people can connect, find the right place where your hives can produce more. ";
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Grid
@@ -31,9 +34,11 @@ function Hero({}: Props): ReactElement {
             type="search"
             startEnhancer={<Search size="18px" />}
             size={SIZE.large}
-            placeholder="Search a bee yard..."
+            placeholder="Search for a person, a bee yard..."
+            onKeyDown={() => setIsOpen(true)}
           />
           <br />
+          <SearchDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
           <StyledLink href="#">
             <FormattedMessage defaultMessage={"Learn more about beekeeping"} />
           </StyledLink>
