@@ -8,7 +8,7 @@ import { Locale, localeNames } from "@components/containers/Locale";
 import { FormattedMessage } from "react-intl";
 import { Cell, Grid } from "baseui/layout-grid";
 import { useStyletron } from "baseui";
-
+import { GlobalOutlined } from "@ant-design/icons";
 interface Props {}
 
 const ChangeLocaleButton = (props: Props) => {
@@ -20,10 +20,10 @@ const ChangeLocaleButton = (props: Props) => {
     <React.Fragment>
       <Button
         onClick={() => setIsOpen(true)}
-        kind={KIND.minimal}
+        kind={KIND.secondary}
         shape={SHAPE.round}
       >
-        <Alert />
+        <GlobalOutlined style={{ fontSize: theme.sizing.scale700 }} />
       </Button>
       <Drawer
         isOpen={isOpen}

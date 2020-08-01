@@ -11,6 +11,7 @@
     "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.1",
     "@apollo/react-hooks": "^3.1.5",
     "@elastic/react-search-ui": "^1.4.1",
     "@elastic/search-ui-app-search-connector": "^1.4.1",
