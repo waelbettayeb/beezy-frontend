@@ -1,22 +1,19 @@
+import React from "react";
 import { useStyletron } from "baseui";
 import { Drawer, ANCHOR, DrawerProps } from "baseui/drawer";
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { Input } from "baseui/input";
-import { Display4 } from "baseui/typography";
-import React from "react";
-import {
-  ErrorBoundary,
-  Facet,
-  SearchProvider,
-  SearchBox,
-  Results,
-  PagingInfo,
-  ResultsPerPage,
-  Paging,
-  Sorting,
-  WithSearch,
-} from "@elastic/react-search-ui";
+import { Display4, Label3, Label4 } from "baseui/typography";
+import { ListItem, ListItemLabel, ARTWORK_SIZES } from "baseui/list";
+import { Label2 } from "baseui/typography";
+
+import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
 import { Layout } from "@elastic/react-search-ui-views";
+import { Avatar } from "baseui/avatar";
+import { ChevronRight } from "baseui/icon";
+import { StyledLink } from "baseui/link";
+import Divider from "@components/atoms/Divider";
+import { ORIENTATION } from "@components/atoms/Divider/Divider";
 
 interface Props extends DrawerProps {}
 
@@ -67,9 +64,43 @@ const SearchDrawer = (props: Props) => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                {results.map((r) => (
-                  <div key={r.id.raw}>{r.lastname.raw}</div>
-                ))}
+
+                <ul
+                  className={css({
+                    width: "100%",
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                  })}
+                >
+                  <div
+                    className={css({
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignContent: "center",
+                    })}
+                  >
+                    <Label3>People</Label3>
+                    <StyledLink href="#">Show more</StyledLink>
+                  </div>
+                  {results.map((r) => (
+                    <ListItem
+                      endEnhancer={() => <ChevronRight />}
+                      artwork={() => (
+                        <Avatar
+                          name={`${r.firstname.raw} ${r.lastname.raw}`}
+                          size="scale1200"
+                        />
+                      )}
+                      artworkSize={ARTWORK_SIZES.SMALL}
+                    >
+                      <ListItemLabel description={r.email.raw}>
+                        {`${r.firstname.raw} ${r.lastname.raw}`}
+                      </ListItemLabel>
+                    </ListItem>
+                  ))}
+                </ul>
               </div>
             );
           }}
