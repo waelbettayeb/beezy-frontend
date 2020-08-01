@@ -16,6 +16,7 @@ import ChangeLocaleButton from "@components/atoms/ChangeLocaleButton";
 import AvatarButton from "@components/atoms/AvatarButton";
 import { useStyletron } from "baseui";
 import { Theme } from "baseui/theme";
+import AddServiceButton from "../AddServiceButton";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -59,18 +60,23 @@ const AppNavBar = (props: Props) => {
         </StyledNavigationItem> */}
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.right}>
-        <StyledNavigationItem>
-          <ChangeLocaleButton />
-        </StyledNavigationItem>
         {auth.user ? (
-          <StyledNavigationItem>
-            <AvatarButton />
-          </StyledNavigationItem>
+          <>
+            <StyledNavigationItem>
+              <AddServiceButton />
+            </StyledNavigationItem>
+            <StyledNavigationItem>
+              <AvatarButton />
+            </StyledNavigationItem>
+          </>
         ) : (
           <>
             {/* <StyledNavigationItem>
               <DarkModeToggle />
             </StyledNavigationItem> */}
+            <StyledNavigationItem>
+              <ChangeLocaleButton />
+            </StyledNavigationItem>
             <StyledNavigationItem>
               <Button shape={SHAPE.pill} onClick={() => setIsOpen(true)}>
                 Get started
