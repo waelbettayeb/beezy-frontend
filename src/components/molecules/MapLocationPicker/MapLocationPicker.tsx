@@ -26,7 +26,7 @@ const MapLocationPicker = (props: Props) => {
         return response.json();
       })
       .catch(function (error) {
-        console.log(error);
+        setAddress("");
       })
       .then(function (json) {
         setAddress(json.display_name);
