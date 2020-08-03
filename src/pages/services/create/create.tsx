@@ -3,11 +3,12 @@ import React from "react";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Cell, Grid } from "baseui/layout-grid";
-import { Display2, Display4 } from "baseui/typography";
+import { Display4 } from "baseui/typography";
 import { Textarea } from "baseui/textarea";
 import { FileUploader } from "baseui/file-uploader";
 import dynamic from "next/dynamic";
 import { Block } from "baseui/block";
+import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -23,10 +24,14 @@ const create = (props: Props) => {
 
   return (
     <React.Fragment>
+      <BackHomeNavBar />
       <Grid>
-        <Cell span={12}></Cell>
-        <Cell span={6} skip={[0, 3]}>
-          <Display4>Add your service</Display4>
+        <Cell span={12}>
+          <Display4 marginBottom="scale500" marginTop="scale500">
+            Create New Listing
+          </Display4>
+        </Cell>
+        <Cell span={[4, 8, 6]}>
           <FormControl label="Photos">
             <FileUploader accept={"image/png"} multiple />
           </FormControl>
@@ -45,10 +50,12 @@ const create = (props: Props) => {
             />
           </FormControl>
         </Cell>
-        <Cell span={6} skip={[0, 3]}>
-          <Block height="50vh" width="100%">
-            <MapLocationPicker />
-          </Block>
+        <Cell span={[4, 8, 6]}>
+          <FormControl label="Position">
+            <Block height="50vh" width="100%">
+              <MapLocationPicker />
+            </Block>
+          </FormControl>
         </Cell>
       </Grid>
     </React.Fragment>
