@@ -6,6 +6,15 @@ import { Cell, Grid } from "baseui/layout-grid";
 import { Display2, Display4 } from "baseui/typography";
 import { Textarea } from "baseui/textarea";
 import { FileUploader } from "baseui/file-uploader";
+import dynamic from "next/dynamic";
+import { Block } from "baseui/block";
+
+const MapLocationPicker = dynamic(
+  () => import("@components/molecules/MapLocationPicker"),
+  {
+    ssr: false,
+  }
+);
 
 interface Props {}
 
@@ -16,7 +25,7 @@ const create = (props: Props) => {
     <React.Fragment>
       <Grid>
         <Cell span={12}></Cell>
-        <Cell span={6} skip={3}>
+        <Cell span={6} skip={[0, 3]}>
           <Display4>Add your service</Display4>
           <FormControl label="Photos">
             <FileUploader accept={"image/png"} multiple />
@@ -35,6 +44,11 @@ const create = (props: Props) => {
               onChange={(event) => setValue(event.currentTarget.value)}
             />
           </FormControl>
+        </Cell>
+        <Cell span={6} skip={[0, 3]}>
+          <Block height="50vh" width="100%">
+            <MapLocationPicker />
+          </Block>
         </Cell>
       </Grid>
     </React.Fragment>
