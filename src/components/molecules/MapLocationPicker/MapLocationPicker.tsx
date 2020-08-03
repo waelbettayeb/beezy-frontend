@@ -35,7 +35,6 @@ const MapLocationPicker = (props: Props) => {
   }
   return (
     <>
-      <Label1>{address}</Label1>
       <Map
         center={position}
         zoom={position.zoom}
@@ -56,6 +55,7 @@ const MapLocationPicker = (props: Props) => {
 
         <Marker position={position}></Marker>
       </Map>
+      <Label1>{address}</Label1>
     </>
   );
 };
