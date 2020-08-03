@@ -17,7 +17,7 @@ const Logo: React.FC<Props> = (props) => {
         src={theme === THEME.Light ? "/logo-light.svg" : "/logo-dark.svg"}
         alt="Beeesy Logo"
         className={css({
-          height: height ? height : _theme.sizing.scale1000,
+          height: height ? height : _theme.sizing.scale900,
         })}
         onClick={onClick}
       />
