@@ -9,6 +9,7 @@ import { FileUploader } from "baseui/file-uploader";
 import dynamic from "next/dynamic";
 import { Block } from "baseui/block";
 import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
+import { Button } from "baseui/button";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -56,6 +57,22 @@ const create = (props: Props) => {
               <MapLocationPicker />
             </Block>
           </FormControl>
+        </Cell>
+        <Cell skip={[0, 0, 3]} span={[4, 8, 6]}>
+          <Button
+            size={"large"}
+            overrides={{
+              Root: {
+                style: ({ $theme }) => {
+                  return {
+                    width: "100%",
+                  };
+                },
+              },
+            }}
+          >
+            Submit
+          </Button>
         </Cell>
       </Grid>
     </React.Fragment>
