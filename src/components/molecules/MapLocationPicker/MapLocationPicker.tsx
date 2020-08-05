@@ -9,7 +9,7 @@ const MapLocationPicker = (props: Props) => {
     lng: 0.070937,
     zoom: 8,
   });
-  const [address, setAddress] = React.useState("zejfze jkfzk fkzejfs");
+  const [address, setAddress] = React.useState("");
 
   const handleViewportchange = (e) => {
     setPosition({
