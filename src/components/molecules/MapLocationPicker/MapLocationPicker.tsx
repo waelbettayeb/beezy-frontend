@@ -1,22 +1,20 @@
 import React from "react";
 import { Map, TileLayer, Marker } from "react-leaflet";
 import { Label1 } from "baseui/typography";
-interface Props {}
+interface Props {
+  lat: number;
+  lng: number;
+  zoom?: number;
+  onViewportChange: (lat, lng, zoom?) => void;
+}
 
 const MapLocationPicker = (props: Props) => {
-  const [position, setPosition] = React.useState({
-    lat: 35.919809,
-    lng: 0.070937,
-    zoom: 8,
-  });
+  const { lat, lng, onViewportChange } = props;
+  const [zoom, setZoom] = React.useState(props.zoom | 8);
   const [address, setAddress] = React.useState("");
 
   const handleViewportchange = (e) => {
-    setPosition({
-      lat: e.center[0],
-      lng: e.center[1],
-      zoom: e.zoom,
-    });
+    onViewportChange(e.center[0], e.center[1], zoom);
   };
   function simpleReverseGeocoding(position) {
     const url = `http://nominatim.openstreetmap.org/reverse?format=json&lon=${position.lng}&lat=${position.lat}`;
@@ -36,16 +34,16 @@ const MapLocationPicker = (props: Props) => {
   return (
     <>
       <Map
-        center={position}
-        zoom={position.zoom}
+        center={{ lat, lng }}
+        zoom={zoom}
         onViewportChange={(e) => {
           handleViewportchange(e);
         }}
         onViewportChanged={(e) => {
-          simpleReverseGeocoding(position);
+          simpleReverseGeocoding({ lat, lng });
         }}
         onload={() => {
-          simpleReverseGeocoding(position);
+          simpleReverseGeocoding({ lat, lng });
         }}
       >
         <TileLayer
@@ -53,7 +51,7 @@ const MapLocationPicker = (props: Props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={position}></Marker>
+        <Marker position={{ lat, lng }}></Marker>
       </Map>
       <Label1>{address}</Label1>
     </>
