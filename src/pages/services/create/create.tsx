@@ -20,6 +20,11 @@ import { useAuth } from "@hooks/useAuth";
 import ImagesUploader from "@components/molecules/ImagesUploader/ImagesUploader";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import {
+  CreateListingPayload,
+  CreateListingVariables,
+} from "src/mutations/gqlTypes/Listing";
+import { CreateListingMutation } from "src/mutations/listing";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -48,7 +53,11 @@ const create = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [images, setImages] = React.useState([]);
 
-  const [uploadFiles, { data, error, loading }] = useMutation<
+  const [CreatListing, CreatListingMutationTuplet] = useMutation<
+    CreateListingPayload,
+    CreateListingVariables
+  >(CreateListingMutation);
+  const [uploadFiles, uploadMutationTuplet] = useMutation<
     MultipleUploadPayload,
     MultipleUploadVariables
   >(UploadFilesMutation);
@@ -66,7 +75,21 @@ const create = () => {
         initialValues={initialValues}
         validationSchema={CreateListingSchema}
         onSubmit={(values, actions) => {
-          alert("hello");
+          CreatListing({
+            variables: {
+              input: {
+                data: {
+                  title: values.title,
+                  location: {
+                    latitude: values.latitude,
+                    longitude: values.longitude,
+                  },
+                  images: values.images.map((img) => img.id),
+                  description: values.description,
+                },
+              },
+            },
+          });
           actions.setSubmitting(false);
         }}
       >
@@ -90,6 +113,7 @@ const create = () => {
                     <Button
                       type="submit"
                       size={"large"}
+                      isLoading={CreatListingMutationTuplet.loading}
                       overrides={{
                         Root: {
                           style: ({ $theme }) => {
@@ -118,6 +142,7 @@ const create = () => {
                       <Input
                         type="text"
                         name="title"
+                        disabled={CreatListingMutationTuplet.loading}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.title}
@@ -135,6 +160,7 @@ const create = () => {
                       <Textarea
                         type="text"
                         name="description"
+                        disabled={CreatListingMutationTuplet.loading}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.description}
@@ -151,7 +177,10 @@ const create = () => {
                         errorMessage={errorMessage}
                         maxSize={5242880}
                         onRetry={() => setErrorMessage("")}
-                        progressMessage={loading ? `Uploading...` : ""}
+                        disabled={CreatListingMutationTuplet.loading}
+                        progressMessage={
+                          uploadMutationTuplet.loading ? `Uploading...` : ""
+                        }
                         onDrop={(acceptedFiles, rejectedFiles) => {
                           if (rejectedFiles && rejectedFiles[0])
                             setErrorMessage("Images max size is 5mb");
@@ -178,7 +207,7 @@ const create = () => {
                         <MapLocationPicker
                           lat={values.latitude}
                           lng={values.longitude}
-                          onViewportChange={(lat, lng) => {
+                          onViewportChange={({ lat, lng }) => {
                             setValues({
                               ...values,
                               ...{ latitude: lat, longitude: lng },
