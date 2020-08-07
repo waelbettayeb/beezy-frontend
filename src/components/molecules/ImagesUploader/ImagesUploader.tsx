@@ -21,6 +21,7 @@ const ImagesUploader = (props: Props) => {
         onRetry={props.onRetry}
         onDrop={props.onDrop}
         progressMessage={props.progressMessage}
+        disabled={props.disabled}
         overrides={{
           Root: {
             style: {
