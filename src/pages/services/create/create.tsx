@@ -30,12 +30,21 @@ const MapLocationPicker = dynamic(
 const CreateListingSchema = Yup.object().shape({
   title: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
+  latitude: Yup.number().required("Required"),
+  longitude: Yup.number().required("Required"),
+  images: Yup.array()
+    .of(
+      Yup.object().shape({
+        url: Yup.string().required(),
+        id: Yup.string().required(),
+      })
+    )
+    .min(1, "Required"),
   // phone: Yup.string()
   //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
   //   .required("Required"),
 });
 const create = () => {
-  const [value, setValue] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [images, setImages] = React.useState([]);
 
@@ -47,8 +56,9 @@ const create = () => {
   const initialValues = {
     title: "",
     description: "",
-    lat: 0,
-    lng: 0,
+    latitude: 35.919809,
+    longitude: 0,
+    images: [],
   };
   return (
     <React.Fragment>
@@ -56,6 +66,7 @@ const create = () => {
         initialValues={initialValues}
         validationSchema={CreateListingSchema}
         onSubmit={(values, actions) => {
+          alert("hello");
           actions.setSubmitting(false);
         }}
       >
@@ -67,13 +78,31 @@ const create = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
+          setValues,
+          setFieldValue,
         }) => {
           return (
             <>
               <BackHomeNavBar />
               <Form onSubmit={handleSubmit}>
                 <Grid>
+                  <Cell skip={[0, 0, 3]} span={[4, 8, 6]} order={10}>
+                    <Button
+                      type="submit"
+                      size={"large"}
+                      overrides={{
+                        Root: {
+                          style: ({ $theme }) => {
+                            return {
+                              width: "100%",
+                            };
+                          },
+                        },
+                      }}
+                    >
+                      Submit
+                    </Button>
+                  </Cell>
                   <Cell span={12}>
                     <Display4 marginBottom="scale500" marginTop="scale500">
                       Create New Listing
@@ -112,9 +141,13 @@ const create = () => {
                         error={errors.description && touched.description}
                       />
                     </FormControl>
-                    <FormControl label="Photos">
+                    <FormControl
+                      label="Photos"
+                      error={errors.images && touched.images && errors.images}
+                    >
                       <ImagesUploader
-                        images={images}
+                        name="images"
+                        images={values.images}
                         errorMessage={errorMessage}
                         maxSize={5242880}
                         onRetry={() => setErrorMessage("")}
@@ -129,8 +162,10 @@ const create = () => {
                             },
                           })
                             .then((value) => {
-                              setImages(images.concat(value.data.UploadFiles));
-                              console.log(images);
+                              setFieldValue(
+                                "images",
+                                images.concat(value.data.UploadFiles)
+                              );
                             })
                             .catch((reason) => console.log(reason));
                         }}
@@ -140,26 +175,18 @@ const create = () => {
                   <Cell span={[4, 8, 6]}>
                     <FormControl label="Position">
                       <Block height="50vh" width="100%">
-                        <MapLocationPicker />
+                        <MapLocationPicker
+                          lat={values.latitude}
+                          lng={values.longitude}
+                          onViewportChange={(lat, lng) => {
+                            setValues({
+                              ...values,
+                              ...{ latitude: lat, longitude: lng },
+                            });
+                          }}
+                        />
                       </Block>
                     </FormControl>
-                  </Cell>
-                  <Cell skip={[0, 0, 3]} span={[4, 8, 6]}>
-                    <Button
-                      type="submit"
-                      size={"large"}
-                      overrides={{
-                        Root: {
-                          style: ({ $theme }) => {
-                            return {
-                              width: "100%",
-                            };
-                          },
-                        },
-                      }}
-                    >
-                      Submit
-                    </Button>
                   </Cell>
                 </Grid>
               </Form>
