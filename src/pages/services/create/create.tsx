@@ -3,13 +3,20 @@ import React from "react";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Cell, Grid } from "baseui/layout-grid";
-import { Display4 } from "baseui/typography";
+import { Display4, Label1 } from "baseui/typography";
 import { Textarea } from "baseui/textarea";
 import { FileUploader } from "baseui/file-uploader";
 import dynamic from "next/dynamic";
 import { Block } from "baseui/block";
 import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
 import { Button } from "baseui/button";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  MultipleUploadPayload,
+  MultipleUploadVariables,
+} from "src/mutations/gqlTypes/Upload";
+import { UploadFilesMutation } from "src/mutations/upload";
+import { useAuth } from "@hooks/useAuth";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -18,11 +25,16 @@ const MapLocationPicker = dynamic(
   }
 );
 
-interface Props {}
-
-const create = (props: Props) => {
+const create = () => {
   const [value, setValue] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [images, setImages] = React.useState([]);
 
+  const [uploadFiles, { data, error, loading }] = useMutation<
+    MultipleUploadPayload,
+    MultipleUploadVariables
+  >(UploadFilesMutation);
+  const { user } = useAuth();
   return (
     <React.Fragment>
       <BackHomeNavBar />
@@ -33,9 +45,6 @@ const create = (props: Props) => {
           </Display4>
         </Cell>
         <Cell span={[4, 8, 6]}>
-          <FormControl label="Photos">
-            <FileUploader accept={"image/png"} multiple />
-          </FormControl>
           <FormControl label="Title">
             <Input
               id="input-id"
@@ -48,6 +57,31 @@ const create = (props: Props) => {
               id="textarea-id"
               value={value}
               onChange={(event) => setValue(event.currentTarget.value)}
+            />
+          </FormControl>
+          <FormControl label="Photos">
+            <FileUploader
+              accept={"image/*"}
+              multiple
+              maxSize={5242880}
+              errorMessage={errorMessage}
+              onRetry={() => setErrorMessage("")}
+              onDrop={(acceptedFiles, rejectedFiles) => {
+                if (rejectedFiles[0]) setErrorMessage("Images max size is 5mb");
+                uploadFiles({
+                  variables: {
+                    files: acceptedFiles,
+                    path: `listings/${user.id}`,
+                  },
+                })
+                  .then((value) => {
+                    setImages(images.concat(value.data.UploadFiles));
+                    console.log(images);
+                  })
+                  .catch((reason) => setErrorMessage(reason));
+              }}
+              // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
+              progressMessage={loading ? `Uploading...` : ""}
             />
           </FormControl>
         </Cell>
