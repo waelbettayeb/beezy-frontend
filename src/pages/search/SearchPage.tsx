@@ -9,7 +9,7 @@ const SearchPage = () => {
   return (
     <React.Fragment>
       <SearchNavBar
-        searchedTerm={searchedTerm}
+        searchTerm={searchedTerm}
         onSearchTermChange={(e) =>
           setSearchedTerm((e.target as HTMLTextAreaElement).value)
         }
