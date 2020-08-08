@@ -5,7 +5,7 @@ interface Props {
   lat: number;
   lng: number;
   zoom?: number;
-  onViewportChange: (lat, lng, zoom?) => void;
+  onViewportChange: (lat, lng) => void;
 }
 
 const MapLocationPicker = (props: Props) => {
@@ -14,11 +14,10 @@ const MapLocationPicker = (props: Props) => {
   const [address, setAddress] = React.useState("");
 
   const handleViewportchange = (e) => {
-    onViewportChange(e.center[0], e.center[1], zoom);
+    onViewportChange(e.center[0], e.center[1]);
   };
   function simpleReverseGeocoding(position) {
     const url = `http://nominatim.openstreetmap.org/reverse?format=json&lon=${position.lng}&lat=${position.lat}`;
-    console.log(url);
     fetch(url)
       .then(function (response) {
         return response.json();
@@ -28,7 +27,6 @@ const MapLocationPicker = (props: Props) => {
       })
       .then(function (json) {
         setAddress(json.display_name);
-        console.log(json);
       });
   }
   return (
