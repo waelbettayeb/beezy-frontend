@@ -207,7 +207,7 @@ const create = () => {
                         <MapLocationPicker
                           lat={values.latitude}
                           lng={values.longitude}
-                          onViewportChange={({ lat, lng }) => {
+                          onViewportChange={(lat, lng) => {
                             setValues({
                               ...values,
                               ...{ latitude: lat, longitude: lng },
