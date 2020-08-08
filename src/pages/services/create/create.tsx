@@ -33,7 +33,9 @@ const MapLocationPicker = dynamic(
   }
 );
 const CreateListingSchema = Yup.object().shape({
-  title: Yup.string().required("Required"),
+  title: Yup.string()
+    .max(25, "max number of characters is 25")
+    .required("Required"),
   description: Yup.string().required("Required"),
   latitude: Yup.number().required("Required"),
   longitude: Yup.number().required("Required"),
