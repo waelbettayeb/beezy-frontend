@@ -16,6 +16,10 @@ import { Block } from "baseui/block";
 import { ALIGNMENT, Cell, Grid } from "baseui/layout-grid";
 import { useStyletron } from "baseui";
 import { Input } from "baseui/input";
+import { useAuth } from "@hooks/useAuth";
+import AvatarButton from "@components/atoms/AvatarButton";
+import { Drawer } from "baseui/drawer";
+import LoginForm from "../LoginForm";
 
 interface Props {
   searchTerm?: string;
@@ -25,6 +29,9 @@ interface Props {
 const SearchNavBar = (props: Props) => {
   const { searchTerm, onSearchTermChange } = props;
   const [css, theme] = useStyletron();
+  const auth = useAuth();
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <HeaderNavigation
       overrides={{
@@ -55,7 +62,7 @@ const SearchNavBar = (props: Props) => {
               justifyContent="center"
               alignItems="center"
             >
-              <Logo />
+              <Logo onClick={() => Router.push("/")} />
             </Block>
           </Cell>
           <Cell span={[4, 4, 6]}>
@@ -67,6 +74,32 @@ const SearchNavBar = (props: Props) => {
               clearable
               onChange={onSearchTermChange}
             />
+          </Cell>
+          <Cell span={[0, 3, 5]}>
+            <Block
+              width="100%"
+              display={"flex"}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="flex-end"
+            >
+              {auth.user ? (
+                <AvatarButton />
+              ) : (
+                <>
+                  <Button onClick={() => setIsOpen(true)} kind={"tertiary"}>
+                    Login
+                  </Button>
+                  <Drawer
+                    isOpen={isOpen}
+                    autoFocus
+                    onClose={() => setIsOpen(false)}
+                  >
+                    <LoginForm onCompleted={() => setIsOpen(false)} />
+                  </Drawer>
+                </>
+              )}
+            </Block>
           </Cell>
         </Grid>
       </Block>
