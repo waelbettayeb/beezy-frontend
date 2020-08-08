@@ -44,6 +44,13 @@ const BaseUIProvider: React.FC = ({ children }) => {
         fontFamily: "Metropolis",
       },
     },
+    borders: {
+      useRoundedCorners: true,
+      buttonBorderRadius: "8px",
+      inputBorderRadius: "4px",
+      popoverBorderRadius: "8px",
+      surfaceBorderRadius: "4px",
+    },
   };
   const LightTheme = createLightTheme(primitives, overrides);
   const DarkTheme = createDarkTheme(primitivesDark, overrides);
