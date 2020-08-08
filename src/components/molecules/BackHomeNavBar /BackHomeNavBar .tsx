@@ -61,7 +61,7 @@ const BackHomeNavBar = (props: Props) => {
               justifyContent="center"
               alignItems="center"
             >
-              <Logo />
+              <Logo onClick={() => Router.push("/")} />
             </Block>
           </Cell>
         </Grid>
