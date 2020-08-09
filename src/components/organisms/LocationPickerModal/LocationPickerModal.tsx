@@ -12,8 +12,10 @@ import {
   ModalButton,
   ModalProps,
 } from "baseui/modal";
-import { Select, Value } from "baseui/select";
+import { Slider } from "baseui/slider";
+
 import dynamic from "next/dynamic";
+import { FormControl } from "baseui/form-control";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -29,16 +31,6 @@ interface Props extends ModalProps {
   onApply?: (latitude?, longitude?, radius?) => void;
 }
 
-const options = [
-  { label: "1 kilometer", id: 1 },
-  { label: "5 kilometers", id: 5 },
-  { label: "20 kilometers", id: 20 },
-  { label: "50 kilometers", id: 50 },
-  { label: "100 kilometers", id: 100 },
-  { label: "200 kilometers", id: 200 },
-  { label: "500 kilometers", id: 500 },
-];
-
 const LocationPickerModal = (props: Props) => {
   const { defaultRadius, onApply, onClose, latitude, longitude } = props;
   const [css, theme] = useStyletron();
@@ -46,10 +38,8 @@ const LocationPickerModal = (props: Props) => {
     latitude: latitude || 35.919809,
     longitude: longitude || 0,
   });
-  const [radius, setRadius] = React.useState<Value>(
-    defaultRadius
-      ? [options.find((option) => option.id === defaultRadius)]
-      : [{ label: "50 kilometers", id: 50 }]
+  const [radius, setRadius] = React.useState(
+    defaultRadius ? [defaultRadius] : [50]
   );
   const handleOnClose = () => {
     onClose && onClose({});
@@ -57,14 +47,10 @@ const LocationPickerModal = (props: Props) => {
       latitude: latitude || 35.919809,
       longitude: longitude || 0,
     });
-    setRadius(
-      defaultRadius
-        ? [options.find((option) => option.id === defaultRadius)]
-        : [{ label: "50 kilometers", id: 50 }]
-    );
+    setRadius(defaultRadius ? [defaultRadius] : [50]);
   };
   const handleOnApply = () => {
-    onApply && onApply(position.latitude, position.longitude, radius[0].id);
+    onApply && onApply(position.latitude, position.longitude, radius[0]);
     onClose && onClose({});
   };
 
@@ -80,29 +66,59 @@ const LocationPickerModal = (props: Props) => {
     >
       <ModalHeader>Change Location</ModalHeader>
       <ModalBody>
-        <Grid gridMargins={0} gridGaps={10}>
-          <Cell span={12}>
-            <Select
-              clearable={false}
-              options={options}
-              value={radius}
-              placeholder="Select color"
-              onChange={(options) => setRadius(options.value)}
+        <FormControl label={"Radius"}>
+          <Slider
+            value={radius}
+            onChange={({ value }) => value && setRadius(value)}
+            onFinalChange={({ value }) => console.log(value)}
+            min={0}
+            max={500}
+            step={20}
+            overrides={{
+              ThumbValue: ({ $value }) => (
+                <div
+                  className={css({
+                    position: "absolute",
+                    top: `-${theme.sizing.scale800}`,
+                    ...theme.typography.font200,
+                    backgroundColor: "transparent",
+                  })}
+                >
+                  {$value}km
+                </div>
+              ),
+              TickBar: ({ $min, $max }) => (
+                <div
+                  className={css({
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingRight: theme.sizing.scale600,
+                    paddingLeft: theme.sizing.scale600,
+                    paddingBottom: theme.sizing.scale400,
+                  })}
+                >
+                  <div>{0}km</div>
+                  <div>{250}km</div>
+                  <div>{500}km</div>
+                </div>
+              ),
+            }}
+          />
+        </FormControl>
+
+        <FormControl label={"Location"}>
+          <Block height="50vh" width="100%">
+            <MapLocationPicker
+              lat={position.latitude}
+              lng={position.longitude}
+              radius={radius[0] * 1000}
+              onViewportChange={(lat, lng) => {
+                setPosition({ latitude: lat, longitude: lng });
+              }}
             />
-          </Cell>
-          <Cell span={12}>
-            <Block height="50vh" width="100%">
-              <MapLocationPicker
-                lat={position.latitude}
-                lng={position.longitude}
-                radius={(radius[0].id as number) * 1000}
-                onViewportChange={(lat, lng) => {
-                  setPosition({ latitude: lat, longitude: lng });
-                }}
-              />
-            </Block>
-          </Cell>
-        </Grid>
+          </Block>
+        </FormControl>
       </ModalBody>
       <ModalFooter>
         <ModalButton kind={"tertiary"} onClick={handleOnClose}>
