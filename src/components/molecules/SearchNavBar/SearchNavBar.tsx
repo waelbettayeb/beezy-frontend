@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  HeaderNavigation,
-  ALIGN,
-  StyledNavigationList,
-  StyledNavigationItem,
-} from "baseui/header-navigation";
+import { HeaderNavigation } from "baseui/header-navigation";
 
 import { Button, KIND } from "baseui/button";
 import Router from "next/router";
@@ -20,18 +15,30 @@ import { useAuth } from "@hooks/useAuth";
 import AvatarButton from "@components/atoms/AvatarButton";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
+import { AimOutlined } from "@ant-design/icons";
+import LocationPickerModal from "@components/organisms/LocationPickerModal";
+import { LabelXSmall } from "baseui/typography";
 
 interface Props {
   searchTerm?: string;
   onSearchTermChange?: (e: any) => void;
+  onLocationChange?: (lat, lon, radius) => void;
+  position: any;
+  radius: number;
 }
 
 const SearchNavBar = (props: Props) => {
-  const { searchTerm, onSearchTermChange } = props;
+  const {
+    searchTerm,
+    onSearchTermChange,
+    onLocationChange,
+    position,
+    radius,
+  } = props;
   const [css, theme] = useStyletron();
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
   return (
     <HeaderNavigation
       overrides={{
@@ -79,10 +86,30 @@ const SearchNavBar = (props: Props) => {
             <Block
               width="100%"
               display={"flex"}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="flex-end"
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
             >
+              <Button
+                onClick={() => setIsLocationPickerOpen(true)}
+                kind={"secondary"}
+                startEnhancer={
+                  <>
+                    <AimOutlined /> <LabelXSmall>{`${radius}km`}</LabelXSmall>
+                  </>
+                }
+              >
+                Mostaganem
+              </Button>
+              <LocationPickerModal
+                longitude={position.longitude}
+                latitude={position.latitude}
+                onClose={() => setIsLocationPickerOpen(false)}
+                isOpen={isLocationPickerOpen}
+                onApply={(latitude, longitude, radius) => {
+                  onLocationChange(latitude, longitude, radius);
+                }}
+              />
               {auth.user ? (
                 <AvatarButton />
               ) : (
