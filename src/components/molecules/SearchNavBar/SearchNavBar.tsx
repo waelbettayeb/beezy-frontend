@@ -20,6 +20,7 @@ import { useAuth } from "@hooks/useAuth";
 import AvatarButton from "@components/atoms/AvatarButton";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
+import { AimOutlined } from "@ant-design/icons";
 
 interface Props {
   searchTerm?: string;
@@ -79,10 +80,17 @@ const SearchNavBar = (props: Props) => {
             <Block
               width="100%"
               display={"flex"}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="flex-end"
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
             >
+              <Button
+                onClick={() => setIsOpen(true)}
+                kind={"tertiary"}
+                startEnhancer={<AimOutlined />}
+              >
+                Mostaganam
+              </Button>
               {auth.user ? (
                 <AvatarButton />
               ) : (
