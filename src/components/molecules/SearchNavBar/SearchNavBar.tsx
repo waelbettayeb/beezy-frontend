@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  HeaderNavigation,
-  ALIGN,
-  StyledNavigationList,
-  StyledNavigationItem,
-} from "baseui/header-navigation";
+import { HeaderNavigation } from "baseui/header-navigation";
 
 import { Button, KIND } from "baseui/button";
 import Router from "next/router";
@@ -21,6 +16,8 @@ import AvatarButton from "@components/atoms/AvatarButton";
 import { Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { AimOutlined } from "@ant-design/icons";
+import LocationPickerModal from "@components/organisms/LocationPickerModal";
+import { LabelXSmall } from "baseui/typography";
 
 interface Props {
   searchTerm?: string;
@@ -32,7 +29,12 @@ const SearchNavBar = (props: Props) => {
   const [css, theme] = useStyletron();
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
+  const [position, setPosition] = React.useState({
+    latitude: 35.919809,
+    longitude: 0,
+  });
+  const [radius, setRadius] = React.useState(50);
   return (
     <HeaderNavigation
       overrides={{
@@ -85,12 +87,26 @@ const SearchNavBar = (props: Props) => {
               alignItems="center"
             >
               <Button
-                onClick={() => setIsOpen(true)}
-                kind={"tertiary"}
-                startEnhancer={<AimOutlined />}
+                onClick={() => setIsLocationPickerOpen(true)}
+                kind={"secondary"}
+                startEnhancer={
+                  <>
+                    <AimOutlined /> <LabelXSmall>{`${radius}km`}</LabelXSmall>
+                  </>
+                }
               >
-                Mostaganam
+                Mostaganem
               </Button>
+              <LocationPickerModal
+                longitude={position.longitude}
+                latitude={position.latitude}
+                onClose={() => setIsLocationPickerOpen(false)}
+                isOpen={isLocationPickerOpen}
+                onApply={(latitude, longitude, radius) => {
+                  setPosition({ latitude, longitude });
+                  setRadius(radius);
+                }}
+              />
               {auth.user ? (
                 <AvatarButton />
               ) : (
