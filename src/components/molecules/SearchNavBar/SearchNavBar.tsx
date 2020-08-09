@@ -22,19 +22,23 @@ import { LabelXSmall } from "baseui/typography";
 interface Props {
   searchTerm?: string;
   onSearchTermChange?: (e: any) => void;
+  onLocationChange?: (lat, lon, radius) => void;
+  position: any;
+  radius: number;
 }
 
 const SearchNavBar = (props: Props) => {
-  const { searchTerm, onSearchTermChange } = props;
+  const {
+    searchTerm,
+    onSearchTermChange,
+    onLocationChange,
+    position,
+    radius,
+  } = props;
   const [css, theme] = useStyletron();
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
-  const [position, setPosition] = React.useState({
-    latitude: 35.919809,
-    longitude: 0,
-  });
-  const [radius, setRadius] = React.useState(50);
   return (
     <HeaderNavigation
       overrides={{
@@ -103,8 +107,7 @@ const SearchNavBar = (props: Props) => {
                 onClose={() => setIsLocationPickerOpen(false)}
                 isOpen={isLocationPickerOpen}
                 onApply={(latitude, longitude, radius) => {
-                  setPosition({ latitude, longitude });
-                  setRadius(radius);
+                  onLocationChange(latitude, longitude, radius);
                 }}
               />
               {auth.user ? (
