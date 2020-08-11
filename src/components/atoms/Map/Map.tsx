@@ -24,7 +24,7 @@ interface Props {
   }[];
 }
 
-const Logo: React.FC<Props> = (props) => {
+const Map: React.FC<Props> = (props) => {
   const {
     lat,
     lng,
@@ -77,4 +77,4 @@ const Logo: React.FC<Props> = (props) => {
   );
 };
 
-export default Logo;
+export default Map;
