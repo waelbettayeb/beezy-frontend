@@ -21,6 +21,7 @@ import { Input } from "baseui/input";
 import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import NavigationDrawer from "@components/organisms/NavigationDrawer";
+import DarkModeToggle from "@components/atoms/DarkModeToggle";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -96,6 +97,9 @@ const AppNavBar = (props: Props) => {
                 </>
               ) : (
                 <>
+                  <Block marginRight={"8px"}>
+                    <DarkModeToggle button />
+                  </Block>
                   <Block marginRight={"8px"}>
                     <Button
                       onClick={() => Router.push("/search")}
