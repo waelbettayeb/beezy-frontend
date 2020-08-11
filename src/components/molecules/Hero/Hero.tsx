@@ -27,7 +27,7 @@ function Hero({}: Props): ReactElement {
     >
       <Cell span={[4, 4, 6]}>
         <Block paddingTop={"5vh"} paddingBottom={"5vh"}>
-          <Label1>{"Service"}</Label1>
+          {/* <Label1>{"About us"}</Label1> */}
           <Display2>{textString}</Display2>
           <Paragraph1>{bodyString}</Paragraph1>
           <Input
