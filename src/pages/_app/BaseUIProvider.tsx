@@ -2,6 +2,7 @@ import React from "react";
 import { BaseProvider, createLightTheme, createDarkTheme } from "baseui";
 import { useTheme, THEME } from "src/hooks/Theme";
 import { ThemePrimitives } from "baseui/theme";
+import { PLACEMENT, ToasterContainer } from "baseui/toast";
 
 const BaseUIProvider: React.FC = ({ children }) => {
   const { theme } = useTheme();
@@ -57,7 +58,7 @@ const BaseUIProvider: React.FC = ({ children }) => {
 
   return (
     <BaseProvider theme={theme === THEME.Light ? LightTheme : DarkTheme}>
-      {children}
+      <ToasterContainer autoHideDuration={5000}>{children}</ToasterContainer>
     </BaseProvider>
   );
 };
