@@ -16,6 +16,7 @@ function Hero({}: Props): ReactElement {
   const bodyString =
     "Good things happen when people can connect, find the right place where your hives can produce more. ";
   const [isOpen, setIsOpen] = React.useState(false);
+  const [css, _theme] = useStyletron();
 
   return (
     <Grid
@@ -44,7 +45,15 @@ function Hero({}: Props): ReactElement {
         </Block>
       </Cell>
       <Cell span={[0, 4, 6]}>
-        <Inner h={80}> </Inner>
+        <Inner h={80}>
+          <img
+            src={"/hero-illustration.svg"}
+            alt="Beeesy Logo"
+            className={css({
+              width: "100%",
+            })}
+          />
+        </Inner>
       </Cell>
     </Grid>
   );
@@ -60,7 +69,6 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: theme.colors.accent200,
         color: theme.colors.accent700,
         padding: ".25rem",
         height: h + "vh",
