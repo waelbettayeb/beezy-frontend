@@ -22,6 +22,7 @@ import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import NavigationDrawer from "@components/organisms/NavigationDrawer";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
+import LoginDrawer from "@components/organisms/LoginDrawer";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -110,13 +111,10 @@ const AppNavBar = (props: Props) => {
                     </Button>
                   </Block>
                   <Button onClick={() => setIsOpen(true)}>Get started</Button>
-                  <Drawer
+                  <LoginDrawer
                     isOpen={isOpen}
-                    autoFocus
                     onClose={() => setIsOpen(false)}
-                  >
-                    <LoginForm onCompleted={() => setIsOpen(false)} />
-                  </Drawer>
+                  />
                 </>
               )}
             </Block>
@@ -160,13 +158,6 @@ const AppNavBar = (props: Props) => {
                   >
                     <UserOutlined />
                   </Button>
-                  <Drawer
-                    isOpen={isOpen}
-                    autoFocus
-                    onClose={() => setIsOpen(false)}
-                  >
-                    <LoginForm onCompleted={() => setIsOpen(false)} />
-                  </Drawer>
                 </>
               )}
             </Block>
