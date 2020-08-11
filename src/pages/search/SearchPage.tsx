@@ -6,6 +6,7 @@ import ListingsSearchTile from "@components/molecules/ListingsSearchTile";
 import { Cell, Grid } from "baseui/layout-grid";
 import { Block } from "baseui/block";
 import dynamic from "next/dynamic";
+import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -19,22 +20,33 @@ const SearchPage = () => {
     longitude: 0,
   });
   const [radius, setRadius] = React.useState(50);
-  console.log(results);
+  const [address, setAddress] = React.useState(null);
+
   return (
     <Block height="100vh" display={"flex"} flexDirection={"column"}>
       <SearchNavBar
         position={position}
         radius={radius}
+        city={
+          address?.town ||
+          address?.city ||
+          address?.state ||
+          address?.county ||
+          address?.village ||
+          ""
+        }
         searchTerm={searchedTerm}
         onSearchTermChange={(e) =>
           setSearchedTerm((e.target as HTMLTextAreaElement).value)
         }
-        onLocationChange={(lat, lon, radius) => {
+        onLocationChange={(lat, lon, radius, address) => {
           setPosition({
             latitude: lat,
             longitude: lon,
           });
           setRadius(radius);
+          setAddress(address);
+          console.log(address);
         }}
       />
       <Grid

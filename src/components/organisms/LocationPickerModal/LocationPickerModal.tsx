@@ -16,6 +16,7 @@ import { Slider } from "baseui/slider";
 
 import dynamic from "next/dynamic";
 import { FormControl } from "baseui/form-control";
+import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -28,7 +29,7 @@ interface Props extends ModalProps {
   defaultRadius?: number;
   latitude?: number;
   longitude?: number;
-  onApply?: (latitude?, longitude?, radius?) => void;
+  onApply?: (latitude?, longitude?, radius?, address?) => void;
 }
 
 const LocationPickerModal = (props: Props) => {
@@ -41,6 +42,8 @@ const LocationPickerModal = (props: Props) => {
   const [radius, setRadius] = React.useState(
     defaultRadius ? [defaultRadius] : [50]
   );
+  const [address, setAddress] = React.useState(null);
+
   const handleOnClose = () => {
     onClose && onClose({});
     setPosition({
@@ -50,7 +53,8 @@ const LocationPickerModal = (props: Props) => {
     setRadius(defaultRadius ? [defaultRadius] : [50]);
   };
   const handleOnApply = () => {
-    onApply && onApply(position.latitude, position.longitude, radius[0]);
+    onApply &&
+      onApply(position.latitude, position.longitude, radius[0], address);
     onClose && onClose({});
   };
 
@@ -115,6 +119,17 @@ const LocationPickerModal = (props: Props) => {
               radius={radius[0] * 1000}
               onViewportChange={(lat, lng) => {
                 setPosition({ latitude: lat, longitude: lng });
+              }}
+              onViewportChanged={(lat, lng) => {
+                simpleReverseGeocoding(lat, lng)
+                  .catch(function (error) {
+                    console.log(error);
+                    return "";
+                  })
+                  .then(function (json) {
+                    setAddress(json.address);
+                    return json.display_name;
+                  });
               }}
             />
           </Block>
