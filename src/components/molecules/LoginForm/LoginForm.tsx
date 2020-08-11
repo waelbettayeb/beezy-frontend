@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { Formik, Form } from "formik";
 import ErrorMessage from "../SignupForm/ErrorMessage";
 import { Block } from "baseui/block";
+import { toaster } from "baseui/toast";
 
 interface Props {
   onCompleted?: () => void;
@@ -26,6 +27,8 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     identifier: "",
     password: "",
   };
+  const showToast = () => toaster.info("You are successfully logged in", {});
+
   return user ? (
     <span>authentificated</span>
   ) : (
@@ -41,7 +44,10 @@ const LoginForm: React.FC<Props> = (props: Props) => {
                 password: values.password,
               },
             },
-          }).then((res) => onCompleted());
+          }).then((res) => {
+            showToast();
+            onCompleted();
+          });
           actions.setSubmitting(false);
         }}
       >
