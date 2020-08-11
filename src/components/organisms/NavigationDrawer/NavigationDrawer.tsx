@@ -27,7 +27,8 @@ interface ItemProps {
   label?: React.ReactNode;
 }
 
-const NavigationDrawer = (props: Props) => {
+const NavigationDrawer: React.FC<Props> = (props) => {
+  const { onClose } = props;
   const [css, theme] = useStyletron();
   const [activeItemId, setActiveItemId] = React.useState("#");
   const auth = useAuth();
@@ -152,7 +153,10 @@ const NavigationDrawer = (props: Props) => {
           </Block>
           {user && (
             <Button
-              onClick={signOut}
+              onClick={() => {
+                signOut();
+                onClose({});
+              }}
               kind={"tertiary"}
               overrides={{
                 Root: {
