@@ -82,6 +82,7 @@ const create = () => {
         return json.display_name;
       });
   }, []);
+  !user && Router.push("/");
   return (
     <React.Fragment>
       <Formik
