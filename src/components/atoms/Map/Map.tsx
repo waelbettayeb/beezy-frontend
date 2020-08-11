@@ -1,4 +1,5 @@
 import { Label1 } from "baseui/typography";
+import { circle } from "leaflet";
 import React from "react";
 import { Map, TileLayer, Marker, Circle, Popup, Tooltip } from "react-leaflet";
 
@@ -13,13 +14,26 @@ interface Props {
   markers?: {
     lat: number;
     lng: number;
+    label?: string;
     onclick?: any;
+  }[];
+  circles?: {
+    lat: number;
+    lng: number;
+    radius: number;
   }[];
 }
 
 const Logo: React.FC<Props> = (props) => {
-  const { lat, lng, onViewportChange, onViewportChanged, markers } = props;
-  const [zoom, setZoom] = React.useState(props.zoom | 7);
+  const {
+    lat,
+    lng,
+    onViewportChange,
+    onViewportChanged,
+    markers,
+    circles,
+  } = props;
+  const [zoom, setZoom] = React.useState(props.zoom | 5);
   const handleViewportchange = (e) => {
     setZoom(e.zoom);
     onViewportChange && onViewportChange(e.center[0], e.center[1]);
@@ -47,13 +61,17 @@ const Logo: React.FC<Props> = (props) => {
       {markers &&
         markers.map((marker, key) => (
           <Marker position={marker} onclick={marker.onclick}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-            <Tooltip opacity={1} permanent>
-              {key || "0"}
-            </Tooltip>
+            <Popup>popup text</Popup>
+            {marker.label && zoom > 7 && (
+              <Tooltip opacity={1} permanent>
+                {marker.label}
+              </Tooltip>
+            )}
           </Marker>
+        ))}
+      {circles &&
+        circles.map((circle, key) => (
+          <Circle center={circle} radius={circle.radius}></Circle>
         ))}
     </Map>
   );
