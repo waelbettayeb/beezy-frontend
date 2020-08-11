@@ -16,4 +16,7 @@ export const errorMessages = defineMessages({
   serverError: {
     defaultMessage: "A technical error has occurred",
   },
+  invalidError: {
+    defaultMessage: "Identifier or password invalid",
+  },
 });
