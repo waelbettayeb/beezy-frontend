@@ -68,7 +68,18 @@ const create = () => {
     longitude: 0,
     images: [],
   };
-  const [address, setAddress] = React.useState("");
+  const [address, setAddress] = React.useState(null);
+  React.useEffect(() => {
+    simpleReverseGeocoding(initialValues.latitude, initialValues.longitude)
+      .catch(function (error) {
+        console.log(error);
+        return "";
+      })
+      .then(function (json) {
+        setAddress(json);
+        return json.display_name;
+      });
+  }, []);
   return (
     <React.Fragment>
       <Formik
@@ -220,12 +231,12 @@ const create = () => {
                                 return "";
                               })
                               .then(function (json) {
-                                setAddress(json.display_name);
+                                setAddress(json);
                                 return json.display_name;
                               });
                           }}
                         />
-                        <Label1>{address}</Label1>
+                        <Label1>{address?.display_name || ""}</Label1>
                       </Block>
                     </FormControl>
                   </Cell>
