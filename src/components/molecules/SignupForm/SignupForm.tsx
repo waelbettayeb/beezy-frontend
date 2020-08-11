@@ -16,6 +16,7 @@ import { DatePicker } from "baseui/datepicker";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { StyledLink } from "baseui/link";
+import { toaster } from "baseui/toast";
 
 export interface IFormValues {
   email: string;
@@ -82,6 +83,8 @@ const SignupForm = (props) => {
                 dateOfBirth: formateDate(values.dateOfBirth),
               },
             },
+          }).then((res) => {
+            toaster.info("You are successfully registered", {});
           });
           actions.setSubmitting(false);
         }}
