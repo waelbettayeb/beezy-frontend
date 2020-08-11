@@ -21,7 +21,17 @@ const SearchPage = () => {
   });
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
-
+  React.useEffect(() => {
+    simpleReverseGeocoding(position.latitude, position.longitude)
+      .catch(function (error) {
+        console.log(error);
+        return "";
+      })
+      .then(function (json) {
+        setAddress(json.address);
+        return json.display_name;
+      });
+  }, []);
   return (
     <Block height="100vh" display={"flex"} flexDirection={"column"}>
       <SearchNavBar
@@ -106,6 +116,7 @@ const SearchPage = () => {
               results.map((r) => ({
                 lat: r.latitude?.raw,
                 lng: r.longitude?.raw,
+                label: r.title?.raw,
               }))
             }
           />
