@@ -7,6 +7,9 @@ import { StyledLink } from "baseui/link";
 import { useAuth } from "src/hooks/useAuth";
 import Divider from "@components/atoms/Divider";
 import { useRouter } from "next/router";
+import { Formik, Form } from "formik";
+import ErrorMessage from "../SignupForm/ErrorMessage";
+import { Block } from "baseui/block";
 
 interface Props {
   onCompleted?: () => void;
@@ -16,94 +19,127 @@ const LoginForm: React.FC<Props> = (props: Props) => {
   const { onCompleted } = props;
   const router = useRouter();
 
-  const [identifier, setIdentifier] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const auth = useAuth();
-  const [signIn, { user, error, loading }] = auth.useSignIn({
-    input: { identifier, password },
-  });
+  const [signIn, { user, error, loading }] = auth.useSignIn();
 
-  const onUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget;
-    setIdentifier(value);
-  };
-  const onPasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget;
-    setPassword(value);
-  };
-
-  const identifierError = (errors) => {
-    return errors
-      ? errors.find((element) => element.id === "Auth.form.error.email.provide")
-          ?.message
-      : "";
-  };
-  const passwordError = (errors) => {
-    return errors
-      ? errors.find(
-          (element) => element.id === "Auth.form.error.password.provide"
-        )?.message
-      : "";
+  const initialValues = {
+    identifier: "",
+    password: "",
   };
   return user ? (
     <span>authentificated</span>
   ) : (
     <React.Fragment>
       <Display4 marginBottom="scale500">Login</Display4>
-      <FormControl label={() => "Username"}>
-        <Input
-          disabled={loading}
-          value={identifier}
-          onChange={onUsernameChange}
-        />
-      </FormControl>
-      <FormControl disabled={loading} label={() => "Password"}>
-        <Input type="password" value={password} onChange={onPasswordChange} />
-      </FormControl>
-      <Button
-        isLoading={loading}
-        onClick={() => {
-          signIn().then((res) => onCompleted());
-        }}
-        disabled={loading || identifier == "" || password == ""}
-        overrides={{
-          BaseButton: {
-            style: ({ $theme }) => {
-              return {
-                width: "100%",
-              };
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values, actions) => {
+          signIn({
+            variables: {
+              input: {
+                identifier: values.identifier,
+                password: values.password,
+              },
             },
-          },
+          }).then((res) => onCompleted());
+          actions.setSubmitting(false);
         }}
       >
-        Sign in
-      </Button>
-
-      <Paragraph3>
-        Don't have an account?{" "}
-        <StyledLink onClick={() => router.push("/auth/signup")}>
-          Sign up
-        </StyledLink>
-      </Paragraph3>
-      <Paragraph3>
-        Have you forgotten your password?{" "}
-        <StyledLink href="/about">Click Here</StyledLink>
-      </Paragraph3>
-      <Divider>Or</Divider>
-      <Button
-        isLoading={loading}
-        overrides={{
-          BaseButton: {
-            style: ({ $theme }) => {
-              return {
-                width: "100%",
-              };
-            },
-          },
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          /* and other goodies */
+        }) => {
+          return (
+            <Form onSubmit={handleSubmit}>
+              <FormControl
+                label={() => "Username"}
+                error={
+                  errors.identifier && touched.identifier && errors.identifier
+                }
+              >
+                <Input
+                  type="text"
+                  name="identifier"
+                  disabled={loading || isSubmitting}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.identifier}
+                  error={errors.identifier && touched.identifier}
+                />
+              </FormControl>
+              <FormControl
+                disabled={loading || isSubmitting}
+                label={() => "Password"}
+                error={errors.password && touched.password && errors.password}
+              >
+                <Input
+                  type="password"
+                  name="password"
+                  disabled={loading}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  error={errors.password && touched.password}
+                />
+              </FormControl>
+              <Button
+                isLoading={loading}
+                disabled={
+                  loading ||
+                  isSubmitting ||
+                  !values.identifier ||
+                  !values.password
+                }
+                overrides={{
+                  BaseButton: {
+                    style: ({ $theme }) => {
+                      return {
+                        width: "100%",
+                      };
+                    },
+                  },
+                }}
+              >
+                Sign in
+              </Button>
+              <ErrorMessage errors={error} />
+            </Form>
+          );
         }}
-      >
-        Sign in with Facebook
-      </Button>
+      </Formik>
+      <Block>
+        <Paragraph3>
+          Don't have an account?{" "}
+          <StyledLink onClick={() => router.push("/auth/signup")}>
+            Sign up
+          </StyledLink>
+        </Paragraph3>
+        <Paragraph3>
+          Have you forgotten your password?{" "}
+          <StyledLink href="/about">Click Here</StyledLink>
+        </Paragraph3>
+        <Divider>Or</Divider>
+        <Button
+          isLoading={loading}
+          overrides={{
+            BaseButton: {
+              style: ({ $theme }) => {
+                return {
+                  width: "100%",
+                };
+              },
+            },
+          }}
+        >
+          Sign in with Facebook
+        </Button>
+      </Block>
     </React.Fragment>
   );
 };
