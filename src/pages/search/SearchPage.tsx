@@ -9,7 +9,6 @@ import { Tabs, Tab } from "baseui/tabs";
 
 import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
-import { Label1 } from "baseui/typography";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -24,6 +23,8 @@ const SearchPage = () => {
   });
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
@@ -89,18 +90,24 @@ const SearchPage = () => {
               style: ({ $theme }) => {
                 return {
                   height: "100%",
+                  display: "flex",
                 };
               },
             },
           }}
         >
-          <ListingsSearchTile
-            searchedTerm={searchedTerm}
-            lat={position.latitude}
-            lon={position.longitude}
-            distance={radius}
-            onSearchEnd={(result) => setResults(result)}
-          />
+          <Block flex="1 0 auto">
+            <ListingsSearchTile
+              searchedTerm={searchedTerm}
+              lat={position.latitude}
+              lon={position.longitude}
+              distance={radius}
+              currentPage={currentPage}
+              onSearchEnd={(result) => {
+                setResults(result);
+              }}
+            />
+          </Block>
         </Cell>
         <Cell
           span={[0, 3, 4]}
@@ -143,7 +150,7 @@ const SearchPage = () => {
         >
           <Tabs
             onChange={({ activeKey }) => {
-              setActiveKey(activeKey);
+              setActiveKey(activeKey + "");
             }}
             activeKey={activeKey}
             overrides={{
@@ -152,8 +159,6 @@ const SearchPage = () => {
                   return {
                     height: "100%",
                     display: "flex",
-                    // paddingLeft: "Opx!important",
-                    // paddingRight: "Opx!important",
                   };
                 },
               },
@@ -174,6 +179,7 @@ const SearchPage = () => {
                   searchedTerm={searchedTerm}
                   lat={position.latitude}
                   lon={position.longitude}
+                  currentPage={currentPage}
                   distance={radius}
                   onSearchEnd={(result) => setResults(result)}
                 />
