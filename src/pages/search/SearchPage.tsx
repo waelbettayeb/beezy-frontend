@@ -5,8 +5,11 @@ import { useStyletron } from "baseui";
 import ListingsSearchTile from "@components/molecules/ListingsSearchTile";
 import { Cell, Grid } from "baseui/layout-grid";
 import { Block } from "baseui/block";
+import { Tabs, Tab } from "baseui/tabs";
+
 import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
+import { Label1 } from "baseui/typography";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -32,19 +35,23 @@ const SearchPage = () => {
         return json.display_name;
       });
   }, []);
+  const [activeKey, setActiveKey] = React.useState("0");
+  const getCity = () => {
+    return (
+      address?.town ||
+      address?.city ||
+      address?.state ||
+      address?.county ||
+      address?.village ||
+      ""
+    );
+  };
   return (
     <Block height="100vh" display={"flex"} flexDirection={"column"}>
       <SearchNavBar
         position={position}
         radius={radius}
-        city={
-          address?.town ||
-          address?.city ||
-          address?.state ||
-          address?.county ||
-          address?.village ||
-          ""
-        }
+        city={getCity()}
         searchTerm={searchedTerm}
         onSearchTermChange={(e) =>
           setSearchedTerm((e.target as HTMLTextAreaElement).value)
@@ -67,6 +74,7 @@ const SearchPage = () => {
             style: ({ $theme }) => {
               return {
                 minWidth: "100%",
+                Width: "100%",
                 margin: 0,
                 flex: "1 0 auto",
               };
@@ -75,7 +83,7 @@ const SearchPage = () => {
         }}
       >
         <Cell
-          span={[4, 5, 8]}
+          span={[0, 5, 8]}
           overrides={{
             Cell: {
               style: ({ $theme }) => {
@@ -120,6 +128,74 @@ const SearchPage = () => {
               }))
             }
           />
+        </Cell>
+        <Cell
+          span={[4, 0]}
+          overrides={{
+            Cell: {
+              style: ({ $theme }) => {
+                return {
+                  height: "100%",
+                };
+              },
+            },
+          }}
+        >
+          <Tabs
+            onChange={({ activeKey }) => {
+              setActiveKey(activeKey);
+            }}
+            activeKey={activeKey}
+            overrides={{
+              Root: {
+                style: ({ $theme }) => {
+                  return {
+                    height: "100%",
+                    display: "flex",
+                    // paddingLeft: "Opx!important",
+                    // paddingRight: "Opx!important",
+                  };
+                },
+              },
+              TabContent: {
+                style: ({ $theme }) => {
+                  return {
+                    height: "100%",
+                    paddingLeft: "Opx!important",
+                    paddingRight: "Opx!important",
+                  };
+                },
+              },
+            }}
+          >
+            <Tab title="List">
+              <Block height={"100%"}>
+                <ListingsSearchTile
+                  searchedTerm={searchedTerm}
+                  lat={position.latitude}
+                  lon={position.longitude}
+                  distance={radius}
+                  onSearchEnd={(result) => setResults(result)}
+                />
+              </Block>
+            </Tab>
+            <Tab title={`Map`}>
+              <Block height={"100%"}>
+                <Map
+                  lat={position.latitude}
+                  lng={position.longitude}
+                  markers={
+                    results &&
+                    results.map((r) => ({
+                      lat: r.latitude?.raw,
+                      lng: r.longitude?.raw,
+                      label: r.title?.raw,
+                    }))
+                  }
+                />
+              </Block>
+            </Tab>
+          </Tabs>
         </Cell>
       </Grid>
     </Block>

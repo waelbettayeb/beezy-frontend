@@ -75,11 +75,41 @@ const SearchNavBar = (props: Props) => {
               <Logo onClick={() => Router.push("/")} />
             </Block>
           </Cell>
-          <Cell span={[4, 4, 6]}>
+          <Cell span={[1, 0]}>
+            <Block
+              width="100%"
+              display={"flex"}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Button
+                onClick={() => setIsLocationPickerOpen(true)}
+                kind={"tertiary"}
+                startEnhancer={
+                  <>
+                    <AimOutlined />
+                  </>
+                }
+              >{`${radius}km`}</Button>
+            </Block>
+          </Cell>
+          <Cell span={[0, 4, 6]}>
             <Input
               type="search"
               placeholder="Search..."
               startEnhancer={<Search size="18px" />}
+              value={searchTerm}
+              clearable
+              onChange={onSearchTermChange}
+            />
+          </Cell>
+          <Cell span={[4, 0]}>
+            <Input
+              type="search"
+              placeholder="Search..."
+              startEnhancer={<Search size="18px" />}
+              endEnhancer={<LabelXSmall>{city}</LabelXSmall>}
               value={searchTerm}
               clearable
               onChange={onSearchTermChange}
