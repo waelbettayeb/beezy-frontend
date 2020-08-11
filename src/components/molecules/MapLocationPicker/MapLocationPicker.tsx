@@ -1,6 +1,9 @@
 import React from "react";
-import { Map, TileLayer, Marker, Circle } from "react-leaflet";
-import { Label1 } from "baseui/typography";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("@components/atoms/Map"), {
+  ssr: false,
+});
 interface Props {
   lat: number;
   lng: number;
@@ -11,43 +14,33 @@ interface Props {
   onLoad?: (lat?, lng?, zoom?) => void;
 }
 
-export function simpleReverseGeocoding(position): Promise<Response> {
-  const url = `http://nominatim.openstreetmap.org/reverse?format=json&lon=${position.lng}&lat=${position.lat}`;
-  return fetch(url);
-}
-
 const MapLocationPicker = (props: Props) => {
   const { lat, lng, onViewportChange, onViewportChanged, radius } = props;
   const [zoom, setZoom] = React.useState(props.zoom | 7);
-  const handleViewportchange = (e) => {
-    setZoom(e.zoom);
-    onViewportChange && onViewportChange(e.center[0], e.center[1]);
+  const handleViewportchange = (lat, lng, zoom) => {
+    setZoom(zoom);
+    onViewportChange && onViewportChange(lat, lng, zoom);
   };
-  const handleViewportchanged = (e) => {
-    setZoom(e.zoom);
-    onViewportChanged && onViewportChanged(e.center[0], e.center[1]);
+  const handleViewportchanged = (lat, lng, zoom) => {
+    setZoom(zoom);
+    onViewportChanged && onViewportChanged(lat, lng, zoom);
   };
 
   return (
     <>
       <Map
-        center={{ lat, lng }}
+        lat={lat}
+        lng={lng}
         zoom={zoom}
-        onViewportChange={(e) => {
-          handleViewportchange(e);
+        onViewportChange={(lat, lng, zoom) => {
+          handleViewportchange(lat, lng, zoom);
         }}
-        onViewportChanged={(e) => {
-          handleViewportchanged(e);
+        onViewportChanged={(lat, lng, zoom) => {
+          handleViewportchanged(lat, lng, zoom);
         }}
-        animate={false}
-      >
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={{ lat, lng }}></Marker>
-        {radius && <Circle center={{ lat, lng }} radius={radius}></Circle>}
-      </Map>
+        markers={[{ lat, lng }]}
+        circles={radius && [{ lat, lng, radius }]}
+      />
     </>
   );
 };
