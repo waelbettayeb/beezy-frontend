@@ -7,7 +7,6 @@ import { Input, SIZE } from "baseui/input";
 import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
 import { FormattedMessage } from "react-intl";
-import { ANCHOR, Drawer } from "baseui/drawer";
 import SearchDrawer from "@components/organisms/SearchDrawer";
 
 interface Props {}

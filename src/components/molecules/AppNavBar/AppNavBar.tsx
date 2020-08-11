@@ -19,10 +19,15 @@ import { Block } from "baseui/block";
 import { Search } from "baseui/icon";
 import { Input } from "baseui/input";
 import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
+import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import NavigationDrawer from "@components/organisms/NavigationDrawer";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isNavigationDrawerOpen, setIsNavigationDrawerOpen] = React.useState(
+    false
+  );
   const auth = useAuth();
   const signOut = auth.signOut;
 
@@ -41,17 +46,20 @@ const AppNavBar = (props: Props) => {
     >
       <Block width="100%">
         <Grid align={ALIGNMENT.center}>
-          <Cell span={[1, 0]}></Cell>
-          <Cell span={[0, 2, 4]}>
+          <Cell span={[0, 3, 4]}></Cell>
+          <Cell span={[1, 0]}>
             <Button
-              onClick={() => Router.push("/search")}
+              onClick={() => setIsNavigationDrawerOpen(true)}
               kind={"minimal"}
-              startEnhancer={<Search size="18px" />}
             >
-              Search
+              <MenuOutlined />
             </Button>
+            <NavigationDrawer
+              isOpen={isNavigationDrawerOpen}
+              onClose={() => setIsNavigationDrawerOpen(false)}
+            />
           </Cell>
-          <Cell span={[2, 4, 4]}>
+          <Cell span={[2, 2, 4]}>
             <Block
               width="100%"
               display={"flex"}
@@ -62,7 +70,7 @@ const AppNavBar = (props: Props) => {
               <Logo onClick={() => Router.push("/")} />
             </Block>
           </Cell>
-          <Cell span={[1, 2, 4]}>
+          <Cell span={[0, 3, 4]}>
             <Block
               width="100%"
               display={"flex"}
@@ -73,14 +81,81 @@ const AppNavBar = (props: Props) => {
               {auth.user ? (
                 <>
                   <Block marginRight={"8px"}>
+                    <Button
+                      onClick={() => Router.push("/search")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <Search />
+                    </Button>
+                  </Block>
+                  <Block marginRight={"8px"}>
                     <AddServiceButton />
                   </Block>
                   <AvatarButton />
                 </>
               ) : (
                 <>
-                  <ChangeLocaleButton />
+                  <Block marginRight={"8px"}>
+                    <Button
+                      onClick={() => Router.push("/search")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <Search />
+                    </Button>
+                  </Block>
                   <Button onClick={() => setIsOpen(true)}>Get started</Button>
+                  <Drawer
+                    isOpen={isOpen}
+                    autoFocus
+                    onClose={() => setIsOpen(false)}
+                  >
+                    <LoginForm onCompleted={() => setIsOpen(false)} />
+                  </Drawer>
+                </>
+              )}
+            </Block>
+          </Cell>
+          <Cell span={[1, 0]}>
+            <Block
+              width="100%"
+              display={"flex"}
+              flexDirection="row"
+              justifyContent="flex-end"
+              alignItems="center"
+            >
+              {auth.user ? (
+                <>
+                  <Block marginRight={"8px"}>
+                    <Button
+                      onClick={() => Router.push("/search")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <Search />
+                    </Button>
+                  </Block>
+                  <AddServiceButton />
+                </>
+              ) : (
+                <>
+                  <Block marginRight={"8px"}>
+                    <Button
+                      onClick={() => Router.push("/search")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <Search />
+                    </Button>
+                  </Block>
+                  <Button
+                    kind={KIND.secondary}
+                    shape={SHAPE.round}
+                    onClick={() => setIsOpen(true)}
+                  >
+                    <UserOutlined />
+                  </Button>
                   <Drawer
                     isOpen={isOpen}
                     autoFocus
