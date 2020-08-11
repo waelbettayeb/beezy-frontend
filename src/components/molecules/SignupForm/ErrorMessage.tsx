@@ -20,6 +20,8 @@ export const getErrorMessage = (errors) => {
       return errorMessages.usernameTaken;
     case "Auth.advanced.allow_register":
       return errorMessages.registreDisabled;
+    case "Auth.form.error.invalid":
+      return errorMessages.invalidError;
     default:
       return errorMessages.serverError;
   }
