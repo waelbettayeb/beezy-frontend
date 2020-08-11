@@ -28,6 +28,8 @@ import MapLocationPicker, {
   simpleReverseGeocoding,
 } from "@components/molecules/MapLocationPicker";
 import dynamic from "next/dynamic";
+import { toaster } from "baseui/toast";
+import Router from "next/router";
 
 const CreateListingSchema = Yup.object().shape({
   title: Yup.string()
@@ -100,6 +102,9 @@ const create = () => {
                 },
               },
             },
+          }).then((res) => {
+            toaster.info("Your listing has been added successfully", {});
+            Router.push("/");
           });
           actions.setSubmitting(false);
         }}
