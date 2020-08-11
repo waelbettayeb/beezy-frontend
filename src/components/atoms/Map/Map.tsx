@@ -1,7 +1,14 @@
 import { Label1 } from "baseui/typography";
 import { circle } from "leaflet";
 import React from "react";
-import { Map, TileLayer, Marker, Circle, Popup, Tooltip } from "react-leaflet";
+import {
+  Map as M,
+  TileLayer,
+  Marker,
+  Circle,
+  Popup,
+  Tooltip,
+} from "react-leaflet";
 
 interface Props {
   lat: number;
@@ -43,7 +50,7 @@ const Map: React.FC<Props> = (props) => {
     onViewportChanged && onViewportChanged(e.center[0], e.center[1]);
   };
   return (
-    <Map
+    <M
       center={{ lat, lng }}
       zoom={zoom}
       onViewportChange={(e) => {
@@ -73,7 +80,7 @@ const Map: React.FC<Props> = (props) => {
         circles.map((circle, key) => (
           <Circle center={circle} radius={circle.radius}></Circle>
         ))}
-    </Map>
+    </M>
   );
 };
 
