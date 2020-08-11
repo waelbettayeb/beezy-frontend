@@ -3,9 +3,8 @@ import React from "react";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Cell, Grid } from "baseui/layout-grid";
-import { Display4 } from "baseui/typography";
+import { Display4, Label1 } from "baseui/typography";
 import { Textarea } from "baseui/textarea";
-import dynamic from "next/dynamic";
 import { Block } from "baseui/block";
 import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
 import { Button } from "baseui/button";
@@ -25,13 +24,11 @@ import {
   CreateListingVariables,
 } from "src/mutations/gqlTypes/Listing";
 import { CreateListingMutation } from "src/mutations/listing";
+import MapLocationPicker, {
+  simpleReverseGeocoding,
+} from "@components/molecules/MapLocationPicker";
+import dynamic from "next/dynamic";
 
-const MapLocationPicker = dynamic(
-  () => import("@components/molecules/MapLocationPicker"),
-  {
-    ssr: false,
-  }
-);
 const CreateListingSchema = Yup.object().shape({
   title: Yup.string()
     .max(25, "max number of characters is 25")
@@ -71,6 +68,18 @@ const create = () => {
     longitude: 0,
     images: [],
   };
+  const [address, setAddress] = React.useState(null);
+  React.useEffect(() => {
+    simpleReverseGeocoding(initialValues.latitude, initialValues.longitude)
+      .catch(function (error) {
+        console.log(error);
+        return "";
+      })
+      .then(function (json) {
+        setAddress(json);
+        return json.display_name;
+      });
+  }, []);
   return (
     <React.Fragment>
       <Formik
@@ -215,7 +224,19 @@ const create = () => {
                               ...{ latitude: lat, longitude: lng },
                             });
                           }}
+                          onViewportChanged={(lat, lng) => {
+                            simpleReverseGeocoding(lat, lng)
+                              .catch(function (error) {
+                                console.log(error);
+                                return "";
+                              })
+                              .then(function (json) {
+                                setAddress(json);
+                                return json.display_name;
+                              });
+                          }}
                         />
+                        <Label1>{address?.display_name || ""}</Label1>
                       </Block>
                     </FormControl>
                   </Cell>

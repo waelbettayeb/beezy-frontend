@@ -22,9 +22,10 @@ import { LabelXSmall } from "baseui/typography";
 interface Props {
   searchTerm?: string;
   onSearchTermChange?: (e: any) => void;
-  onLocationChange?: (lat, lon, radius) => void;
+  onLocationChange?: (lat, lon, radius, address) => void;
   position: any;
   radius: number;
+  city: string;
 }
 
 const SearchNavBar = (props: Props) => {
@@ -34,11 +35,13 @@ const SearchNavBar = (props: Props) => {
     onLocationChange,
     position,
     radius,
+    city,
   } = props;
   const [css, theme] = useStyletron();
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
+
   return (
     <HeaderNavigation
       overrides={{
@@ -72,11 +75,41 @@ const SearchNavBar = (props: Props) => {
               <Logo onClick={() => Router.push("/")} />
             </Block>
           </Cell>
-          <Cell span={[4, 4, 6]}>
+          <Cell span={[1, 0]}>
+            <Block
+              width="100%"
+              display={"flex"}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Button
+                onClick={() => setIsLocationPickerOpen(true)}
+                kind={"tertiary"}
+                startEnhancer={
+                  <>
+                    <AimOutlined />
+                  </>
+                }
+              >{`${radius}km`}</Button>
+            </Block>
+          </Cell>
+          <Cell span={[0, 4, 6]}>
             <Input
               type="search"
               placeholder="Search..."
               startEnhancer={<Search size="18px" />}
+              value={searchTerm}
+              clearable
+              onChange={onSearchTermChange}
+            />
+          </Cell>
+          <Cell span={[4, 0]}>
+            <Input
+              type="search"
+              placeholder="Search..."
+              startEnhancer={<Search size="18px" />}
+              endEnhancer={<LabelXSmall>{city}</LabelXSmall>}
               value={searchTerm}
               clearable
               onChange={onSearchTermChange}
@@ -99,15 +132,15 @@ const SearchNavBar = (props: Props) => {
                   </>
                 }
               >
-                Mostaganem
+                {city}
               </Button>
               <LocationPickerModal
                 longitude={position.longitude}
                 latitude={position.latitude}
                 onClose={() => setIsLocationPickerOpen(false)}
                 isOpen={isLocationPickerOpen}
-                onApply={(latitude, longitude, radius) => {
-                  onLocationChange(latitude, longitude, radius);
+                onApply={(latitude, longitude, radius, address) => {
+                  onLocationChange(latitude, longitude, radius, address);
                 }}
               />
               {auth.user ? (
