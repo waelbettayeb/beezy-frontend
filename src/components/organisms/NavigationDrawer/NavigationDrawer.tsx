@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useStyletron } from "baseui";
-import { Drawer, ANCHOR, DrawerProps, SIZE } from "baseui/drawer";
+import { Drawer, ANCHOR, DrawerProps } from "baseui/drawer";
 import { Navigation } from "baseui/side-navigation";
 
 import { Cell, Grid } from "baseui/layout-grid";
-import { Label1, LabelXSmall } from "baseui/typography";
+
 import {
   BookOutlined,
   HomeOutlined,
@@ -30,10 +30,13 @@ interface ItemProps {
 const NavigationDrawer: React.FC<Props> = (props) => {
   const { onClose } = props;
   const [css, theme] = useStyletron();
-  const [activeItemId, setActiveItemId] = React.useState("#");
+  const [activeItemId, setActiveItemId] = React.useState(
+    `#${Router.pathname.split("/")[1]}`
+  );
   const auth = useAuth();
   const user = auth.user;
   const signOut = auth.signOut;
+  console.log("router:");
   const Item: React.FC<ItemProps> = (props) => {
     const { Icon, label } = props;
     return (
@@ -56,17 +59,6 @@ const NavigationDrawer: React.FC<Props> = (props) => {
         {
           title: <Item Icon={() => <UserOutlined />} label={"Profile"} />,
           itemId: "#profile",
-          disabled: true,
-        },
-        {
-          title: (
-            <Item
-              Icon={() => <UnorderedListOutlined />}
-              label={"My listings"}
-            />
-          ),
-          itemId: "#mylistings",
-          disabled: true,
         },
         // {
         //   title: <Item Icon={() => <ShopOutlined />} label={"Shop (soon)"} />,
@@ -135,7 +127,10 @@ const NavigationDrawer: React.FC<Props> = (props) => {
               activeItemId={activeItemId}
               onChange={({ item }) => {
                 setActiveItemId(item.itemId);
-                Router.push("/" + item.itemId.substring(1));
+                item.itemId == "#profile" &&
+                  Router.push("/profile/[pid]", `/profile/${user.id}`);
+                item.itemId == "#" &&
+                  Router.push("/" + item.itemId.substring(1));
               }}
             />
           </Cell>

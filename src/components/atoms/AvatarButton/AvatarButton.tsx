@@ -9,6 +9,7 @@ import { useStyletron } from "baseui";
 import { StatefulMenu } from "baseui/menu";
 import DarkModeToggle from "../DarkModeToggle";
 import { Avatar } from "baseui/avatar";
+import Router from "next/router";
 
 interface Props {}
 
@@ -24,8 +25,11 @@ const AvatarButton = (props: Props) => {
       >
         <StatefulMenu
           items={[
-            { label: "Profile" },
-            { label: "My Services" },
+            {
+              label: "Profile",
+              onClick: () =>
+                Router.push("/profile/[pid]", `/profile/${user.id}`),
+            },
             {
               label: (
                 <React.Fragment>

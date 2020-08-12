@@ -9,7 +9,7 @@ export enum ORIENTATION {
 }
 export interface IProps {
   orientation?: ORIENTATION;
-  children: any;
+  children?: any;
 }
 const Divider = (props: IProps) => {
   const { orientation, children } = props;
@@ -31,20 +31,22 @@ const Divider = (props: IProps) => {
     >
       <hr
         className={css({
-          ...theme.borders.border500,
+          ...theme.borders.border300,
           width: isLeft() ? theme.sizing.scale700 : "100%",
         })}
       />
-      <Label3
-        width={"auto"}
-        marginLeft={theme.sizing.scale500}
-        marginRight={theme.sizing.scale500}
-      >
-        {children}
-      </Label3>
+      {children && (
+        <Label3
+          width={"auto"}
+          marginLeft={theme.sizing.scale500}
+          marginRight={theme.sizing.scale500}
+        >
+          {children}
+        </Label3>
+      )}
       <hr
         className={css({
-          ...theme.borders.border600,
+          ...theme.borders.border300,
           width: isRight() ? theme.sizing.scale700 : "100%",
         })}
       />
