@@ -10,6 +10,7 @@ import { ChevronRight } from "baseui/icon";
 import { StyledLink } from "baseui/link";
 
 import { Block } from "baseui/block";
+import Router from "next/router";
 
 interface Props {
   searchedTerm: string;
@@ -88,20 +89,29 @@ const ProfilesSearchTile = (props: Props) => {
                 </div>
               )}
               {results.map((r) => (
-                <ListItem
-                  endEnhancer={() => <ChevronRight />}
-                  artwork={() => (
-                    <Avatar
-                      name={`${r.firstname.raw} ${r.lastname.raw}`}
-                      size="scale1200"
-                    />
-                  )}
-                  artworkSize={ARTWORK_SIZES.SMALL}
+                <div
+                  onClick={() =>
+                    Router.push(
+                      "/profile/[pid]",
+                      `/profile/${r.id.raw.substring(6)}`
+                    )
+                  }
                 >
-                  <ListItemLabel description={r.email.raw}>
-                    {`${r.firstname.raw} ${r.lastname.raw}`}
-                  </ListItemLabel>
-                </ListItem>
+                  <ListItem
+                    endEnhancer={() => <ChevronRight />}
+                    artwork={() => (
+                      <Avatar
+                        name={`${r.firstname.raw} ${r.lastname.raw}`}
+                        size="scale1200"
+                      />
+                    )}
+                    artworkSize={ARTWORK_SIZES.SMALL}
+                  >
+                    <ListItemLabel description={r.email.raw}>
+                      {`${r.firstname.raw} ${r.lastname.raw}`}
+                    </ListItemLabel>
+                  </ListItem>
+                </div>
               ))}
             </ul>
           );
