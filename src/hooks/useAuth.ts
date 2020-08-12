@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { useMutation, useQuery } from "react-apollo";
-import { loginMutation, registerMutation } from "src/mutations/auth";
-import { setAuthToken, fireSignOut } from "src/utils/auth";
-import client from "src/utils/apolloClient";
-import { meQuery } from "src/queries/user";
-import { Login, LoginVariables } from "src/mutations/gqlTypes/Login";
+import { loginMutation, registerMutation } from "@graphql/mutations/auth";
+import { setAuthToken, fireSignOut } from "@utils/auth";
+import client from "@utils/apolloClient";
+import { meQuery } from "@graphql/queries/user";
+import { Login, LoginVariables } from "@graphql/mutations/gqlTypes/Login";
 import {
   SignUpVariables,
   UsersPermissionsLoginPayload,
-} from "src/mutations/gqlTypes/Signup";
-import { UserMe } from "src/fragments/gqlTypes/User";
+} from "@graphql/mutations/gqlTypes/Signup";
+import { UserMe } from "@graphql/fragments/gqlTypes/User";
 declare global {
   interface Window {
     PasswordCredential: any;

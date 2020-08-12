@@ -37,6 +37,7 @@
       "@types": ["./types/index.ts"],
       "@assets/*": ["assets/*"],
       "@locale/*": ["locale/*"],
+      "@graphql/*": ["src/graphql/*"],
     },
   },
   "exclude": [

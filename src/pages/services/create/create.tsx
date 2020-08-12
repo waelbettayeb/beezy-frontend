@@ -12,8 +12,8 @@ import { useMutation } from "@apollo/react-hooks";
 import {
   MultipleUploadPayload,
   MultipleUploadVariables,
-} from "src/mutations/gqlTypes/Upload";
-import { UploadFilesMutation } from "src/mutations/upload";
+} from "@graphql/mutations/gqlTypes/Upload";
+import { UploadFilesMutation } from "src/graphql/mutations/upload";
 import { useAuth } from "@hooks/useAuth";
 
 import ImagesUploader from "@components/molecules/ImagesUploader/ImagesUploader";
@@ -22,8 +22,8 @@ import * as Yup from "yup";
 import {
   CreateListingPayload,
   CreateListingVariables,
-} from "src/mutations/gqlTypes/Listing";
-import { CreateListingMutation } from "src/mutations/listing";
+} from "@graphql/mutations/gqlTypes/Listing";
+import { CreateListingMutation } from "@graphql/mutations/listing";
 import MapLocationPicker, {
   simpleReverseGeocoding,
 } from "@components/molecules/MapLocationPicker";

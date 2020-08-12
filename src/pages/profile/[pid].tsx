@@ -22,7 +22,7 @@ import Divider from "@components/atoms/Divider";
 import { ORIENTATION } from "@components/atoms/Divider/Divider";
 import Footer from "@components/organisms/Footer";
 import { useQuery } from "@apollo/react-hooks";
-import { userQuery } from "src/queries/user";
+import { userQuery } from "@graphql/queries/user";
 import Link from "next/link";
 
 const Profile = () => {
