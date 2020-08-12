@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Grid, Cell, ALIGNMENT } from "baseui/layout-grid";
-import { Label1, Display2, Paragraph1, Display4 } from "baseui/typography";
+import { Paragraph1, DisplaySmall } from "baseui/typography";
 import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
 import { Input, SIZE } from "baseui/input";
@@ -28,7 +28,7 @@ function Hero({}: Props): ReactElement {
       <Cell span={[4, 4, 6]}>
         <Block paddingTop={"5vh"} paddingBottom={"5vh"}>
           {/* <Label1>{"About us"}</Label1> */}
-          <Display2>{textString}</Display2>
+          <DisplaySmall>{textString}</DisplaySmall>
           <Paragraph1>{bodyString}</Paragraph1>
           <Input
             type="search"
