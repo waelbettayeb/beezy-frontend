@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
-import { userFragment } from "../fragments/auth";
+import { meFragment } from "../fragments/auth";
 
 export const loginMutation = gql`
-  ${userFragment}
+  ${meFragment}
   mutation Login($input: UsersPermissionsLoginInput!) {
     signin(input: $input) {
       jwt
@@ -13,7 +13,7 @@ export const loginMutation = gql`
   }
 `;
 export const registerMutation = gql`
-  ${userFragment}
+  ${meFragment}
   mutation Register($input: UsersPermissionsSignUpInput!) {
     signup(input: $input) {
       jwt

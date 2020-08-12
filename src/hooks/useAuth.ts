@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "react-apollo";
 import { loginMutation, registerMutation } from "src/mutations/auth";
 import { setAuthToken, fireSignOut } from "src/utils/auth";
 import client from "src/utils/apolloClient";
-import { userQuery } from "src/queries/user";
+import { meQuery } from "src/queries/user";
 import { Login, LoginVariables } from "src/mutations/gqlTypes/Login";
 import {
   SignUpVariables,
@@ -24,7 +24,7 @@ export const useProvideAuth = () => {
   const [user, setUser] = useState<UserMe>(null);
 
   const getUser = () => {
-    const { data, error, loading } = useQuery(userQuery);
+    const { data, error, loading } = useQuery(meQuery);
     if (data && !loading) {
       error ? signOut() : setUser(data?._me);
     }
