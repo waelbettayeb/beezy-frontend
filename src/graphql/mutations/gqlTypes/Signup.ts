@@ -1,4 +1,4 @@
-import { UserMe } from "src/fragments/gqlTypes/User";
+import { UserMe } from "@graphql/fragments/gqlTypes/User";
 
 export interface UsersPermissionsLoginPayload {
   signup: {

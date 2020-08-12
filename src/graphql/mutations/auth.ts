@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
-import { meFragment } from "../fragments/auth";
+
+import { meFragment } from "@graphql/fragments/auth";
 
 export const loginMutation = gql`
   ${meFragment}
@@ -7,7 +8,7 @@ export const loginMutation = gql`
     signin(input: $input) {
       jwt
       user {
-        ...User
+        ...Me
       }
     }
   }
@@ -18,7 +19,7 @@ export const registerMutation = gql`
     signup(input: $input) {
       jwt
       user {
-        ...User
+        ...Me
       }
     }
   }
