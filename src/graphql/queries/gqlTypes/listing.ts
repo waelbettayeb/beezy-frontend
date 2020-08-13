@@ -9,7 +9,7 @@ export interface IListingPayload {
     };
     images: {
       url: string;
-    };
+    }[];
     created_at: Date;
   };
 }
