@@ -30,7 +30,7 @@ const Profile = () => {
         flexDirection={"column"}
       >
         <AppNavBar />
-        <ListingPresentation id={id} />
+        <ListingPresentation id={id as string} />
       </Block>
       <Footer />
     </>

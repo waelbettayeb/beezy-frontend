@@ -5,6 +5,7 @@ import {
   DisplaySmall,
   LabelLarge,
   ParagraphSmall,
+  Caption1,
 } from "baseui/typography";
 import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
@@ -21,6 +22,7 @@ import { listingQuery } from "@graphql/queries/listing";
 import { useQuery } from "react-apollo";
 import { Spinner } from "baseui/spinner";
 import dynamic from "next/dynamic";
+import { Carousel } from "react-responsive-carousel";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -28,6 +30,7 @@ const Map = dynamic(() => import("@components/atoms/Map"), {
 interface Props {
   id: string;
 }
+export const config = { amp: "hybrid" };
 
 const ListingPresentation: React.FC<Props> = (props) => {
   const { id } = props;
@@ -39,6 +42,8 @@ const ListingPresentation: React.FC<Props> = (props) => {
     }
   );
   const { listing } = !loading && data;
+  !loading && console.log(listing.images);
+
   return (
     <>
       <Inner h={100}>
@@ -51,13 +56,31 @@ const ListingPresentation: React.FC<Props> = (props) => {
                 Grid: {
                   style: ({ $theme }) => ({
                     height: "100%",
+                    width: "100%",
                   }),
                 },
               }}
             >
-              <Cell span={[4, 4, 6]}></Cell>
-              <Cell span={[4, 4, 6]}>
+              {listing.images.length !== 0 && (
+                <Cell span={[4, 4, 6]}>
+                  <Carousel
+                    showArrows={true}
+                    showIndicators={true}
+                    showStatus={false}
+                    showThumbs={false}
+                    useKeyboardArrows
+                    swipeable
+                    emulateTouch
+                  >
+                    {listing.images.map((image) => (
+                      <img src={image.url} />
+                    ))}
+                  </Carousel>
+                </Cell>
+              )}
+              <Cell span={listing.images.length ? [4, 4, 6] : [4, 8, 12]}>
                 <LabelLarge>{listing.title}</LabelLarge>
+                <Caption1></Caption1>
                 <ParagraphSmall>{listing.description}</ParagraphSmall>
                 <Block height={"50vh"}>
                   <Map
