@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { userFragment } from "@graphql/fragments/User";
+import { userFragment } from "@graphql/fragments/user";
 import { meFragment } from "@graphql/fragments/auth";
 
 export const meQuery = gql`
