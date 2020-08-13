@@ -6,6 +6,7 @@ import {
   LabelLarge,
   ParagraphSmall,
   Caption1,
+  Caption2,
 } from "baseui/typography";
 import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
@@ -23,6 +24,8 @@ import { useQuery } from "react-apollo";
 import { Spinner } from "baseui/spinner";
 import dynamic from "next/dynamic";
 import { Carousel } from "react-responsive-carousel";
+import TimeAgo from "@components/atoms/TimeAgo";
+import { simpleReverseGeocoding } from "../MapLocationPicker";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -41,12 +44,24 @@ const ListingPresentation: React.FC<Props> = (props) => {
       variables: { id },
     }
   );
+  const [address, setAddress] = React.useState(null);
   const { listing } = !loading && data;
-  !loading && console.log(listing.images);
-
+  !loading &&
+    simpleReverseGeocoding(
+      listing.location.latitude,
+      listing.location.longitude
+    )
+      .catch(function (error) {
+        console.log(error);
+        return "";
+      })
+      .then(function (json) {
+        setAddress(json);
+        return json.display_name;
+      });
   return (
     <>
-      <Inner h={100}>
+      <Inner h={70}>
         {loading ? (
           <Spinner />
         ) : (
@@ -61,38 +76,56 @@ const ListingPresentation: React.FC<Props> = (props) => {
                 },
               }}
             >
-              {listing.images.length !== 0 && (
-                <Cell span={[4, 4, 6]}>
-                  <Carousel
-                    showArrows={true}
-                    showIndicators={true}
-                    showStatus={false}
-                    showThumbs={false}
-                    useKeyboardArrows
-                    swipeable
-                    emulateTouch
-                  >
-                    {listing.images.map((image) => (
-                      <img src={image.url} />
-                    ))}
-                  </Carousel>
-                </Cell>
-              )}
-              <Cell span={listing.images.length ? [4, 4, 6] : [4, 8, 12]}>
-                <LabelLarge>{listing.title}</LabelLarge>
-                <Caption1></Caption1>
-                <ParagraphSmall>{listing.description}</ParagraphSmall>
-                <Block height={"50vh"}>
-                  <Map
-                    lat={listing.location.latitude}
-                    lng={listing.location.longitude}
-                    markers={[
-                      {
-                        lat: listing.location.latitude,
-                        lng: listing.location.longitude,
-                      },
-                    ]}
-                  />
+              <Cell span={[4, 4, 6]}>
+                <Carousel
+                  showArrows={true}
+                  showIndicators={true}
+                  showStatus={false}
+                  showThumbs={false}
+                  infiniteLoop
+                  useKeyboardArrows
+                  swipeable
+                  emulateTouch
+                >
+                  {listing.images.length
+                    ? listing.images.map((image) => <img src={image.url} />)
+                    : [
+                        <img
+                          src={
+                            "https://s3.beeesy.com/beeesy/Group_4_6c22228272.png"
+                          }
+                        />,
+                      ]}
+                </Carousel>
+              </Cell>
+
+              <Cell span={[4, 4, 6]}>
+                <Block
+                  display={"flex"}
+                  flexDirection={"column"}
+                  height={"100%"}
+                >
+                  <LabelLarge>{listing.title}</LabelLarge>
+                  <Caption1>
+                    <TimeAgo date={listing.created_at} />
+                  </Caption1>
+
+                  {listing.description && (
+                    <ParagraphSmall>{listing.description}</ParagraphSmall>
+                  )}
+                  {address && <Caption1>{address.display_name}</Caption1>}
+                  <Block flex={"1 0 auto"} minHeight={"20vh"}>
+                    <Map
+                      lat={listing.location.latitude}
+                      lng={listing.location.longitude}
+                      markers={[
+                        {
+                          lat: listing.location.latitude,
+                          lng: listing.location.longitude,
+                        },
+                      ]}
+                    />
+                  </Block>
                 </Block>
               </Cell>
             </Grid>
@@ -113,9 +146,10 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: theme.colors.accent700,
-        padding: ".25rem",
-        height: h + "vh",
+
+        height: "100%",
+
+        width: "100%",
       })}
     >
       {children}

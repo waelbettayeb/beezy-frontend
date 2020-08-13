@@ -24,15 +24,22 @@ const Profile = () => {
   return (
     <>
       <Block
-        height="100vh"
+        minHeight="100vh"
         width={"100%"}
         display={"flex"}
         flexDirection={"column"}
       >
         <AppNavBar />
-        <ListingPresentation id={id as string} />
+        <Block
+          minHeight="90vh"
+          width={"100%"}
+          display={"flex"}
+          alignItems={"center"}
+        >
+          <ListingPresentation id={id as string} />
+        </Block>
+        <Footer />
       </Block>
-      <Footer />
     </>
   );
 };
