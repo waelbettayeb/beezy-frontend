@@ -7,12 +7,6 @@ import AppNavBar from "@components/molecules/AppNavBar/AppNavBar";
 import Router from "next/router";
 
 import Footer from "@components/organisms/Footer";
-import { useQuery } from "@apollo/react-hooks";
-import { listingQuery } from "@graphql/queries/listing";
-import {
-  IListingPayload,
-  IListingVariables,
-} from "@graphql/queries/gqlTypes/listing";
 import ListingPresentation from "@components/molecules/ListingPresentation";
 
 const Profile = () => {
