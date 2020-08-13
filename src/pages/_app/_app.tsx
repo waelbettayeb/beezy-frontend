@@ -11,6 +11,15 @@ import Start from "./start";
 import { ThemeProvider } from "src/hooks/Theme";
 import BaseUIProvider from "./BaseUIProvider";
 import { LocaleProvider } from "@components/containers/Locale";
+import JavascriptTimeAgo from "javascript-time-ago";
+
+import en from "javascript-time-ago/locale/en";
+import ar from "javascript-time-ago/locale/ar";
+import fr from "javascript-time-ago/locale/fr";
+
+JavascriptTimeAgo.addLocale(en);
+JavascriptTimeAgo.addLocale(ar);
+JavascriptTimeAgo.addLocale(fr);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();

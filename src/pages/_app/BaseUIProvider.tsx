@@ -19,7 +19,8 @@ const BaseUIProvider: React.FC = ({ children }) => {
     primary700: "#573AA4",
   };
   const primitivesDark: Partial<ThemePrimitives> = {
-    primaryFontFamily: "Inter",
+    primaryFontFamily:
+      "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
     // primary: "#EDDDFF",
     // primary50: "#C8BBE9",
     primary100: "#B7A6E2",
@@ -33,16 +34,20 @@ const BaseUIProvider: React.FC = ({ children }) => {
   const overrides = {
     typography: {
       DisplayLarge: {
-        fontFamily: "Metropolis",
+        fontFamily:
+          "Metropolis, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
       },
       DisplayMedium: {
-        fontFamily: "Metropolis",
+        fontFamily:
+          "Metropolis, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
       },
       DisplaySmall: {
-        fontFamily: "Metropolis",
+        fontFamily:
+          "Metropolis, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
       },
       DisplayXSmall: {
-        fontFamily: "Metropolis",
+        fontFamily:
+          "Metropolis, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
       },
     },
     borders: {

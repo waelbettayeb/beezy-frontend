@@ -12,7 +12,7 @@ export const meQuery = gql`
 `;
 export const userQuery = gql`
   ${userFragment}
-  query Use($id: ID!) {
+  query User($id: ID!) {
     user(id: $id) {
       ...User
       bio
