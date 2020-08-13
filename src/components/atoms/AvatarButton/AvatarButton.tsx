@@ -65,7 +65,10 @@ const AvatarButton = (props: Props) => {
             },
           }}
         >
-          <Avatar name={`${user.firstName} ${user.lastName}`} />
+          <Avatar
+            src={user?.avatar?.url}
+            name={`${user.firstName} ${user.lastName}`}
+          />
         </Button>
       </StatefulPopover>
     </React.Fragment>

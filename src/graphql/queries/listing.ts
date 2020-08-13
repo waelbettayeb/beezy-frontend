@@ -1,6 +1,8 @@
+import { userFragment } from "@graphql/fragments/user";
 import gql from "graphql-tag";
 
 export const listingQuery = gql`
+  ${userFragment}
   query Listing($id: ID!) {
     listing(id: $id) {
       id
@@ -14,6 +16,9 @@ export const listingQuery = gql`
         url
       }
       created_at
+      user {
+        ...User
+      }
     }
   }
 `;

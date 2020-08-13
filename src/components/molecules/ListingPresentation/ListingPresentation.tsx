@@ -7,6 +7,7 @@ import {
   ParagraphSmall,
   Caption1,
   Caption2,
+  LabelMedium,
 } from "baseui/typography";
 import { useStyletron } from "baseui";
 import { Search } from "baseui/icon";
@@ -26,6 +27,7 @@ import dynamic from "next/dynamic";
 import { Carousel } from "react-responsive-carousel";
 import TimeAgo from "@components/atoms/TimeAgo";
 import { simpleReverseGeocoding } from "../MapLocationPicker";
+import { Avatar } from "baseui/avatar";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -37,7 +39,7 @@ export const config = { amp: "hybrid" };
 
 const ListingPresentation: React.FC<Props> = (props) => {
   const { id } = props;
-  const [css, _theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const { data, error, loading } = useQuery<IListingPayload, IListingVariables>(
     listingQuery,
     {
@@ -76,6 +78,23 @@ const ListingPresentation: React.FC<Props> = (props) => {
                 },
               }}
             >
+              <Cell span={[4, 8, 12]}>
+                <Block
+                  display={"flex"}
+                  width={"100%"}
+                  flexDirection={"row"}
+                  alignItems={"center"}
+                  padding={theme.sizing.scale400}
+                >
+                  <Block marginRight={theme.sizing.scale400}>
+                    <Avatar
+                      src={listing?.user?.avatar?.url}
+                      name={`${listing?.user.firstName} ${listing?.user.lastName}`}
+                    />
+                  </Block>
+                  <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
+                </Block>
+              </Cell>
               <Cell span={[4, 4, 6]}>
                 <Carousel
                   showArrows={true}

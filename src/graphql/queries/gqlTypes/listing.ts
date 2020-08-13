@@ -1,3 +1,5 @@
+import { User } from "@graphql/fragments/gqlTypes/User";
+
 export interface IListingPayload {
   listing: {
     id: string;
@@ -11,6 +13,7 @@ export interface IListingPayload {
       url: string;
     }[];
     created_at: Date;
+    user: User;
   };
 }
 export interface IListingVariables {

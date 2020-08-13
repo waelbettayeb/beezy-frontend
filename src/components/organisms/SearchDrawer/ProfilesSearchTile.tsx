@@ -101,6 +101,7 @@ const ProfilesSearchTile = (props: Props) => {
                     endEnhancer={() => <ChevronRight />}
                     artwork={() => (
                       <Avatar
+                        src={r.avatar?.url?.raw}
                         name={`${r.firstname.raw} ${r.lastname.raw}`}
                         size="scale1200"
                       />

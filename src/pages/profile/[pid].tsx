@@ -68,6 +68,7 @@ const Profile = () => {
               >
                 <Block marginRight={theme.sizing.scale1000}>
                   <Avatar
+                    src={data?.user?.avatar?.url}
                     name={`${data?.user.firstName} ${data?.user.lastName}`}
                     size={theme.sizing.scale2400}
                   />

@@ -9,5 +9,9 @@ export const userFragment = gql`
     lastName
     gender
     dateOfBirth
+    avatar {
+      url
+    }
+    bio
   }
 `;

@@ -15,7 +15,6 @@ export const userQuery = gql`
   query User($id: ID!) {
     user(id: $id) {
       ...User
-      bio
     }
   }
 `;

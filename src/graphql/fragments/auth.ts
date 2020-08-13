@@ -9,5 +9,8 @@ export const meFragment = gql`
     lastName
     gender
     dateOfBirth
+    avatar {
+      url
+    }
   }
 `;
