@@ -28,6 +28,7 @@ import { Carousel } from "react-responsive-carousel";
 import TimeAgo from "@components/atoms/TimeAgo";
 import { simpleReverseGeocoding } from "../MapLocationPicker";
 import { Avatar } from "baseui/avatar";
+import Router from "next/router";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -86,12 +87,21 @@ const ListingPresentation: React.FC<Props> = (props) => {
                   alignItems={"center"}
                   padding={theme.sizing.scale400}
                 >
-                  <Block marginRight={theme.sizing.scale400}>
-                    <Avatar
-                      src={listing?.user?.avatar?.url}
-                      name={`${listing?.user.firstName} ${listing?.user.lastName}`}
-                    />
-                  </Block>
+                  <div
+                    onClick={() =>
+                      Router.push(
+                        "/profile/[pid]",
+                        `/profile/${listing?.user?.id}`
+                      )
+                    }
+                  >
+                    <Block marginRight={theme.sizing.scale400}>
+                      <Avatar
+                        src={listing?.user?.avatar?.url}
+                        name={`${listing?.user.firstName} ${listing?.user.lastName}`}
+                      />
+                    </Block>
+                  </div>
                   <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
                 </Block>
               </Cell>
