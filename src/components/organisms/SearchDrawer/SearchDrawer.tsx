@@ -23,7 +23,15 @@ const SearchDrawer = (props: Props) => {
   const [searchedTerm, setSearchedTerm] = useState("");
 
   return (
-    <Drawer {...props} autoFocus anchor={ANCHOR.left}>
+    <Drawer
+      {...props}
+      onClose={(args) => {
+        setSearchedTerm("");
+        props.onClose(args);
+      }}
+      autoFocus
+      anchor={ANCHOR.left}
+    >
       <Block display="flex" flexDirection="column" height="100%">
         <Display4 marginBottom="scale500">Search</Display4>
         <Input
