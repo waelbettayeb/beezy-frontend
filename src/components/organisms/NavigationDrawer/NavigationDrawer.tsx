@@ -9,6 +9,7 @@ import {
   BookOutlined,
   HomeOutlined,
   LogoutOutlined,
+  SettingOutlined,
   ShopOutlined,
   UnorderedListOutlined,
   UserOutlined,
@@ -36,6 +37,7 @@ const NavigationDrawer: React.FC<Props> = (props) => {
   const auth = useAuth();
   const user = auth.user;
   const signOut = auth.signOut;
+  console.log("router:");
   const Item: React.FC<ItemProps> = (props) => {
     const { Icon, label } = props;
     return (
@@ -58,6 +60,10 @@ const NavigationDrawer: React.FC<Props> = (props) => {
         {
           title: <Item Icon={() => <UserOutlined />} label={"Profile"} />,
           itemId: "#profile",
+        },
+        {
+          title: <Item Icon={() => <SettingOutlined />} label={"Settings"} />,
+          itemId: "#settings",
         },
         // {
         //   title: <Item Icon={() => <ShopOutlined />} label={"Shop (soon)"} />,
@@ -128,6 +134,7 @@ const NavigationDrawer: React.FC<Props> = (props) => {
                 setActiveItemId(item.itemId);
                 item.itemId == "#profile" &&
                   Router.push("/profile/[pid]", `/profile/${user.id}`);
+                item.itemId == "#settings" && Router.push("/settings");
                 item.itemId == "#" &&
                   Router.push("/" + item.itemId.substring(1));
               }}
