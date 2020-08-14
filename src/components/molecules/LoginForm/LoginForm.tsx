@@ -46,7 +46,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
             },
           }).then((res) => {
             showToast();
-            onCompleted();
+            onCompleted && onCompleted();
           });
           actions.setSubmitting(false);
         }}
