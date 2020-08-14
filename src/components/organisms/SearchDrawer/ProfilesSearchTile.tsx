@@ -26,6 +26,7 @@ const ProfilesSearchTile = (props: Props) => {
   });
   const config = {
     apiConnector: connector,
+    trackUrlState: false,
   };
   return (
     <SearchProvider config={config}>
