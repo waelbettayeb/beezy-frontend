@@ -36,7 +36,6 @@ const NavigationDrawer: React.FC<Props> = (props) => {
   const auth = useAuth();
   const user = auth.user;
   const signOut = auth.signOut;
-  console.log("router:");
   const Item: React.FC<ItemProps> = (props) => {
     const { Icon, label } = props;
     return (

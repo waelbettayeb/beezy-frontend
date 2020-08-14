@@ -10,6 +10,11 @@ import {
   UsersPermissionsLoginPayload,
 } from "@graphql/mutations/gqlTypes/Signup";
 import { UserMe } from "@graphql/fragments/gqlTypes/User";
+import {
+  UpdateMePayload,
+  UpdateMeVariables,
+} from "@graphql/mutations/gqlTypes/User";
+import { updateMeMutation } from "@graphql/mutations/user";
 declare global {
   interface Window {
     PasswordCredential: any;
@@ -28,8 +33,9 @@ export const useProvideAuth = () => {
     if (data && !loading) {
       error ? signOut() : setUser(data?._me);
     }
-    return { user, loading };
+    return { data, error, loading };
   };
+  const fetchUser = () => useQuery(meQuery);
   const useSignIn = (input: LoginVariables) => {
     const [signIn, { data, error, loading }] = useMutation<
       Login,
@@ -52,6 +58,14 @@ export const useProvideAuth = () => {
     setAuthToken(data?.signup.jwt);
     return [signUp, { user, error, loading }];
   };
+  const useUpdateUser = (input: SignUpVariables) => {
+    const [updateMe, { data, error, loading }] = useMutation<
+      UpdateMePayload,
+      UpdateMeVariables
+    >(updateMeMutation);
+    !loading && data && !error && setUser(data?.updateMe.user);
+    return [updateMe, { data, error, loading }];
+  };
   const signOut = () => {
     setUser(null);
     fireSignOut(client);
@@ -62,6 +76,8 @@ export const useProvideAuth = () => {
     getUser,
     signOut,
     useSignUp,
+    useUpdateUser,
+    fetchUser,
   };
 };
 export const useAuth = () => {

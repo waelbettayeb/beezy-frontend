@@ -31,6 +31,10 @@ const AvatarButton = (props: Props) => {
                 Router.push("/profile/[pid]", `/profile/${user.id}`),
             },
             {
+              label: "Settings",
+              onClick: () => Router.push("/settings"),
+            },
+            {
               label: (
                 <React.Fragment>
                   <Block display={"flex"}>

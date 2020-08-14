@@ -12,5 +12,6 @@ export const meFragment = gql`
     avatar {
       url
     }
+    bio
   }
 `;
