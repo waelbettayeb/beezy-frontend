@@ -52,7 +52,6 @@ const CreateListingSchema = Yup.object().shape({
 });
 const create = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [images, setImages] = React.useState([]);
 
   const [CreatListing, CreatListingMutationTuplet] = useMutation<
     CreateListingPayload,
@@ -210,7 +209,7 @@ const create = () => {
                             .then((value) => {
                               setFieldValue(
                                 "images",
-                                images.concat(value.data.UploadFiles)
+                                values.images.concat(value.data.UploadFiles)
                               );
                             })
                             .catch((reason) => console.log(reason));

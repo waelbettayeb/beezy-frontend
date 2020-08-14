@@ -39,7 +39,7 @@ const ImagesUploader = (props: Props) => {
         backgroundColor={theme.colors.mono600}
         height={theme.sizing.scale3200}
       >
-        {!props.images.length ? (
+        {!props.images?.length ? (
           <Block
             width="100%"
             height="100%"
@@ -54,7 +54,7 @@ const ImagesUploader = (props: Props) => {
           </Block>
         ) : (
           <>
-            {props.images.map((image) => (
+            {props.images?.map((image) => (
               <Card
                 overrides={{
                   Root: {

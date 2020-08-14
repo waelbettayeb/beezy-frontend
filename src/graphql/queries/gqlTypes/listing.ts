@@ -10,6 +10,7 @@ export interface IListingPayload {
       latitude: number;
     };
     images: {
+      id: string;
       url: string;
     }[];
     created_at: Date;

@@ -13,6 +13,7 @@ export const listingQuery = gql`
         latitude
       }
       images(limit: 10) {
+        id
         url
       }
       created_at

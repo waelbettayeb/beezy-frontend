@@ -29,6 +29,8 @@ import TimeAgo from "@components/atoms/TimeAgo";
 import { simpleReverseGeocoding } from "../MapLocationPicker";
 import { Avatar } from "baseui/avatar";
 import Router from "next/router";
+import { Button } from "baseui/button";
+import { useAuth } from "@hooks/useAuth";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -62,6 +64,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
         setAddress(json);
         return json.display_name;
       });
+  const user = useAuth().user;
   return (
     <>
       <Inner h={70}>
@@ -85,6 +88,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
                   width={"100%"}
                   flexDirection={"row"}
                   alignItems={"center"}
+                  justifyContent={"space-between"}
                   padding={theme.sizing.scale400}
                 >
                   <div
@@ -95,14 +99,34 @@ const ListingPresentation: React.FC<Props> = (props) => {
                       )
                     }
                   >
-                    <Block marginRight={theme.sizing.scale400}>
-                      <Avatar
-                        src={listing?.user?.avatar?.url}
-                        name={`${listing?.user.firstName} ${listing?.user.lastName}`}
-                      />
+                    <Block
+                      display={"flex"}
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      padding={theme.sizing.scale400}
+                    >
+                      <Block marginRight={theme.sizing.scale400}>
+                        <Avatar
+                          src={listing?.user?.avatar?.url}
+                          name={`${listing?.user.firstName} ${listing?.user.lastName}`}
+                        />
+                      </Block>
+                      <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
                     </Block>
                   </div>
-                  <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
+                  {user.id === listing.user.id && (
+                    <Button
+                      kind={"minimal"}
+                      onClick={() =>
+                        Router.push(
+                          "/listing/edit/[id]",
+                          `/listing/edit/${listing.id}`
+                        )
+                      }
+                    >
+                      Edit
+                    </Button>
+                  )}
                 </Block>
               </Cell>
               <Cell span={[4, 4, 6]}>

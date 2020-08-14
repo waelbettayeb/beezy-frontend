@@ -9,3 +9,12 @@ export const CreateListingMutation = gql`
     }
   }
 `;
+export const UpdateListingMutation = gql`
+  mutation updateListingMutation($input: updateListingInput!) {
+    updateListing(input: $input) {
+      listing {
+        id
+      }
+    }
+  }
+`;
