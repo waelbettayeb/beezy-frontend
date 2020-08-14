@@ -3,7 +3,7 @@ import React from "react";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Cell, Grid } from "baseui/layout-grid";
-import { Display4, Label1 } from "baseui/typography";
+import { Caption2, Display4, Label1 } from "baseui/typography";
 import { Textarea } from "baseui/textarea";
 import { Block } from "baseui/block";
 import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
@@ -220,6 +220,7 @@ const create = () => {
                   <Cell span={[4, 8, 6]}>
                     <FormControl label="Position">
                       <Block height="50vh" width="100%">
+                        <Caption2>{address?.display_name || ""}</Caption2>
                         <MapLocationPicker
                           lat={values.latitude}
                           lng={values.longitude}
@@ -241,7 +242,6 @@ const create = () => {
                               });
                           }}
                         />
-                        <Label1>{address?.display_name || ""}</Label1>
                       </Block>
                     </FormControl>
                   </Cell>
