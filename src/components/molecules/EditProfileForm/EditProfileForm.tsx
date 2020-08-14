@@ -14,13 +14,15 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Radio, RadioGroup } from "baseui/radio";
 import { DatePicker } from "baseui/datepicker";
 
-import { ErrorMessage } from "./ErrorMessage";
-import { StyledLink } from "baseui/link";
+import { Textarea } from "baseui/textarea";
+import { useMutation } from "@apollo/react-hooks";
+import { UpdateMeVariables } from "@graphql/mutations/gqlTypes/User";
+import { updateMeMutation } from "@graphql/mutations/user";
 import { toaster } from "baseui/toast";
 
 export interface IFormValues {
   email: string;
-  password: string;
+  bio: string;
   firstName: string;
   lastName: string;
   gender: GENDER;
@@ -38,54 +40,43 @@ const formateDate = (Date) => {
   return `${year}-${month}-${date}`;
 };
 const SignupSchema = Yup.object().shape({
-  // username: Yup.string()
-  //   .matches(
-  //     /^(?=[a-zA-Z0-9._]+$)(?!.*[_.]{2})[^_.].*[^_.]$/g,
-  //     "Invalid username"
-  //   )
-  //   .min(8, "Too Short!")
-  //   .max(25, "Too Long!")
-  //   .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(8, "Too Short!")
-    .max(48, "Too Long!")
-    .required("Required"),
   firstName: Yup.string().required("Required"),
   lastName: Yup.string().required("Required"),
-  // phone: Yup.string()
-  //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
-  //   .required("Required"),
 });
-const SignupForm = (props) => {
+const EditProfileForm = (props) => {
   const auth = useAuth();
-  const [signUp, { user, error, loading }] = auth.useSignUp();
-
+  const { user } = props;
   const intl = useIntl();
-
+  const [updateMe, { data, error, loading }] = auth.useUpdateUser();
   const initialValues: IFormValues = {
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    gender: GENDER.male,
-    dateOfBirth: new Date(),
+    email: user?.email,
+    bio: user.bio,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    gender: user.gender,
+    dateOfBirth: new Date(`${user.dateOfBirth}T00:00:00.000Z`),
   };
+  const [date, setDate] = React.useState([
+    new Date(`${user.dateOfBirth}T00:00:00.000Z`),
+  ]);
   return (
     <React.Fragment>
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
         onSubmit={(values, actions) => {
-          signUp({
+          updateMe({
             variables: {
               input: {
-                ...values,
-                dateOfBirth: formateDate(values.dateOfBirth),
+                data: {
+                  ...values,
+                  dateOfBirth: formateDate(date[0]),
+                },
               },
             },
           }).then((res) => {
-            toaster.info("You are successfully registered", {});
+            toaster.info("Profile saved.", {});
           });
           actions.setSubmitting(false);
         }}
@@ -104,7 +95,7 @@ const SignupForm = (props) => {
             <Form onSubmit={handleSubmit}>
               <Grid gridMargins={0} gridGaps={0}>
                 <Cell span={[4, 8, 12]}>
-                  <Display4 marginBottom="scale500">Create an account</Display4>
+                  <Display4 marginBottom="scale500">Edit Profile</Display4>
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
@@ -157,19 +148,16 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <FormControl
-                    label={() => "Password"}
-                    error={
-                      errors.password && touched.password && errors.password
-                    }
+                    label={() => "Bio"}
+                    error={errors.bio && touched.bio && errors.bio}
                   >
-                    <Input
-                      type="password"
-                      name="password"
+                    <Textarea
+                      type="bio"
+                      name="bio"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.password}
-                      error={errors.password && touched.password}
-                      placeholder="8+ characters"
+                      value={values.bio}
+                      error={errors.bio && touched.bio}
                     />
                   </FormControl>
                 </Cell>
@@ -183,8 +171,10 @@ const SignupForm = (props) => {
                     }
                   >
                     <DatePicker
-                      value={values.dateOfBirth}
-                      onChange={handleChange}
+                      value={date}
+                      onChange={({ date }) =>
+                        setDate(Array.isArray(date) ? date : [date])
+                      }
                       maxDate={new Date()}
                       error={errors.dateOfBirth && touched.dateOfBirth && true}
                     />
@@ -223,20 +213,12 @@ const SignupForm = (props) => {
                       },
                     }}
                   >
-                    <FormattedMessage defaultMessage={"Create Account"} />
+                    <FormattedMessage defaultMessage={"Submit"} />
                   </Button>
                 </Cell>
-                <Cell span={12}>
+                {/* <Cell span={12}>
                   <ErrorMessage errors={error} />
-                </Cell>
-                <Cell span={12}>
-                  <Paragraph3>
-                    Already a member?{" "}
-                    <StyledLink onClick={() => Router.push("/auth/signin")}>
-                      Sign In
-                    </StyledLink>
-                  </Paragraph3>
-                </Cell>
+                </Cell> */}
               </Grid>
             </Form>
           );
@@ -246,4 +228,4 @@ const SignupForm = (props) => {
   );
 };
 
-export default SignupForm;
+export default EditProfileForm;
