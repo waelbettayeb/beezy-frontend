@@ -104,6 +104,7 @@ const SearchPage = () => {
             display="flex"
             width="100%"
             flexDirection="column"
+            overflow="auto"
           >
             <Block flex="1 0 auto">
               <ListingsSearchTile
@@ -149,6 +150,10 @@ const SearchPage = () => {
                   height: "100%",
                   paddingLeft: "Opx!important",
                   paddingRight: "Opx!important",
+                  maxHeight: "100%",
+                  right: 0,
+                  bottom: 0,
+                  position: "fixed",
                 };
               },
             },

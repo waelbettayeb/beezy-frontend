@@ -144,7 +144,7 @@ const ListingsSearchTile = (props: Props) => {
               )}
               <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
                 {results.map((r) => (
-                  <Cell span={[2, 2, 3]}>
+                  <Cell span={[2, 2, 4]}>
                     <Block
                       display="flex"
                       flexDirection="column"
