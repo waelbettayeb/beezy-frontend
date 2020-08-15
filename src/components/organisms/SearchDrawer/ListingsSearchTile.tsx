@@ -5,6 +5,7 @@ import {
   Caption1,
   Caption2,
   Label3,
+  LabelMedium,
   LabelSmall,
   LabelXSmall,
   Paragraph1,
@@ -19,6 +20,8 @@ import { Block } from "baseui/block";
 import Router from "next/router";
 import { Cell, Grid } from "baseui/layout-grid";
 import TimeAgo from "@components/atoms/TimeAgo";
+import { Card, StyledAction } from "baseui/card";
+import { StyledBody } from "baseui/popover";
 
 interface Props {
   searchedTerm: string;
@@ -112,33 +115,17 @@ const ListingsSearchTile = (props: Props) => {
                         )
                       }
                     >
-                      <Block
-                        display="flex"
-                        flexDirection="column"
-                        alignItems={"center"}
-                        width="100%"
-                        overrides={{
-                          Block: {
-                            style: {
-                              ...theme.borders.border600,
-                              borderRadius: theme.borders.surfaceBorderRadius,
-                              textOverflow: "ellipsis",
-                            },
-                          },
-                        }}
+                      <Card
+                        headerImage={r.url.raw}
+                        title={<LabelMedium>{r.title.raw}</LabelMedium>}
                       >
-                        <img
-                          src={
-                            "https://s3.beeesy.com/beeesy/listings/51/thumbnail_Group_3_572c45fbd4.png"
-                          }
-                          className={css({
-                            width: "100%",
-                          })}
-                        />
-                        <Block padding={theme.sizing.scale500}>
-                          <Paragraph4>{r.title.raw}</Paragraph4>
-                        </Block>
-                      </Block>
+                        <StyledBody>
+                          <Paragraph4>
+                            <TimeAgo date={r.created_at.raw} />
+                          </Paragraph4>
+                        </StyledBody>
+                        <StyledAction></StyledAction>
+                      </Card>
                     </div>
                   </Cell>
                 ))}

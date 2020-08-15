@@ -5,6 +5,7 @@ import {
   Caption1,
   Caption2,
   Label3,
+  LabelMedium,
   LabelSmall,
   LabelXSmall,
   Paragraph1,
@@ -22,6 +23,10 @@ import { StyledLink } from "baseui/link";
 
 import { Block } from "baseui/block";
 import { Cell, Grid } from "baseui/layout-grid";
+import { Button } from "baseui/button";
+import { Card, StyledBody, StyledAction } from "baseui/card";
+import TimeAgo from "@components/atoms/TimeAgo";
+import Router from "next/router";
 
 interface Props {
   resultsPerPage?: number;
@@ -145,7 +150,28 @@ const ListingsSearchTile = (props: Props) => {
               <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
                 {results.map((r) => (
                   <Cell span={[2, 2, 4]}>
-                    <Block
+                    <div
+                      onClick={() =>
+                        Router.push(
+                          "/listing/[id]",
+                          `/listing/${r.id.raw.substring(8)}`
+                        )
+                      }
+                    >
+                      <Card
+                        headerImage={r.url.raw}
+                        title={<LabelMedium>{r.title.raw}</LabelMedium>}
+                      >
+                        <StyledBody>
+                          <Paragraph4>
+                            <TimeAgo date={r.created_at?.raw} />
+                          </Paragraph4>
+                        </StyledBody>
+                        <StyledAction></StyledAction>
+                      </Card>
+                    </div>
+
+                    {/* <Block
                       display="flex"
                       flexDirection="column"
                       alignItems={"center"}
@@ -171,7 +197,7 @@ const ListingsSearchTile = (props: Props) => {
                       <Block padding={theme.sizing.scale500}>
                         <Paragraph4>{r.title.raw}</Paragraph4>
                       </Block>
-                    </Block>
+                    </Block> */}
                   </Cell>
                 ))}
               </Grid>
