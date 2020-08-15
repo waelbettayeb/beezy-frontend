@@ -79,7 +79,7 @@ const SearchPage = () => {
                 minWidth: "100%",
                 Width: "100%",
                 margin: 0,
-                flex: "1 0 auto",
+                flex: "1 1 auto",
               };
             },
           },
@@ -147,13 +147,9 @@ const SearchPage = () => {
             Cell: {
               style: ({ $theme }) => {
                 return {
-                  height: "100%",
+                  maxHeight: "100%",
                   paddingLeft: "Opx!important",
                   paddingRight: "Opx!important",
-                  maxHeight: "100%",
-                  right: 0,
-                  bottom: 0,
-                  position: "fixed",
                 };
               },
             },
