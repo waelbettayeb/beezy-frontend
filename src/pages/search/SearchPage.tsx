@@ -9,6 +9,7 @@ import { Tabs, Tab } from "baseui/tabs";
 
 import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
+import { Pagination, SIZE } from "baseui/pagination";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -24,6 +25,7 @@ const SearchPage = () => {
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [numPage, setNumPage] = React.useState(1);
 
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
@@ -96,15 +98,44 @@ const SearchPage = () => {
             },
           }}
         >
-          <Block flex="1 0 auto">
-            <ListingsSearchTile
-              searchedTerm={searchedTerm}
-              lat={position.latitude}
-              lon={position.longitude}
-              distance={radius}
+          <Block
+            height="100%"
+            maxHeight="100%"
+            display="flex"
+            width="100%"
+            flexDirection="column"
+          >
+            <Block flex="1 0 auto">
+              <ListingsSearchTile
+                searchedTerm={searchedTerm}
+                lat={position.latitude}
+                lon={position.longitude}
+                distance={radius}
+                currentPage={currentPage}
+                resultsPerPage={10}
+                setNumPage={(numPage) => setNumPage(numPage)}
+                onSearchEnd={(result) => {
+                  setResults(result);
+                }}
+              />
+            </Block>
+            <Pagination
+              numPages={numPage}
+              size={SIZE.mini}
               currentPage={currentPage}
-              onSearchEnd={(result) => {
-                setResults(result);
+              onPageChange={({ nextPage }) => {
+                setCurrentPage(Math.min(Math.max(nextPage, 1), 20));
+              }}
+              overrides={{
+                Root: {
+                  style: ({ $theme }) => {
+                    return {
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    };
+                  },
+                },
               }}
             />
           </Block>
@@ -148,60 +179,91 @@ const SearchPage = () => {
             },
           }}
         >
-          <Tabs
-            onChange={({ activeKey }) => {
-              setActiveKey(activeKey + "");
-            }}
-            activeKey={activeKey}
-            overrides={{
-              Root: {
-                style: ({ $theme }) => {
-                  return {
-                    height: "100%",
-                    display: "flex",
-                  };
-                },
-              },
-              TabContent: {
-                style: ({ $theme }) => {
-                  return {
-                    height: "100%",
-                    paddingLeft: "Opx!important",
-                    paddingRight: "Opx!important",
-                  };
-                },
-              },
-            }}
+          <Block
+            height="100%"
+            maxHeight="100%!important"
+            display="flex"
+            width="100%"
+            flexDirection="column"
           >
-            <Tab title="List">
-              <Block height={"100%"}>
-                <ListingsSearchTile
-                  searchedTerm={searchedTerm}
-                  lat={position.latitude}
-                  lon={position.longitude}
-                  currentPage={currentPage}
-                  distance={radius}
-                  onSearchEnd={(result) => setResults(result)}
-                />
-              </Block>
-            </Tab>
-            <Tab title={`Map`}>
-              <Block height={"100%"}>
-                <Map
-                  lat={position.latitude}
-                  lng={position.longitude}
-                  markers={
-                    results &&
-                    results.map((r) => ({
-                      lat: r.latitude?.raw,
-                      lng: r.longitude?.raw,
-                      label: r.title?.raw,
-                    }))
-                  }
-                />
-              </Block>
-            </Tab>
-          </Tabs>
+            <Tabs
+              onChange={({ activeKey }) => {
+                setActiveKey(activeKey + "");
+              }}
+              activeKey={activeKey}
+              overrides={{
+                Root: {
+                  style: ({ $theme }) => {
+                    return {
+                      display: "flex",
+                      flex: "1 1 auto",
+                    };
+                  },
+                },
+                TabContent: {
+                  style: ({ $theme }) => {
+                    return {
+                      height: "100%",
+                      paddingLeft: "Opx!important",
+                      paddingRight: "Opx!important",
+                    };
+                  },
+                },
+              }}
+            >
+              <Tab title="List">
+                <Block height={"100%"}>
+                  <ListingsSearchTile
+                    searchedTerm={searchedTerm}
+                    lat={position.latitude}
+                    lon={position.longitude}
+                    distance={radius}
+                    currentPage={currentPage}
+                    resultsPerPage={10}
+                    setNumPage={(numPage) => setNumPage(numPage)}
+                    onSearchEnd={(result) => {
+                      setResults(result);
+                    }}
+                  />
+                </Block>
+              </Tab>
+              <Tab title={`Map`}>
+                <Block height={"100%"}>
+                  <Map
+                    lat={position.latitude}
+                    lng={position.longitude}
+                    markers={
+                      results &&
+                      results.map((r) => ({
+                        lat: r.latitude?.raw,
+                        lng: r.longitude?.raw,
+                        label: r.title?.raw,
+                      }))
+                    }
+                  />
+                </Block>
+              </Tab>
+            </Tabs>
+            <Pagination
+              numPages={numPage}
+              size={SIZE.mini}
+              currentPage={currentPage}
+              onPageChange={({ nextPage }) => {
+                setCurrentPage(Math.min(Math.max(nextPage, 1), 20));
+              }}
+              overrides={{
+                Root: {
+                  style: ({ $theme }) => {
+                    return {
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    };
+                  },
+                },
+              }}
+            />
+          </Block>
         </Cell>
       </Grid>
     </Block>

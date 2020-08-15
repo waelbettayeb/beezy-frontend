@@ -3,6 +3,7 @@ import { useStyletron } from "baseui";
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import {
   Caption1,
+  Caption2,
   Label3,
   LabelSmall,
   LabelXSmall,
@@ -10,7 +11,12 @@ import {
   Paragraph4,
 } from "baseui/typography";
 
-import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
+import {
+  SearchProvider,
+  WithSearch,
+  PagingInfo,
+  Paging,
+} from "@elastic/react-search-ui";
 
 import { StyledLink } from "baseui/link";
 
@@ -21,6 +27,7 @@ interface Props {
   resultsPerPage?: number;
   searchedTerm: string;
   onSearchEnd?: (result) => void;
+  setNumPage?: (numPage) => void;
   lat: number;
   lon: number;
   distance: number;
@@ -35,6 +42,8 @@ const ListingsSearchTile = (props: Props) => {
     lon,
     distance,
     currentPage,
+    setNumPage,
+    searchedTerm,
   } = props;
   const [css, theme] = useStyletron();
   const connector = new AppSearchAPIConnector({
@@ -50,42 +59,51 @@ const ListingsSearchTile = (props: Props) => {
     <SearchProvider config={config}>
       <WithSearch
         mapContextToProps={({
+          current,
           searchTerm,
           setSearchTerm,
           results,
           setResultsPerPage,
           setCurrent,
-          setFilter,
+          addFilter,
+          totalResults,
+          reset,
         }) => ({
-          searchTerm,
+          current: currentPage,
+          searchTerm: searchedTerm,
           setSearchTerm,
           results,
           setResultsPerPage,
+          resultsPerPage: props.resultsPerPage,
           setCurrent,
-          setFilter,
+          addFilter,
+          totalResults,
+          reset,
         })}
       >
         {({
+          current,
           searchTerm,
           setSearchTerm,
           results,
           setResultsPerPage,
+          resultsPerPage,
           setCurrent,
-          setFilter,
+          addFilter,
+          totalResults,
+          reset,
         }) => {
-          setSearchTerm(props.searchedTerm);
-          setResultsPerPage(resultsPerPage || 10);
-          setCurrent(currentPage);
+          console.log(current);
+          setSearchTerm(searchTerm);
           onSearchEnd(results);
-          setFilter(
-            "location",
-            {
-              distance,
-              unit: "km",
-              center: `${lat},${lon}`,
-            },
-            null
-          );
+          setResultsPerPage(resultsPerPage);
+          addFilter("location", {
+            distance,
+            unit: "km",
+            center: `${lat},${lon}`,
+          });
+          setCurrent(current);
+          setNumPage && setNumPage(Math.ceil(totalResults / resultsPerPage));
           return (
             <div
               className={css({
@@ -95,6 +113,20 @@ const ListingsSearchTile = (props: Props) => {
                 flex: "1 0 auto",
               })}
             >
+              <PagingInfo
+                view={({ start, end, totalResults }) => (
+                  <Block
+                    display={"flex"}
+                    width={"100%"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                  >
+                    <Caption2>
+                      {start} - {end} (Total results: {totalResults})
+                    </Caption2>
+                  </Block>
+                )}
+              />
               {!results.length && (
                 <Block
                   width="100%"
