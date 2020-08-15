@@ -20,8 +20,7 @@ import { Block } from "baseui/block";
 import Router from "next/router";
 import { Cell, Grid } from "baseui/layout-grid";
 import TimeAgo from "@components/atoms/TimeAgo";
-import { Card, StyledAction } from "baseui/card";
-import { StyledBody } from "baseui/popover";
+import { Card, StyledAction, StyledBody } from "baseui/card";
 
 interface Props {
   searchedTerm: string;
