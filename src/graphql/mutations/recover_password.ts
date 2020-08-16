@@ -7,3 +7,19 @@ export const recoverPasswordMutation = gql`
     }
   }
 `;
+
+export const resetPasswordMutation = gql`
+  mutation resetPassword(
+    $password: String!
+    $passwordConfirmation: String!
+    $code: String!
+  ) {
+    resetPassword(
+      password: $password
+      passwordConfirmation: $passwordConfirmation
+      code: $code
+    ) {
+      jwt
+    }
+  }
+`;

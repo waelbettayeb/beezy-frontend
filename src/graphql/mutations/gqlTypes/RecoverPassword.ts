@@ -7,3 +7,11 @@ export interface RecoverPasswordVariables {
 export interface RecoverPasswordPayload {
   forgotPassword: { ok: boolean };
 }
+export interface ResetPasswordVariables {
+  password: string;
+  passwordConfirmation: string;
+  code: string;
+}
+export interface ResetPasswordPayload {
+  jwt: string;
+}
