@@ -24,6 +24,8 @@ export const getErrorMessage = (errors) => {
       return errorMessages.invalidError;
     case "Auth.form.error.user.not-exist":
       return errorMessages.userDosntExist;
+    case "Auth.form.error.code.provide":
+      return errorMessages.incorrectCode;
     default:
       return errorMessages.serverError;
   }
