@@ -124,6 +124,7 @@ const SearchNavBar = (props: Props) => {
             <LocationPickerModal
               longitude={position.longitude}
               latitude={position.latitude}
+              defaultRadius={radius}
               onClose={() => setIsLocationPickerOpen(false)}
               isOpen={isLocationPickerOpen}
               onApply={(latitude, longitude, radius, address) => {
