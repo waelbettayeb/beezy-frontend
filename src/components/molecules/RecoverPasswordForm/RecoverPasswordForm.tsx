@@ -6,14 +6,19 @@ import { Button } from "baseui/button";
 import { StyledLink } from "baseui/link";
 import { useAuth } from "src/hooks/useAuth";
 import * as Yup from "yup";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { Formik, Form } from "formik";
 import ErrorMessage from "../SignupForm/ErrorMessage";
 import { Block } from "baseui/block";
 import { toaster } from "baseui/toast";
+import { useMutation } from "react-apollo";
+import {
+  RecoverPasswordPayload,
+  RecoverPasswordVariables,
+} from "@graphql/mutations/gqlTypes/RecoverPassword";
+import { recoverPasswordMutation } from "@graphql/mutations/recover_password";
 
-interface Props {
-}
+interface Props {}
 export interface IFormValues {
   email: string;
 }
@@ -23,15 +28,17 @@ const RecoverPasswordSchema = Yup.object().shape({
 });
 
 const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
-
-  const router = useRouter();
-
-  // const [signIn, { user, error, loading }] = auth.useSignIn();
+  const auth = useAuth();
+  const [RecoverPassword, { data, error, loading }] = useMutation<
+    RecoverPasswordPayload,
+    RecoverPasswordVariables
+  >(recoverPasswordMutation);
 
   const initialValues: IFormValues = {
     email: "",
   };
-
+  const showToast = () =>
+    toaster.info("Please check your email for a message with your code", {});
 
   return (
     <React.Fragment>
@@ -48,7 +55,16 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
         initialValues={initialValues}
         validationSchema={RecoverPasswordSchema}
         onSubmit={(values, actions) => {
-         }
+          RecoverPassword({
+            variables: {
+              email: values.email,
+            },
+          }).then((res) => {
+            Router.push("/");
+            showToast();
+          });
+          actions.setSubmitting(false);
+        }}
       >
         {({
           values,
@@ -100,7 +116,7 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
       <Block>
         <Paragraph3>
           Not a member?{" "}
-          <StyledLink onClick={() => router.push("/auth/signup")}>
+          <StyledLink onClick={() => Router.push("/auth/signup")}>
             Sign up now
           </StyledLink>
         </Paragraph3>
