@@ -128,7 +128,9 @@ const LoginForm: React.FC<Props> = (props: Props) => {
         </Paragraph3>
         <Paragraph3>
           Have you forgotten your password?{" "}
-          <StyledLink href="/about">Click Here</StyledLink>
+          <StyledLink onClick={() => router.push("/auth/recover_password")}>
+            Click Here
+          </StyledLink>
         </Paragraph3>
         <Divider>Or</Divider>
         <Button

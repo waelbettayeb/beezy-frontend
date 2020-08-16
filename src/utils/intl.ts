@@ -19,4 +19,10 @@ export const errorMessages = defineMessages({
   invalidError: {
     defaultMessage: "Identifier or password invalid",
   },
+  userDosntExist: {
+    defaultMessage: "This email does not exist.",
+  },
+  incorrectCode: {
+    defaultMessage: "Password reset url is invalid or has expired.",
+  },
 });
