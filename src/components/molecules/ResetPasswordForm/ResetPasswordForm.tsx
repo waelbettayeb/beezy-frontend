@@ -22,6 +22,7 @@ import {
   recoverPasswordMutation,
   resetPasswordMutation,
 } from "@graphql/mutations/recover_password";
+import { setAuthToken } from "@utils/auth";
 
 interface Props {}
 export interface IFormValues {
@@ -44,8 +45,7 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
     password: "",
   };
   const showToast = () =>
-    toaster.info("Please check your password for a message with your code", {});
-
+    toaster.info("Your password has been changed successfully", {});
   return (
     <React.Fragment>
       <Display4 marginBottom="scale500">Reset your password</Display4>
@@ -60,6 +60,10 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
               code: code as string,
             },
           }).then((res) => {
+            setAuthToken(
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTEsImlhdCI6MTU5NzMzNDQyMSwiZXhwIjoxNTk5OTI2NDIxfQ.lrPEHTNGg8ac-3tLvD_bGjtJcgo7EJygXXhZibdVADE",
+              () => auth.getUser()
+            );
             Router.push("/");
             showToast();
           });

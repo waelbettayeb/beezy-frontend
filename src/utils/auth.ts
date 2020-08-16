@@ -8,8 +8,9 @@ export function getAuthToken(): string | null {
     return null;
   }
 }
-export function setAuthToken(token: string) {
+export function setAuthToken(token: string, then?: () => void) {
   localStorage.setItem("token", token);
+  then && then();
 }
 
 export function removeAuthToken() {
