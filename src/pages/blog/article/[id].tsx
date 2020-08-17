@@ -12,6 +12,7 @@ import Router from "next/router";
 import { Avatar } from "baseui/avatar";
 import {
   Caption1,
+  DisplayMedium,
   HeadingXSmall,
   LabelLarge,
   LabelMedium,
@@ -22,20 +23,59 @@ import Divider from "@components/atoms/Divider";
 import { ORIENTATION } from "@components/atoms/Divider/Divider";
 import Footer from "@components/organisms/Footer";
 import Link from "next/link";
+import Markdown from "@components/organisms/Markdown";
+import { useQuery } from "react-apollo";
+import { articleQuery } from "@graphql/queries/blog";
+import {
+  IArticlePayload,
+  IArticleVariables,
+} from "@graphql/queries/gqlTypes/blog";
+import TimeAgo from "@components/atoms/TimeAgo";
 
 const Profile = () => {
   const [css, theme] = useStyletron();
   const { id } = Router.query;
-
+  const { data, error, loading } = useQuery<IArticlePayload, IArticleVariables>(
+    articleQuery,
+    {
+      variables: {
+        id: id as string,
+      },
+    }
+  );
   return (
     <>
       <Block
-        height="100vh"
+        minHeight="100vh"
         width={"100%"}
         display={"flex"}
         flexDirection={"column"}
       >
         <AppNavBar />
+        {!loading && !error && (
+          <>
+            <Grid
+              overrides={{
+                Grid: {
+                  style: ({ $theme }) => {
+                    const theme = $theme;
+                    return {
+                      width: "100%",
+                    };
+                  },
+                },
+              }}
+            >
+              <Cell skip={[0, 1, 2]} span={[4, 6, 8]}>
+                <DisplayMedium>{data.blogPost.title}</DisplayMedium>
+                <Caption1>
+                  <TimeAgo date={data.blogPost.created_at} />
+                </Caption1>
+                <Markdown source={data.blogPost.content} />
+              </Cell>
+            </Grid>
+          </>
+        )}
       </Block>
       <Footer />
     </>
