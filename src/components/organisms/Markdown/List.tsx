@@ -16,3 +16,4 @@ export const List: React.FC<Props> = (props) => {
     </Paragraph2>
   );
 };
+export default List;
