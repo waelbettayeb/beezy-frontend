@@ -1,22 +1,29 @@
-import { HeadingXXLarge } from "baseui/typography";
+import { Block } from "baseui/block";
+import { Paragraph2 } from "baseui/typography";
+import StyledLink from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import { List } from ".";
+import { Heading } from "./Heading";
 
-interface Props {
+interface MarkdownProps {
   source: string;
 }
 
-const Markdown = (props: Props) => {
+const Markdown: React.FC<MarkdownProps> = (props) => {
   const { source } = props;
   return (
-    <ReactMarkdown
-      source={source}
-      renderers={{
-        h1: (props) => (
-          <HeadingXXLarge>{props.value ?? props.children}</HeadingXXLarge>
-        ),
-      }}
-    />
+    <>
+      <ReactMarkdown
+        source={source}
+        escapeHtml={true}
+        renderers={{
+          heading: Heading,
+          paragraph: Paragraph2,
+          list: List,
+        }}
+      />
+    </>
   );
 };
 
