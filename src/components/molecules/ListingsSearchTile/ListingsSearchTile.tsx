@@ -76,6 +76,14 @@ const ListingsSearchTile = (props: Props) => {
                   headerImage={r.images[0]?.file.url}
                   title={<LabelMedium>{r.title}</LabelMedium>}
                   overrides={{
+                    Body: {
+                      style: ({ $theme }) => {
+                        return {
+                          width: "100%",
+                          height: theme.sizing.scale1200,
+                        };
+                      },
+                    },
                     HeaderImage: {
                       style: ({ $theme }) => {
                         return {
