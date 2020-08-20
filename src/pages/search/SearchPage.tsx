@@ -16,6 +16,8 @@ import { moveTo } from "geolocation-utils";
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
 });
+const LIMIT = 20;
+
 const SearchPage = () => {
   const [css, theme] = useStyletron();
   const [searchedTerm, setSearchedTerm] = useState("");
@@ -27,7 +29,7 @@ const SearchPage = () => {
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [numPage, setNumPage] = React.useState(1);
+  const [nbHits, setNbHits] = React.useState(0);
   const index = MeiliClient.getIndex("listings");
 
   React.useEffect(() => {
@@ -42,14 +44,16 @@ const SearchPage = () => {
     // Create an scoped async function in the hook
     async function searchWithMeili() {
       const search = await index.search(searchedTerm, {
-        limit: 20,
+        limit: LIMIT,
+        offset: (currentPage - 1) * LIMIT,
         filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
       });
       setResults(search.hits);
+      setNbHits((search as any).nbHits);
     }
     // Execute the created function directly
     searchWithMeili();
-  }, [searchedTerm, radius, position]);
+  }, [searchedTerm, radius, position, currentPage]);
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
@@ -79,9 +83,10 @@ const SearchPage = () => {
         radius={radius}
         city={getCity()}
         searchTerm={searchedTerm}
-        onSearchTermChange={(e) =>
-          setSearchedTerm((e.target as HTMLTextAreaElement).value)
-        }
+        onSearchTermChange={(e) => {
+          setSearchedTerm((e.target as HTMLTextAreaElement).value);
+          setCurrentPage(1);
+        }}
         onLocationChange={(lat, lon, radius, address) => {
           setPosition({
             latitude: lat,
@@ -130,22 +135,10 @@ const SearchPage = () => {
             overflow="auto"
           >
             <Block flex="1 0 auto">
-              <ListingsSearchTile
-                results={results}
-                searchedTerm={searchedTerm}
-                lat={position.latitude}
-                lon={position.longitude}
-                distance={radius}
-                currentPage={currentPage}
-                resultsPerPage={10}
-                setNumPage={(numPage) => setNumPage(numPage)}
-                onSearchEnd={(result) => {
-                  setResults(result);
-                }}
-              />
+              <ListingsSearchTile results={results} />
             </Block>
             <Pagination
-              numPages={numPage}
+              numPages={Math.ceil(nbHits / LIMIT)}
               size={SIZE.mini}
               currentPage={currentPage}
               onPageChange={({ nextPage }) => {
@@ -238,19 +231,7 @@ const SearchPage = () => {
             >
               <Tab title="List">
                 <Block height={"100%"}>
-                  <ListingsSearchTile
-                    results={results}
-                    searchedTerm={searchedTerm}
-                    lat={position.latitude}
-                    lon={position.longitude}
-                    distance={radius}
-                    currentPage={currentPage}
-                    resultsPerPage={10}
-                    setNumPage={(numPage) => setNumPage(numPage)}
-                    onSearchEnd={(result) => {
-                      setResults(result);
-                    }}
-                  />
+                  <ListingsSearchTile results={results} />
                 </Block>
               </Tab>
               <Tab title={`Map`}>
@@ -271,7 +252,7 @@ const SearchPage = () => {
               </Tab>
             </Tabs>
             <Pagination
-              numPages={numPage}
+              numPages={Math.ceil(nbHits / LIMIT)}
               size={SIZE.mini}
               currentPage={currentPage}
               onPageChange={({ nextPage }) => {

@@ -22,29 +22,11 @@ import TimeAgo from "@components/atoms/TimeAgo";
 import Router from "next/router";
 
 interface Props {
-  resultsPerPage?: number;
-  searchedTerm: string;
-  onSearchEnd?: (result) => void;
-  setNumPage?: (numPage) => void;
-  lat: number;
-  lon: number;
-  distance: number;
-  currentPage: number;
   results?: any;
 }
 
 const ListingsSearchTile = (props: Props) => {
-  const {
-    results,
-    resultsPerPage,
-    onSearchEnd,
-    lat,
-    lon,
-    distance,
-    currentPage,
-    setNumPage,
-    searchedTerm,
-  } = props;
+  const { results } = props;
   const [css, theme] = useStyletron();
 
   return (

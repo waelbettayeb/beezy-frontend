@@ -50,8 +50,9 @@ const ListingPresentation: React.FC<Props> = (props) => {
     }
   );
   const [address, setAddress] = React.useState(null);
-  const { listing } = !loading && data;
+  const { listing } = !loading && !error && data;
   !loading &&
+    !error &&
     simpleReverseGeocoding(
       listing.location.latitude,
       listing.location.longitude
