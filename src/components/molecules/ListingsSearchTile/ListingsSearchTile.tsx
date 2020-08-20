@@ -68,13 +68,23 @@ const ListingsSearchTile = (props: Props) => {
       <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
         {results &&
           results.map((r) => (
-            <Cell span={[2, 2, 4]}>
+            <Cell span={[2, 2, 3]}>
               <div
                 onClick={() => Router.push("/listing/[id]", `/listing/${r.id}`)}
               >
                 <Card
                   headerImage={r.images[0]?.file.url}
                   title={<LabelMedium>{r.title}</LabelMedium>}
+                  overrides={{
+                    HeaderImage: {
+                      style: ({ $theme }) => {
+                        return {
+                          width: "100%",
+                          height: theme.sizing.scale4800,
+                        };
+                      },
+                    },
+                  }}
                 >
                   <StyledBody>
                     <Paragraph4>
