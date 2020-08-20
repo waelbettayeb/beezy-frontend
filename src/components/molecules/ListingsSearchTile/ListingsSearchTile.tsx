@@ -80,7 +80,7 @@ const ListingsSearchTile = (props: Props) => {
                       style: ({ $theme }) => {
                         return {
                           width: "100%",
-                          height: theme.sizing.scale1200,
+                          height: theme.sizing.scale900,
                         };
                       },
                     },
