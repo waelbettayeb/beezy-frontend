@@ -10,6 +10,7 @@ import { Tabs, Tab } from "baseui/tabs";
 import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
 import { Pagination, SIZE } from "baseui/pagination";
+import MeiliClient from "@utils/MeiliSearchClient";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -26,7 +27,16 @@ const SearchPage = () => {
   const [address, setAddress] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [numPage, setNumPage] = React.useState(1);
-
+  const index = MeiliClient.getIndex("listings");
+  React.useEffect(() => {
+    // Create an scoped async function in the hook
+    async function searchWithMeili() {
+      const search = await index.search(searchedTerm, { limit: 20 });
+      setResults(search.hits);
+    }
+    // Execute the created function directly
+    searchWithMeili();
+  }, [searchedTerm]);
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
@@ -108,6 +118,7 @@ const SearchPage = () => {
           >
             <Block flex="1 0 auto">
               <ListingsSearchTile
+                results={results}
                 searchedTerm={searchedTerm}
                 lat={position.latitude}
                 lon={position.longitude}
@@ -161,9 +172,9 @@ const SearchPage = () => {
             markers={
               results &&
               results.map((r) => ({
-                lat: r.latitude?.raw,
-                lng: r.longitude?.raw,
-                label: r.title?.raw,
+                lat: r.latitude,
+                lng: r.longitude,
+                label: r.title,
               }))
             }
           />
@@ -215,6 +226,7 @@ const SearchPage = () => {
               <Tab title="List">
                 <Block height={"100%"}>
                   <ListingsSearchTile
+                    results={results}
                     searchedTerm={searchedTerm}
                     lat={position.latitude}
                     lon={position.longitude}
@@ -236,9 +248,9 @@ const SearchPage = () => {
                     markers={
                       results &&
                       results.map((r) => ({
-                        lat: r.latitude?.raw,
-                        lng: r.longitude?.raw,
-                        label: r.title?.raw,
+                        lat: r.latitude,
+                        lng: r.longitude,
+                        label: r.title,
                       }))
                     }
                   />

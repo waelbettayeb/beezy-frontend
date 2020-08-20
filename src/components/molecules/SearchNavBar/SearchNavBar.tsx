@@ -83,6 +83,7 @@ const SearchNavBar = (props: Props) => {
         </Cell>
         <Cell span={[0, 4, 6]}>
           <Input
+            autoFocus
             type="search"
             placeholder="Search..."
             startEnhancer={<Search size="18px" />}
@@ -154,7 +155,7 @@ const SearchNavBar = (props: Props) => {
   );
   return (
     <>
-      <HeaderNavigation
+      {/* <HeaderNavigation
         overrides={{
           Root: {
             style: ({ $theme }) => {
@@ -174,7 +175,7 @@ const SearchNavBar = (props: Props) => {
         }}
       >
         <HeaderContent />
-      </HeaderNavigation>
+      </HeaderNavigation> */}
       <HeaderNavigation
         overrides={{
           Root: {
