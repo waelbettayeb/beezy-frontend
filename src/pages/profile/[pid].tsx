@@ -32,7 +32,7 @@ const Profile = () => {
     variables: { id: pid },
   });
 
-  !loading && !data?.user && Router.push("/404");
+  // !loading && !data?.user && Router.push("/404");
 
   return (
     <>
