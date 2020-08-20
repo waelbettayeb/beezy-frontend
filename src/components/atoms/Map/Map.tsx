@@ -8,6 +8,7 @@ import {
   Circle,
   Popup,
   Tooltip,
+  Rectangle,
 } from "react-leaflet";
 
 interface Props {
@@ -29,6 +30,7 @@ interface Props {
     lng: number;
     radius: number;
   }[];
+  rectangles?: any[];
 }
 
 const Map: React.FC<Props> = (props) => {
@@ -39,6 +41,7 @@ const Map: React.FC<Props> = (props) => {
     onViewportChanged,
     markers,
     circles,
+    rectangles,
   } = props;
   const [zoom, setZoom] = React.useState(props.zoom | 5);
   const handleViewportchange = (e) => {
@@ -49,6 +52,7 @@ const Map: React.FC<Props> = (props) => {
     setZoom(e.zoom);
     onViewportChanged && onViewportChanged(e.center[0], e.center[1]);
   };
+
   return (
     <M
       center={{ lat, lng }}
@@ -80,6 +84,7 @@ const Map: React.FC<Props> = (props) => {
         circles.map((circle, key) => (
           <Circle center={circle} radius={circle.radius}></Circle>
         ))}
+      {rectangles && rectangles.map((r) => <Rectangle bounds={r}></Rectangle>)}
     </M>
   );
 };

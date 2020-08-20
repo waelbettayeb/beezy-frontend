@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
 import { Pagination, SIZE } from "baseui/pagination";
 import MeiliClient from "@utils/MeiliSearchClient";
+import { moveTo } from "geolocation-utils";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -28,15 +29,27 @@ const SearchPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [numPage, setNumPage] = React.useState(1);
   const index = MeiliClient.getIndex("listings");
+
   React.useEffect(() => {
+    const boundTopLeft = moveTo(
+      { lat: position.latitude, lon: position.longitude },
+      { distance: Math.sqrt(2 * Math.pow(radius * 1000, 2)), heading: 45 }
+    );
+    const boundBottomRight = moveTo(
+      { lat: position.latitude, lon: position.longitude },
+      { distance: Math.sqrt(2 * Math.pow(radius * 1000, 2)), heading: 225 }
+    );
     // Create an scoped async function in the hook
     async function searchWithMeili() {
-      const search = await index.search(searchedTerm, { limit: 20 });
+      const search = await index.search(searchedTerm, {
+        limit: 20,
+        filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
+      });
       setResults(search.hits);
     }
     // Execute the created function directly
     searchWithMeili();
-  }, [searchedTerm]);
+  }, [searchedTerm, radius, position]);
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
