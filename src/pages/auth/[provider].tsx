@@ -11,6 +11,8 @@ import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar
 const AuthCallbackPage = (props: Props) => {
   const [text, setText] = React.useState("Loading...");
   const { access_token, provider } = Router.query;
+  const [loading, setSetloading] = React.useState(true);
+
   const auth = useAuth();
   React.useEffect(() => {
     // Successfully logged with the provider
@@ -29,16 +31,24 @@ const AuthCallbackPage = (props: Props) => {
         setAuthToken(res.jwt as string, () => {
           Router.push("/");
         });
+        auth.getUser();
       })
       .catch((err) => {
+        setSetloading(false);
         console.log(err);
         setText("An error occured.");
       });
   }, [provider]);
   return (
     <>
-      <BackHomeNavBar />
-      <ParagraphLarge>{text}</ParagraphLarge>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <BackHomeNavBar />
+          <ParagraphLarge>{text}</ParagraphLarge>
+        </>
+      )}
     </>
   );
 };
