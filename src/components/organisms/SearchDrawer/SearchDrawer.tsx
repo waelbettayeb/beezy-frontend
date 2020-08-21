@@ -8,6 +8,7 @@ import { Block } from "baseui/block";
 import ProfilesSearchTile from "./ProfilesSearchTile";
 import ListingsSearchTile from "./ListingsSearchTile";
 import LoadingScreen from "@components/molecules/LoadingScreen";
+import { useDebounce } from "use-debounce/lib";
 
 interface Props extends DrawerProps {}
 
@@ -22,25 +23,30 @@ const SearchDrawer = (props: Props) => {
 
   const peopleIndex = MeiliClient.getIndex("people");
   const listingsIndex = MeiliClient.getIndex("listings");
+  const [value] = useDebounce(searchedTerm, 1000);
 
   React.useEffect(() => {
     // Create an scoped async function in the hook
     async function searchWithMeili() {
       setSetloading(true);
-      const peopleSearch = await peopleIndex.search(searchedTerm, {
-        limit: 10,
-      });
-      setPeopleResults(peopleSearch.hits);
+      peopleIndex
+        .search(value, {
+          limit: 10,
+        })
+        .then((peopleSearch) => setPeopleResults(peopleSearch.hits));
 
-      const listingsSearch = await listingsIndex.search(searchedTerm, {
-        limit: 10,
-      });
-      setListingsResults(listingsSearch.hits);
-      setSetloading(false);
+      listingsIndex
+        .search(value, {
+          limit: 10,
+        })
+        .then((listingsSearch) => {
+          setListingsResults(listingsSearch.hits);
+          setSetloading(false);
+        });
     }
     // Execute the created function directly
     searchWithMeili();
-  }, [searchedTerm]);
+  }, [value]);
   return (
     <Drawer
       {...props}
