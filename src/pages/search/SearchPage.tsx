@@ -14,6 +14,7 @@ import MeiliClient from "@utils/MeiliSearchClient";
 import { moveTo } from "geolocation-utils";
 import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 import Router from "next/router";
+import { useDebounce } from "use-debounce";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -34,6 +35,7 @@ const SearchPage = () => {
   const [nbHits, setNbHits] = React.useState(0);
   const [processingTimeMs, setProcessingTimeMs] = React.useState(0);
   const index = MeiliClient.getIndex("listings");
+  const [value] = useDebounce(searchedTerm, 1000);
 
   React.useEffect(() => {
     const boundTopLeft = moveTo(
@@ -47,7 +49,7 @@ const SearchPage = () => {
     // Create an scoped async function in the hook
     async function searchWithMeili() {
       index
-        .search(searchedTerm, {
+        .search(value, {
           limit: LIMIT,
           offset: (currentPage - 1) * LIMIT,
           filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
@@ -57,12 +59,12 @@ const SearchPage = () => {
           setNbHits((search as any).nbHits);
           setProcessingTimeMs(search.processingTimeMs);
           setCurrentPage(1);
-          Router.replace(`/search?q=${searchedTerm}`);
+          Router.replace(`/search?q=${value}`);
         });
     }
     // Execute the created function directly
     searchWithMeili();
-  }, [searchedTerm, radius, position, currentPage]);
+  }, [value, radius, position, currentPage]);
   React.useEffect(() => {
     const { q } = Router.query;
     setSearchedTerm(q);
