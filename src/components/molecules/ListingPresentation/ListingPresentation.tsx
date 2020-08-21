@@ -69,7 +69,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
   return (
     <>
       <Inner h={70}>
-        {loading ? (
+        {loading || error ? (
           <Spinner />
         ) : (
           <>
@@ -115,7 +115,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
                       <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
                     </Block>
                   </div>
-                  {user.id === listing.user.id && (
+                  {user?.id === listing.user.id && (
                     <Button
                       kind={"minimal"}
                       onClick={() =>
