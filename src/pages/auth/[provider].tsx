@@ -25,10 +25,6 @@ const AuthCallbackPage = (props: Props) => {
           const { data, error, loading } = auth.fetchUser();
           Router.push("/");
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        setText("An error occured.");
       });
   }, [provider]);
   return <ParagraphLarge>{text}</ParagraphLarge>;
