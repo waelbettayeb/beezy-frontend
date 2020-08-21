@@ -15,11 +15,11 @@ import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
 import ProfilesSearchTile from "./ProfilesSearchTile";
 import ListingsSearchTile from "./ListingsSearchTile";
-
 interface Props extends DrawerProps {}
 
 const SearchDrawer = (props: Props) => {
   const [css, theme] = useStyletron();
+
   const [searchedTerm, setSearchedTerm] = useState("");
 
   return (

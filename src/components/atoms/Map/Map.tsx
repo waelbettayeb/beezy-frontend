@@ -1,3 +1,4 @@
+import { useStyletron } from "baseui";
 import { Label1 } from "baseui/typography";
 import { circle } from "leaflet";
 import React from "react";
@@ -8,6 +9,7 @@ import {
   Circle,
   Popup,
   Tooltip,
+  Rectangle,
 } from "react-leaflet";
 
 interface Props {
@@ -23,12 +25,14 @@ interface Props {
     lng: number;
     label?: string;
     onclick?: any;
+    popupContent?: any;
   }[];
   circles?: {
     lat: number;
     lng: number;
     radius: number;
   }[];
+  rectangles?: any[];
 }
 
 const Map: React.FC<Props> = (props) => {
@@ -39,6 +43,7 @@ const Map: React.FC<Props> = (props) => {
     onViewportChanged,
     markers,
     circles,
+    rectangles,
   } = props;
   const [zoom, setZoom] = React.useState(props.zoom | 5);
   const handleViewportchange = (e) => {
@@ -49,6 +54,8 @@ const Map: React.FC<Props> = (props) => {
     setZoom(e.zoom);
     onViewportChanged && onViewportChanged(e.center[0], e.center[1]);
   };
+  const [css, theme] = useStyletron();
+
   return (
     <M
       center={{ lat, lng }}
@@ -68,7 +75,14 @@ const Map: React.FC<Props> = (props) => {
       {markers &&
         markers.map((marker, key) => (
           <Marker position={marker} onclick={marker.onclick}>
-            <Popup>popup text</Popup>
+            <Popup
+              className={css({
+                width: theme.sizing.scale4800,
+                padding: 0,
+              })}
+            >
+              {marker.popupContent}
+            </Popup>
             {marker.label && zoom > 7 && (
               <Tooltip opacity={1} permanent>
                 {marker.label}
@@ -80,6 +94,7 @@ const Map: React.FC<Props> = (props) => {
         circles.map((circle, key) => (
           <Circle center={circle} radius={circle.radius}></Circle>
         ))}
+      {rectangles && rectangles.map((r) => <Rectangle bounds={r}></Rectangle>)}
     </M>
   );
 };

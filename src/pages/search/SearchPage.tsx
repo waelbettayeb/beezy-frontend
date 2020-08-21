@@ -10,10 +10,15 @@ import { Tabs, Tab } from "baseui/tabs";
 import dynamic from "next/dynamic";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
 import { Pagination, SIZE } from "baseui/pagination";
+import MeiliClient from "@utils/MeiliSearchClient";
+import { moveTo } from "geolocation-utils";
+import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
 });
+const LIMIT = 20;
+
 const SearchPage = () => {
   const [css, theme] = useStyletron();
   const [searchedTerm, setSearchedTerm] = useState("");
@@ -25,8 +30,33 @@ const SearchPage = () => {
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [numPage, setNumPage] = React.useState(1);
+  const [nbHits, setNbHits] = React.useState(0);
+  const [processingTimeMs, setProcessingTimeMs] = React.useState(0);
+  const index = MeiliClient.getIndex("listings");
 
+  React.useEffect(() => {
+    const boundTopLeft = moveTo(
+      { lat: position.latitude, lon: position.longitude },
+      { distance: Math.sqrt(2 * Math.pow(radius * 1000, 2)), heading: 45 }
+    );
+    const boundBottomRight = moveTo(
+      { lat: position.latitude, lon: position.longitude },
+      { distance: Math.sqrt(2 * Math.pow(radius * 1000, 2)), heading: 225 }
+    );
+    // Create an scoped async function in the hook
+    async function searchWithMeili() {
+      const search = await index.search(searchedTerm, {
+        limit: LIMIT,
+        offset: (currentPage - 1) * LIMIT,
+        filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
+      });
+      setResults(search.hits);
+      setNbHits((search as any).nbHits);
+      setProcessingTimeMs(search.processingTimeMs);
+    }
+    // Execute the created function directly
+    searchWithMeili();
+  }, [searchedTerm, radius, position, currentPage]);
   React.useEffect(() => {
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
@@ -56,9 +86,10 @@ const SearchPage = () => {
         radius={radius}
         city={getCity()}
         searchTerm={searchedTerm}
-        onSearchTermChange={(e) =>
-          setSearchedTerm((e.target as HTMLTextAreaElement).value)
-        }
+        onSearchTermChange={(e) => {
+          setSearchedTerm((e.target as HTMLTextAreaElement).value);
+          setCurrentPage(1);
+        }}
         onLocationChange={(lat, lon, radius, address) => {
           setPosition({
             latitude: lat,
@@ -108,20 +139,15 @@ const SearchPage = () => {
           >
             <Block flex="1 0 auto">
               <ListingsSearchTile
-                searchedTerm={searchedTerm}
-                lat={position.latitude}
-                lon={position.longitude}
-                distance={radius}
-                currentPage={currentPage}
-                resultsPerPage={10}
-                setNumPage={(numPage) => setNumPage(numPage)}
-                onSearchEnd={(result) => {
-                  setResults(result);
-                }}
+                results={results}
+                start={(currentPage - 1) * LIMIT}
+                end={(currentPage - 1) * LIMIT + results?.length}
+                totalResults={nbHits}
+                processingTimeMs={processingTimeMs}
               />
             </Block>
             <Pagination
-              numPages={numPage}
+              numPages={Math.ceil(nbHits / LIMIT)}
               size={SIZE.mini}
               currentPage={currentPage}
               onPageChange={({ nextPage }) => {
@@ -161,9 +187,18 @@ const SearchPage = () => {
             markers={
               results &&
               results.map((r) => ({
-                lat: r.latitude?.raw,
-                lng: r.longitude?.raw,
-                label: r.title?.raw,
+                lat: r.latitude,
+                lng: r.longitude,
+                label: r.title,
+                popupContent: (
+                  <ListingCard
+                    id={r.id}
+                    imageUrl={r.images[0]?.file.url}
+                    date={r.created_at}
+                    title={r.title}
+                    small
+                  />
+                ),
               }))
             }
           />
@@ -215,16 +250,11 @@ const SearchPage = () => {
               <Tab title="List">
                 <Block height={"100%"}>
                   <ListingsSearchTile
-                    searchedTerm={searchedTerm}
-                    lat={position.latitude}
-                    lon={position.longitude}
-                    distance={radius}
-                    currentPage={currentPage}
-                    resultsPerPage={10}
-                    setNumPage={(numPage) => setNumPage(numPage)}
-                    onSearchEnd={(result) => {
-                      setResults(result);
-                    }}
+                    results={results}
+                    start={(currentPage - 1) * LIMIT}
+                    end={(currentPage - 1) * LIMIT + results?.length}
+                    totalResults={nbHits}
+                    processingTimeMs={processingTimeMs}
                   />
                 </Block>
               </Tab>
@@ -236,9 +266,18 @@ const SearchPage = () => {
                     markers={
                       results &&
                       results.map((r) => ({
-                        lat: r.latitude?.raw,
-                        lng: r.longitude?.raw,
-                        label: r.title?.raw,
+                        lat: r.latitude,
+                        lng: r.longitude,
+                        label: r.title,
+                        popupContent: (
+                          <ListingCard
+                            id={r.id}
+                            imageUrl={r.images[0]?.file.url}
+                            date={r.created_at}
+                            title={r.title}
+                            small
+                          />
+                        ),
                       }))
                     }
                   />
@@ -246,7 +285,7 @@ const SearchPage = () => {
               </Tab>
             </Tabs>
             <Pagination
-              numPages={numPage}
+              numPages={Math.ceil(nbHits / LIMIT)}
               size={SIZE.mini}
               currentPage={currentPage}
               onPageChange={({ nextPage }) => {
