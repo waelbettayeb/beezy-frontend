@@ -46,14 +46,19 @@ const SearchPage = () => {
     );
     // Create an scoped async function in the hook
     async function searchWithMeili() {
-      const search = await index.search(searchedTerm, {
-        limit: LIMIT,
-        offset: (currentPage - 1) * LIMIT,
-        filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
-      });
-      setResults(search.hits);
-      setNbHits((search as any).nbHits);
-      setProcessingTimeMs(search.processingTimeMs);
+      index
+        .search(searchedTerm, {
+          limit: LIMIT,
+          offset: (currentPage - 1) * LIMIT,
+          filters: `latitude < ${boundTopLeft.lat} AND  latitude > ${boundBottomRight.lat}  AND longitude < ${boundTopLeft.lon} AND  longitude > ${boundBottomRight.lon} `,
+        })
+        .then((search) => {
+          setResults(search.hits);
+          setNbHits((search as any).nbHits);
+          setProcessingTimeMs(search.processingTimeMs);
+          setCurrentPage(1);
+          Router.replace(`/search?q=${searchedTerm}`);
+        });
     }
     // Execute the created function directly
     searchWithMeili();
@@ -91,10 +96,6 @@ const SearchPage = () => {
         searchTerm={searchedTerm}
         onSearchTermChange={(e) => {
           setSearchedTerm((e.target as HTMLTextAreaElement).value);
-          setCurrentPage(1);
-          Router.replace(
-            `/search?q=${(e.target as HTMLTextAreaElement).value}`
-          );
         }}
         onLocationChange={(lat, lon, radius, address) => {
           setPosition({
