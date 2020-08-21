@@ -12,6 +12,7 @@ import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker"
 import { Pagination, SIZE } from "baseui/pagination";
 import MeiliClient from "@utils/MeiliSearchClient";
 import { moveTo } from "geolocation-utils";
+import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -189,6 +190,15 @@ const SearchPage = () => {
                 lat: r.latitude,
                 lng: r.longitude,
                 label: r.title,
+                popupContent: (
+                  <ListingCard
+                    id={r.id}
+                    imageUrl={r.images[0]?.file.url}
+                    date={r.created_at}
+                    title={r.title}
+                    small
+                  />
+                ),
               }))
             }
           />
@@ -259,6 +269,15 @@ const SearchPage = () => {
                         lat: r.latitude,
                         lng: r.longitude,
                         label: r.title,
+                        popupContent: (
+                          <ListingCard
+                            id={r.id}
+                            imageUrl={r.images[0]?.file.url}
+                            date={r.created_at}
+                            title={r.title}
+                            small
+                          />
+                        ),
                       }))
                     }
                   />

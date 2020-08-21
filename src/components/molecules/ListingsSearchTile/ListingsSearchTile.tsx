@@ -1,25 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useStyletron } from "baseui";
 
-import {
-  Caption1,
-  Caption2,
-  Label3,
-  LabelMedium,
-  LabelSmall,
-  LabelXSmall,
-  Paragraph1,
-  Paragraph4,
-} from "baseui/typography";
-
-import { StyledLink } from "baseui/link";
+import { Caption2, Label3 } from "baseui/typography";
 
 import { Block } from "baseui/block";
 import { Cell, Grid } from "baseui/layout-grid";
-import { Button } from "baseui/button";
-import { Card, StyledBody, StyledAction } from "baseui/card";
-import TimeAgo from "@components/atoms/TimeAgo";
-import Router from "next/router";
+
+import ListingCard from "./ListingCard";
 
 interface Props {
   results?: any;
@@ -71,39 +58,12 @@ const ListingsSearchTile = (props: Props) => {
         {results &&
           results.map((r) => (
             <Cell span={[2, 2, 3]}>
-              <div
-                onClick={() => Router.push("/listing/[id]", `/listing/${r.id}`)}
-              >
-                <Card
-                  headerImage={r.images[0]?.file.url}
-                  title={<LabelMedium>{r.title}</LabelMedium>}
-                  overrides={{
-                    Body: {
-                      style: ({ $theme }) => {
-                        return {
-                          width: "100%",
-                          height: theme.sizing.scale900,
-                        };
-                      },
-                    },
-                    HeaderImage: {
-                      style: ({ $theme }) => {
-                        return {
-                          width: "100%",
-                          height: theme.sizing.scale4800,
-                        };
-                      },
-                    },
-                  }}
-                >
-                  <StyledBody>
-                    <Paragraph4>
-                      <TimeAgo date={r.created_at} />
-                    </Paragraph4>
-                  </StyledBody>
-                  <StyledAction></StyledAction>
-                </Card>
-              </div>
+              <ListingCard
+                id={r.id}
+                imageUrl={r.images[0]?.file.url}
+                date={r.created_at}
+                title={r.title}
+              />
 
               {/* <Block
                       display="flex"

@@ -1,3 +1,4 @@
+import { useStyletron } from "baseui";
 import { Label1 } from "baseui/typography";
 import { circle } from "leaflet";
 import React from "react";
@@ -24,6 +25,7 @@ interface Props {
     lng: number;
     label?: string;
     onclick?: any;
+    popupContent?: any;
   }[];
   circles?: {
     lat: number;
@@ -52,6 +54,7 @@ const Map: React.FC<Props> = (props) => {
     setZoom(e.zoom);
     onViewportChanged && onViewportChanged(e.center[0], e.center[1]);
   };
+  const [css, theme] = useStyletron();
 
   return (
     <M
@@ -72,7 +75,14 @@ const Map: React.FC<Props> = (props) => {
       {markers &&
         markers.map((marker, key) => (
           <Marker position={marker} onclick={marker.onclick}>
-            <Popup>popup text</Popup>
+            <Popup
+              className={css({
+                width: theme.sizing.scale4800,
+                padding: 0,
+              })}
+            >
+              {marker.popupContent}
+            </Popup>
             {marker.label && zoom > 7 && (
               <Tooltip opacity={1} permanent>
                 {marker.label}
