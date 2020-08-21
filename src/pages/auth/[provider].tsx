@@ -18,29 +18,16 @@ const AuthCallbackPage = (props: Props) => {
     fetch(
       `${process.env.NEXT_PUBLIC_API_URI}/auth/${provider}/callback?access_token=${access_token}`
     )
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
-        }
-        return res;
-      })
       .then((res) => res.json())
       .then((res) => {
-        // Successfully logged with Strapi
-        // Now saving the jwt to use it for future authenticated requests to Strapi
         setAuthToken(res.jwt as string, () => {
           const { loading } = auth.getUser();
-          // !loading && Router.push("/");
+          !loading && Router.push("/");
         });
-        console.log("username", res.user);
-        setText(
-          "You have been successfully logged in. You will be redirected in a few seconds..."
-        );
-        setTimeout(() => Router.push("/"), 3000); // Redirect to homepage after 3 sec
       })
       .catch((err) => {
         console.log(err);
-        setText("An error occured, please see the developper console.");
+        setText("An error occured.");
       });
   }, [provider]);
   return <ParagraphLarge>{text}</ParagraphLarge>;
