@@ -15,7 +15,9 @@ const AuthCallbackPage = (props: Props) => {
   React.useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
-    fetch(`${process.env.NEXT_PUBLIC_API_URI}/auth/${provider}/callback`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URI}/auth/${provider}/callback?access_token=${access_token}`
+    )
       .then((res) => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
