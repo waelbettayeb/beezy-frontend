@@ -122,27 +122,33 @@ const SearchNavBar = (props: Props) => {
               <Input
                 type="search"
                 placeholder="Search..."
-                startEnhancer={<Search size="18px" />}
+                startEnhancer={
+                  loading ? (
+                    <Spinner size={theme.sizing.scale700} />
+                  ) : (
+                    <Search size={theme.sizing.scale700} />
+                  )
+                }
                 value={searchTerm}
                 clearable
                 onChange={onSearchTermChange}
-                endEnhancer={
-                  loading && <Spinner size={theme.sizing.scale800} />
-                }
               />
             </Cell>
             <Cell span={[4, 0]}>
               <Input
                 type="search"
                 placeholder="Search..."
-                startEnhancer={<Search size="18px" />}
+                startEnhancer={
+                  loading ? (
+                    <Spinner size={theme.sizing.scale700} />
+                  ) : (
+                    <Search size={theme.sizing.scale700} />
+                  )
+                }
                 endEnhancer={<LabelXSmall>{city}</LabelXSmall>}
                 value={searchTerm}
                 clearable
                 onChange={onSearchTermChange}
-                endEnhancer={
-                  loading && <Spinner size={theme.sizing.scale800} />
-                }
               />
             </Cell>
             <Cell span={[0, 3, 5]}>
