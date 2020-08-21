@@ -11,6 +11,12 @@ import { Formik, Form } from "formik";
 import ErrorMessage from "../SignupForm/ErrorMessage";
 import { Block } from "baseui/block";
 import { toaster } from "baseui/toast";
+import { useStyletron } from "baseui";
+import {
+  FacebookFilled,
+  GoogleCircleFilled,
+  GoogleOutlined,
+} from "@ant-design/icons";
 
 interface Props {
   onCompleted?: () => void;
@@ -19,6 +25,7 @@ interface Props {
 const LoginForm: React.FC<Props> = (props: Props) => {
   const { onCompleted } = props;
   const router = useRouter();
+  const [css, theme] = useStyletron();
 
   const auth = useAuth();
   const [signIn, { user, error, loading }] = auth.useSignIn();
@@ -134,7 +141,28 @@ const LoginForm: React.FC<Props> = (props: Props) => {
         </Paragraph3>
         <Divider>Or</Divider>
         <Button
-          isLoading={loading}
+          startEnhancer={() => <FacebookFilled />}
+          onClick={() =>
+            router.push(`${process.env.NEXT_PUBLIC_API_URI}/connect/facebook/`)
+          }
+          overrides={{
+            BaseButton: {
+              style: ({ $theme }) => {
+                return {
+                  width: "100%",
+                  marginBottom: theme.sizing.scale400,
+                };
+              },
+            },
+          }}
+        >
+          Sign in with Facebook
+        </Button>
+        <Button
+          startEnhancer={() => <GoogleOutlined />}
+          onClick={() =>
+            router.push(`${process.env.NEXT_PUBLIC_API_URI}/connect/google/`)
+          }
           overrides={{
             BaseButton: {
               style: ({ $theme }) => {
@@ -145,7 +173,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
             },
           }}
         >
-          Sign in with Facebook
+          Sign in with Google
         </Button>
       </Block>
     </React.Fragment>
