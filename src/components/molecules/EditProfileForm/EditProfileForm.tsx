@@ -60,7 +60,7 @@ const EditProfileForm = (props) => {
       : new Date(),
   };
   const [date, setDate] = React.useState([
-    new user()?.dateOfBirth
+    user?.dateOfBirth
       ? new Date(`${user.dateOfBirth}T00:00:00.000Z`)
       : new Date(),
   ]);
