@@ -21,7 +21,8 @@ const AuthCallbackPage = (props: Props) => {
       .then((res) => res.json())
       .then((res) => {
         setAuthToken(res.jwt as string, () => {
-          const { loading } = auth.getUser();
+          auth.getUser();
+          const { data, error, loading } = auth.fetchUser();
           Router.push("/");
         });
       })
