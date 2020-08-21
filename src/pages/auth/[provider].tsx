@@ -22,7 +22,7 @@ const AuthCallbackPage = (props: Props) => {
       .then((res) => {
         setAuthToken(res.jwt as string, () => {
           const { loading } = auth.getUser();
-          !loading && Router.push("/");
+          Router.push("/");
         });
       })
       .catch((err) => {
