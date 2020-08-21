@@ -13,6 +13,7 @@ import { Pagination, SIZE } from "baseui/pagination";
 import MeiliClient from "@utils/MeiliSearchClient";
 import { moveTo } from "geolocation-utils";
 import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
+import Router from "next/router";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -58,6 +59,8 @@ const SearchPage = () => {
     searchWithMeili();
   }, [searchedTerm, radius, position, currentPage]);
   React.useEffect(() => {
+    const { q } = Router.query;
+    setSearchedTerm(q);
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
         console.log(error);
@@ -89,6 +92,9 @@ const SearchPage = () => {
         onSearchTermChange={(e) => {
           setSearchedTerm((e.target as HTMLTextAreaElement).value);
           setCurrentPage(1);
+          Router.replace(
+            `/search?q=${(e.target as HTMLTextAreaElement).value}`
+          );
         }}
         onLocationChange={(lat, lon, radius, address) => {
           setPosition({

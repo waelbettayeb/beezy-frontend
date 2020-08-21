@@ -25,10 +25,11 @@ import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 interface Props {
   results: any[];
   loading?: boolean;
+  searchedTerm?: string;
 }
 
 const ListingsSearchTile = (props: Props) => {
-  const { results, loading } = props;
+  const { results, loading, searchedTerm } = props;
   const [css, theme] = useStyletron();
 
   return (
@@ -70,12 +71,18 @@ const ListingsSearchTile = (props: Props) => {
           })}
         >
           <Label3>Business</Label3>
-          <StyledLink href="#">Show more</StyledLink>
+          {results.length > 6 && (
+            <StyledLink
+              onClick={() => Router.push(`/search?q=${searchedTerm}`)}
+            >
+              Show more
+            </StyledLink>
+          )}
         </div>
       )}
       <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
         {results &&
-          results.map((r) => (
+          results.slice(0, 6).map((r) => (
             <Cell span={[2, 4, 4]}>
               <ListingCard
                 id={r.id}

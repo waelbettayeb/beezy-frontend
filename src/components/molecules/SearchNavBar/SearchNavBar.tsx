@@ -41,6 +41,7 @@ const SearchNavBar = (props: Props) => {
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
+
   const HeaderContent = () => (
     <Block width="100%">
       <Grid align={ALIGNMENT.center}>

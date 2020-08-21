@@ -32,7 +32,9 @@ const SearchDrawer = (props: Props) => {
       });
       setPeopleResults(peopleSearch.hits);
 
-      const listingsSearch = await listingsIndex.search(searchedTerm);
+      const listingsSearch = await listingsIndex.search(searchedTerm, {
+        limit: 10,
+      });
       setListingsResults(listingsSearch.hits);
       setSetloading(false);
     }
@@ -62,7 +64,11 @@ const SearchDrawer = (props: Props) => {
         {peopleResults?.length > 0 && (
           <ProfilesSearchTile results={peopleResults} />
         )}
-        <ListingsSearchTile results={listingsResults} loading={loading} />
+        <ListingsSearchTile
+          searchedTerm={searchedTerm}
+          results={listingsResults}
+          loading={loading}
+        />
       </Block>
     </Drawer>
   );
