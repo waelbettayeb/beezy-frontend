@@ -70,7 +70,7 @@ const SearchPage = () => {
   }, [value, radius, position, currentPage]);
   React.useEffect(() => {
     const { q } = Router.query;
-    setSearchedTerm(q);
+    setSearchedTerm(q as string);
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
         console.log(error);
