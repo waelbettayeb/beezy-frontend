@@ -54,8 +54,10 @@ const EditProfileForm = (props) => {
     bio: user.bio,
     firstName: user?.firstName,
     lastName: user?.lastName,
-    gender: user.gender,
-    dateOfBirth: new Date(`${user.dateOfBirth}T00:00:00.000Z`),
+    gender: user?.gender ?? GENDER.male,
+    dateOfBirth: user?.dateOfBirth
+      ? new Date(`${user.dateOfBirth}T00:00:00.000Z`)
+      : new Date(),
   };
   const [date, setDate] = React.useState([
     new Date(`${user.dateOfBirth}T00:00:00.000Z`),
