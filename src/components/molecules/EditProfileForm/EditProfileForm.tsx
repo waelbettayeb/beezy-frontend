@@ -60,7 +60,9 @@ const EditProfileForm = (props) => {
       : new Date(),
   };
   const [date, setDate] = React.useState([
-    new Date(`${user.dateOfBirth}T00:00:00.000Z`),
+    new user()?.dateOfBirth
+      ? new Date(`${user.dateOfBirth}T00:00:00.000Z`)
+      : new Date(),
   ]);
   return (
     <React.Fragment>

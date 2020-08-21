@@ -7,6 +7,7 @@ import LoadingScreen from "@components/molecules/LoadingScreen";
 import { useAuth } from "@hooks/useAuth";
 import { ParagraphLarge } from "baseui/typography";
 import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar ";
+import { toaster } from "baseui/toast";
 
 const AuthCallbackPage = (props: Props) => {
   const [text, setText] = React.useState("Loading...");
@@ -14,6 +15,7 @@ const AuthCallbackPage = (props: Props) => {
   const [loading, setSetloading] = React.useState(true);
 
   const auth = useAuth();
+  function fetchUser() {}
   React.useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
@@ -28,10 +30,10 @@ const AuthCallbackPage = (props: Props) => {
       })
       .then((res) => res.json())
       .then((res) => {
-        setAuthToken(res.jwt as string, () => {
-          Router.push("/");
-        });
+        localStorage.setItem("token", res.jwt);
         auth.getUser();
+        toaster.info("You are successfully logged in", {});
+        Router.push("/");
       })
       .catch((err) => {
         setSetloading(false);
