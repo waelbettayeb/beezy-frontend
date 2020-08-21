@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import { useStyletron } from "baseui";
 import { Drawer, ANCHOR, DrawerProps } from "baseui/drawer";
-import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { Input } from "baseui/input";
 import { Display4, Label3, Label4 } from "baseui/typography";
-import { ListItem, ListItemLabel, ARTWORK_SIZES } from "baseui/list";
-import { Label2 } from "baseui/typography";
-
-import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
-import { Avatar } from "baseui/avatar";
-import { ChevronRight } from "baseui/icon";
-import { StyledLink } from "baseui/link";
-
+import MeiliClient from "@utils/MeiliSearchClient";
 import { Block } from "baseui/block";
 import ProfilesSearchTile from "./ProfilesSearchTile";
 import ListingsSearchTile from "./ListingsSearchTile";
+import LoadingScreen from "@components/molecules/LoadingScreen";
+
 interface Props extends DrawerProps {}
 
 const SearchDrawer = (props: Props) => {
@@ -22,6 +16,29 @@ const SearchDrawer = (props: Props) => {
 
   const [searchedTerm, setSearchedTerm] = useState("");
 
+  const [peopleResults, setPeopleResults] = useState(null);
+  const [loading, setSetloading] = useState(false);
+  const [listingsResults, setListingsResults] = useState(null);
+
+  const peopleIndex = MeiliClient.getIndex("people");
+  const listingsIndex = MeiliClient.getIndex("listings");
+
+  React.useEffect(() => {
+    // Create an scoped async function in the hook
+    async function searchWithMeili() {
+      setSetloading(true);
+      const peopleSearch = await peopleIndex.search(searchedTerm, {
+        limit: 10,
+      });
+      setPeopleResults(peopleSearch.hits);
+
+      const listingsSearch = await listingsIndex.search(searchedTerm);
+      setListingsResults(listingsSearch.hits);
+      setSetloading(false);
+    }
+    // Execute the created function directly
+    searchWithMeili();
+  }, [searchedTerm]);
   return (
     <Drawer
       {...props}
@@ -42,8 +59,10 @@ const SearchDrawer = (props: Props) => {
             setSearchedTerm((e.target as HTMLTextAreaElement).value)
           }
         />
-        <ProfilesSearchTile searchedTerm={searchedTerm} />
-        <ListingsSearchTile searchedTerm={searchedTerm} />
+        {peopleResults?.length > 0 && (
+          <ProfilesSearchTile results={peopleResults} />
+        )}
+        <ListingsSearchTile results={listingsResults} loading={loading} />
       </Block>
     </Drawer>
   );

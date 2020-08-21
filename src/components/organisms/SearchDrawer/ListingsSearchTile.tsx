@@ -19,26 +19,17 @@ import { Cell, Grid } from "baseui/layout-grid";
 import TimeAgo from "@components/atoms/TimeAgo";
 import { Card, StyledAction, StyledBody } from "baseui/card";
 import MeiliClient from "@utils/MeiliSearchClient";
+import { Spinner } from "baseui/spinner";
 
 interface Props {
-  searchedTerm: string;
+  results: any[];
+  loading?: boolean;
 }
 
 const ListingsSearchTile = (props: Props) => {
-  const { searchedTerm } = props;
+  const { results, loading } = props;
   const [css, theme] = useStyletron();
-  const index = MeiliClient.getIndex("listings");
-  const [results, setResults] = useState(null);
-  React.useEffect(() => {
-    // Create an scoped async function in the hook
-    async function searchWithMeili() {
-      const search = await index.search(searchedTerm);
-      setResults(search.hits);
-      console.log(search);
-    }
-    // Execute the created function directly
-    searchWithMeili();
-  }, [searchedTerm]);
+
   return (
     <div
       className={css({
@@ -58,7 +49,13 @@ const ListingsSearchTile = (props: Props) => {
           alignItems="center"
           marginTop={theme.sizing.scale600}
         >
-          <Label3 color={theme.colors.contentInverseSecondary}>No data</Label3>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Label3 color={theme.colors.contentInverseSecondary}>
+              No data
+            </Label3>
+          )}
         </Block>
       ) : (
         <div

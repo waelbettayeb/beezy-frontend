@@ -9,26 +9,15 @@ import { StyledLink } from "baseui/link";
 
 import { Block } from "baseui/block";
 import Router from "next/router";
-import MeiliClient from "@utils/MeiliSearchClient";
 
 interface Props {
-  searchedTerm: string;
+  results: any[];
 }
 
 const ProfilesSearchTile = (props: Props) => {
-  const { searchedTerm } = props;
+  const { results } = props;
   const [css, theme] = useStyletron();
-  const index = MeiliClient.getIndex("people");
-  const [results, setResults] = useState(null);
-  React.useEffect(() => {
-    // Create an scoped async function in the hook
-    async function searchWithMeili() {
-      const search = await index.search(searchedTerm, { limit: 10 });
-      setResults(search.hits);
-    }
-    // Execute the created function directly
-    searchWithMeili();
-  }, [searchedTerm]);
+
   return (
     <ul
       className={css({
