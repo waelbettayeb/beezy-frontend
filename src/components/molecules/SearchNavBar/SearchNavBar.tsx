@@ -18,6 +18,7 @@ import LoginForm from "../LoginForm";
 import { AimOutlined } from "@ant-design/icons";
 import LocationPickerModal from "@components/organisms/LocationPickerModal";
 import { LabelXSmall } from "baseui/typography";
+import { Spinner } from "baseui/spinner";
 
 interface Props {
   searchTerm?: string;
@@ -26,6 +27,7 @@ interface Props {
   position: any;
   radius: number;
   city: string;
+  loading?: boolean;
 }
 
 const SearchNavBar = (props: Props) => {
@@ -36,6 +38,7 @@ const SearchNavBar = (props: Props) => {
     position,
     radius,
     city,
+    loading,
   } = props;
   const [css, theme] = useStyletron();
   const auth = useAuth();
@@ -123,6 +126,9 @@ const SearchNavBar = (props: Props) => {
                 value={searchTerm}
                 clearable
                 onChange={onSearchTermChange}
+                endEnhancer={
+                  loading && <Spinner size={theme.sizing.scale800} />
+                }
               />
             </Cell>
             <Cell span={[4, 0]}>
@@ -134,6 +140,9 @@ const SearchNavBar = (props: Props) => {
                 value={searchTerm}
                 clearable
                 onChange={onSearchTermChange}
+                endEnhancer={
+                  loading && <Spinner size={theme.sizing.scale800} />
+                }
               />
             </Cell>
             <Cell span={[0, 3, 5]}>

@@ -36,6 +36,7 @@ const SearchPage = () => {
   const [processingTimeMs, setProcessingTimeMs] = React.useState(0);
   const index = MeiliClient.getIndex("listings");
   const [value] = useDebounce(searchedTerm, 1000);
+  const [loading, setSetloading] = useState(false);
 
   React.useEffect(() => {
     const boundTopLeft = moveTo(
@@ -48,6 +49,7 @@ const SearchPage = () => {
     );
     // Create an scoped async function in the hook
     async function searchWithMeili() {
+      setSetloading(true);
       index
         .search(value, {
           limit: LIMIT,
@@ -60,6 +62,7 @@ const SearchPage = () => {
           setProcessingTimeMs(search.processingTimeMs);
           setCurrentPage(1);
           Router.replace(`/search?q=${value}`);
+          setSetloading(false);
         });
     }
     // Execute the created function directly
@@ -92,6 +95,7 @@ const SearchPage = () => {
   return (
     <Block height="100vh" display={"flex"} flexDirection={"column"}>
       <SearchNavBar
+        loading={loading}
         position={position}
         radius={radius}
         city={getCity()}
