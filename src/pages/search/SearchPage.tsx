@@ -30,6 +30,7 @@ const SearchPage = () => {
   const [address, setAddress] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [nbHits, setNbHits] = React.useState(0);
+  const [processingTimeMs, setProcessingTimeMs] = React.useState(0);
   const index = MeiliClient.getIndex("listings");
 
   React.useEffect(() => {
@@ -50,6 +51,7 @@ const SearchPage = () => {
       });
       setResults(search.hits);
       setNbHits((search as any).nbHits);
+      setProcessingTimeMs(search.processingTimeMs);
     }
     // Execute the created function directly
     searchWithMeili();
@@ -135,7 +137,13 @@ const SearchPage = () => {
             overflow="auto"
           >
             <Block flex="1 0 auto">
-              <ListingsSearchTile results={results} />
+              <ListingsSearchTile
+                results={results}
+                start={(currentPage - 1) * LIMIT}
+                end={(currentPage - 1) * LIMIT + results?.length}
+                totalResults={nbHits}
+                processingTimeMs={processingTimeMs}
+              />
             </Block>
             <Pagination
               numPages={Math.ceil(nbHits / LIMIT)}
@@ -231,7 +239,13 @@ const SearchPage = () => {
             >
               <Tab title="List">
                 <Block height={"100%"}>
-                  <ListingsSearchTile results={results} />
+                  <ListingsSearchTile
+                    results={results}
+                    start={(currentPage - 1) * LIMIT}
+                    end={(currentPage - 1) * LIMIT + results?.length}
+                    totalResults={nbHits}
+                    processingTimeMs={processingTimeMs}
+                  />
                 </Block>
               </Tab>
               <Tab title={`Map`}>

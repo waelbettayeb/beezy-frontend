@@ -23,10 +23,14 @@ import Router from "next/router";
 
 interface Props {
   results?: any;
+  start?: number;
+  end?: number;
+  totalResults?: number;
+  processingTimeMs?: number;
 }
 
 const ListingsSearchTile = (props: Props) => {
-  const { results } = props;
+  const { results, start, end, totalResults, processingTimeMs } = props;
   const [css, theme] = useStyletron();
 
   return (
@@ -38,20 +42,18 @@ const ListingsSearchTile = (props: Props) => {
         flex: "1 0 auto",
       })}
     >
-      {/* <PagingInfo
-        view={({ start, end, totalResults }) => (
-          <Block
-            display={"flex"}
-            width={"100%"}
-            flexDirection={"column"}
-            alignItems={"center"}
-          >
-            <Caption2>
-              {start} - {end} (Total results: {totalResults})
-            </Caption2>
-          </Block>
-        )}
-      /> */}
+      <Block
+        display={"flex"}
+        width={"100%"}
+        flexDirection={"column"}
+        alignItems={"center"}
+      >
+        <Caption2>
+          {start} - {end} "About {totalResults} results (
+          {processingTimeMs / 1000} seconds)"
+        </Caption2>
+      </Block>
+
       {!results?.length && (
         <Block
           width="100%"
