@@ -20,6 +20,7 @@ import TimeAgo from "@components/atoms/TimeAgo";
 import { Card, StyledAction, StyledBody } from "baseui/card";
 import MeiliClient from "@utils/MeiliSearchClient";
 import { Spinner } from "baseui/spinner";
+import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 
 interface Props {
   results: any[];
@@ -76,21 +77,13 @@ const ListingsSearchTile = (props: Props) => {
         {results &&
           results.map((r) => (
             <Cell span={[2, 4, 4]}>
-              <div
-                onClick={() => Router.push("/listing/[id]", `/listing/${r.id}`)}
-              >
-                <Card
-                  headerImage={r.images[0]?.file.url}
-                  title={<LabelMedium>{r.title}</LabelMedium>}
-                >
-                  <StyledBody>
-                    <Paragraph4>
-                      <TimeAgo date={r.created_at} />
-                    </Paragraph4>
-                  </StyledBody>
-                  <StyledAction></StyledAction>
-                </Card>
-              </div>
+              <ListingCard
+                id={r.id}
+                imageUrl={r.images[0]?.file.url}
+                date={r.created_at}
+                title={r.title}
+                small
+              />
             </Cell>
           ))}
       </Grid>
