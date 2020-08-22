@@ -13,8 +13,11 @@ const AuthCallbackPage = (props: Props) => {
   const [text, setText] = React.useState("Loading...");
   const { access_token, provider } = Router.query;
   const [loading, setSetloading] = React.useState(true);
+  const [isConnected, setIsConnected] = React.useState(false);
   const auth = useAuth();
-  !loading && auth.getUser();
+  isConnected && auth.getUser();
+  isConnected && toaster.info("You are successfully logged in", {});
+  isConnected && Router.push("/");
   React.useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
@@ -29,10 +32,8 @@ const AuthCallbackPage = (props: Props) => {
       })
       .then((res) => res.json())
       .then((res) => {
-        setAuthToken(res.jwt as string, () => {});
         localStorage.setItem("token", res.jwt);
-        Router.push("/");
-        toaster.info("You are successfully logged in", {});
+        setIsConnected(true);
       })
       .catch((err) => {
         setSetloading(false);
