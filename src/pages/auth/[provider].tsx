@@ -10,19 +10,9 @@ import BackHomeNavBar from "@components/molecules/BackHomeNavBar /BackHomeNavBar
 import { toaster } from "baseui/toast";
 
 const AuthCallbackPage = (props: Props) => {
-  const { access_token, provider } = Router.query;
-
   const [text, setText] = React.useState("Loading...");
+  const { access_token, provider } = Router.query;
   const [loading, setSetloading] = React.useState(true);
-  const [token, setToken] = React.useState(null);
-  const auth = useAuth();
-
-  if (token) {
-    localStorage.setItem("token", token);
-    auth.getUser();
-    Router.push("/");
-    toaster.info("You are successfully logged in", {});
-  }
 
   React.useEffect(() => {
     fetch(
@@ -36,7 +26,9 @@ const AuthCallbackPage = (props: Props) => {
       })
       .then((res) => res.json())
       .then((res) => {
-        setToken(res.jwt);
+        localStorage.setItem("token", res.jwt);
+        Router.push("/");
+        toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
         setSetloading(false);
