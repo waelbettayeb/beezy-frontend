@@ -29,10 +29,10 @@ const AuthCallbackPage = (props: Props) => {
       })
       .then((res) => res.json())
       .then((res) => {
-        setAuthToken(res.jwt as string, () => {
-          Router.push("/");
-        });
+        setAuthToken(res.jwt as string, () => {});
+        localStorage.setItem("token", res.jwt);
         auth.getUser();
+        Router.push("/");
         toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
