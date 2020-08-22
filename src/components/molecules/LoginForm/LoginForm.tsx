@@ -158,7 +158,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
         >
           Sign in with Facebook
         </Button>
-        <Button
+        {/* <Button
           startEnhancer={() => <GoogleOutlined />}
           onClick={() =>
             router.push(`${process.env.NEXT_PUBLIC_API_URI}/connect/google/`)
@@ -174,7 +174,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
           }}
         >
           Sign in with Google
-        </Button>
+        </Button> */}
       </Block>
     </React.Fragment>
   );
