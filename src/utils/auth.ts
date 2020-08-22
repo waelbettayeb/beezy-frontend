@@ -1,12 +1,8 @@
 import { ApolloClient } from "apollo-client";
 
 export function getAuthToken(): string | null {
-  try {
-    const token = localStorage.getItem("token");
-    return token == "undefined" ? null : token;
-  } catch {
-    return null;
-  }
+  const token = localStorage.getItem("token");
+  return token == "undefined" ? null : token;
 }
 export function setAuthToken(token: string, then?: () => void) {
   localStorage.setItem("token", token);

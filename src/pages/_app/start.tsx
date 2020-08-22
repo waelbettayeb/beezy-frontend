@@ -7,9 +7,10 @@ import LoadingScreen from "src/components/molecules/LoadingScreen";
 
 const Start: React.FC = ({ children }) => {
   const auth = useAuth();
-  const { loading } = auth.getUser();
+  const { data, loading, error } = auth.fetchUser();
   const { theme } = useTheme();
   const color = theme === THEME.Light ? "white" : "black";
+  !loading && !error && auth.setUser(data?._me);
   useEffect(() => {
     document.body.style.background = color;
   }, [color]);

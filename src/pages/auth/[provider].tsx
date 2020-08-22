@@ -32,8 +32,8 @@ const AuthCallbackPage = (props: Props) => {
         setAuthToken(res.jwt as string, () => {
           Router.push("/");
         });
-        toaster.info("You are successfully logged in", {});
         auth.getUser();
+        toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
         setSetloading(false);

@@ -43,8 +43,11 @@ export const useProvideAuth = () => {
     >(loginMutation, {
       variables: input,
     });
-    setUser(data?.signin?.user);
-    setAuthToken(data?.signin?.jwt);
+    !loading && data?.signin?.user && setUser(data?.signin?.user);
+    !loading &&
+      data?.signin?.jwt &&
+      localStorage.setItem("token", data?.signin?.jwt);
+
     return [signIn, { user, error, loading }];
   };
   const useSignUp = (input: SignUpVariables) => {
@@ -74,6 +77,7 @@ export const useProvideAuth = () => {
     user,
     useSignIn,
     getUser,
+    setUser,
     signOut,
     useSignUp,
     useUpdateUser,

@@ -17,6 +17,8 @@ import {
   GoogleCircleFilled,
   GoogleOutlined,
 } from "@ant-design/icons";
+import { useQuery } from "@apollo/react-hooks";
+import { meQuery } from "@graphql/queries/user";
 
 interface Props {
   onCompleted?: () => void;
@@ -52,6 +54,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               },
             },
           }).then((res) => {
+            localStorage.setItem("token", res?.data.signin?.jwt);
             showToast();
             onCompleted && onCompleted();
           });
