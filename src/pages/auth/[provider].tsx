@@ -32,7 +32,6 @@ const AuthCallbackPage = (props: Props) => {
         toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
-        setSetloading(false);
         console.log(err);
         setText("An error occured.");
       });
