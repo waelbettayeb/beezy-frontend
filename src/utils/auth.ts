@@ -22,6 +22,6 @@ export function fireSignOut(client?: ApolloClient<any>): void {
     navigator.credentials.preventSilentAccess();
   }
   if (client) {
-    client.resetStore();
+    client.clearStore();
   }
 }
