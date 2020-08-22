@@ -12,12 +12,7 @@ import { toaster } from "baseui/toast";
 const AuthCallbackPage = (props: Props) => {
   const [text, setText] = React.useState("Loading...");
   const { access_token, provider } = Router.query;
-  const [loading, setSetloading] = React.useState(true);
-  const [isConnected, setIsConnected] = React.useState(false);
-  const auth = useAuth();
-  isConnected && auth.getUser();
-  isConnected && toaster.info("You are successfully logged in", {});
-  isConnected && Router.push("/");
+
   React.useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
@@ -33,7 +28,8 @@ const AuthCallbackPage = (props: Props) => {
       .then((res) => res.json())
       .then((res) => {
         localStorage.setItem("token", res.jwt);
-        setIsConnected(true);
+        Router.push("/");
+        toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
         setSetloading(false);
