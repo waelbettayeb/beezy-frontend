@@ -31,7 +31,6 @@ const AppNavBar = (props: Props) => {
     false
   );
   const auth = useAuth();
-  const signOut = auth.signOut;
 
   return (
     <HeaderNavigation

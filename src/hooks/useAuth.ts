@@ -70,8 +70,10 @@ export const useProvideAuth = () => {
     return [updateMe, { data, error, loading }];
   };
   const signOut = () => {
-    fireSignOut(client);
     setUser(null);
+    localStorage.clear();
+    client.clearStore();
+    fireSignOut(client);
   };
   return {
     user,
