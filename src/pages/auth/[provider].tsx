@@ -12,10 +12,9 @@ import { toaster } from "baseui/toast";
 const AuthCallbackPage = (props: Props) => {
   const [text, setText] = React.useState("Loading...");
   const { access_token, provider } = Router.query;
+  const [loading, setSetloading] = React.useState(true);
 
   React.useEffect(() => {
-    // Successfully logged with the provider
-    // Now logging with strapi by using the access_token (given by the provider) in props.location.search
     fetch(
       `${process.env.NEXT_PUBLIC_API_URI}/auth/${provider}/callback?access_token=${access_token}`
     )
@@ -32,6 +31,7 @@ const AuthCallbackPage = (props: Props) => {
         toaster.info("You are successfully logged in", {});
       })
       .catch((err) => {
+        setSetloading(false);
         console.log(err);
         setText("An error occured.");
       });
