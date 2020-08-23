@@ -16,6 +16,7 @@ import JavascriptTimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ar from "javascript-time-ago/locale/ar";
 import fr from "javascript-time-ago/locale/fr";
+import Head from "next/head";
 
 JavascriptTimeAgo.addLocale(en);
 JavascriptTimeAgo.addLocale(ar);
@@ -31,6 +32,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             <ThemeProvider>
               <BaseUIProvider>
                 <Start>
+                  <Head>
+                    <title>Beeesy</title>
+                    <link rel="icon" href="/favicon.ico" />
+                  </Head>
                   <Component {...pageProps} />
                 </Start>
               </BaseUIProvider>
