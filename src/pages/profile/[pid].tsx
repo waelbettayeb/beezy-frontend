@@ -24,6 +24,12 @@ import Footer from "@components/organisms/Footer";
 import { useQuery } from "@apollo/react-hooks";
 import { userQuery } from "@graphql/queries/user";
 import Link from "next/link";
+import {
+  IListingsPayload,
+  IListingsVariables,
+} from "@graphql/queries/gqlTypes/listing";
+import { listingsQuery } from "@graphql/queries/listing";
+import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 
 const Profile = () => {
   const [css, theme] = useStyletron();
@@ -33,7 +39,13 @@ const Profile = () => {
   });
 
   // !loading && !data?.user && Router.push("/404");
-
+  const {
+    data: listingsData,
+    error: listingsError,
+    loading: listingsLoading,
+  } = useQuery<IListingsPayload, IListingsVariables>(listingsQuery, {
+    variables: { where: { user: pid as string }, start: 0, limit: 10 },
+  });
   return (
     <>
       <Block
@@ -86,7 +98,25 @@ const Profile = () => {
                   <ParagraphXSmall>{`${data?.user.bio}`}</ParagraphXSmall>
                 </>
               )}
-              <Divider orientation={ORIENTATION.left}>Listings</Divider>
+              {!listingsLoading &&
+                !listingsLoading &&
+                listingsData.listings.length > 0 && (
+                  <>
+                    <Divider orientation={ORIENTATION.left}>Listings</Divider>
+                    <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
+                      {listingsData.listings.map((r) => (
+                        <Cell span={[2, 2, 3]}>
+                          <ListingCard
+                            id={r.id}
+                            imageUrl={r.images[0]?.url}
+                            date={r.created_at}
+                            title={r.title}
+                          />
+                        </Cell>
+                      ))}
+                    </Grid>
+                  </>
+                )}
             </Cell>
           </Grid>
         )}

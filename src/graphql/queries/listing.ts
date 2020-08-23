@@ -23,3 +23,25 @@ export const listingQuery = gql`
     }
   }
 `;
+export const listingsQuery = gql`
+  ${userFragment}
+  query Listings($where: JSON, $start: Int, $limit: Int) {
+    listings(where: $where, start: $start, limit: $limit) {
+      id
+      title
+      description
+      location {
+        longitude
+        latitude
+      }
+      images(limit: 10) {
+        id
+        url
+      }
+      created_at
+      user {
+        ...User
+      }
+    }
+  }
+`;
