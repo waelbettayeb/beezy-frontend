@@ -15,6 +15,7 @@ import {
   HeadingXSmall,
   LabelLarge,
   LabelMedium,
+  LabelSmall,
   Paragraph1,
   ParagraphXSmall,
 } from "baseui/typography";
@@ -100,7 +101,7 @@ const Profile = () => {
               )}
               {!listingsLoading &&
                 !listingsLoading &&
-                listingsData.listings.length > 0 && (
+                (listingsData.listings.length > 0 ? (
                   <>
                     <Divider orientation={ORIENTATION.left}>Listings</Divider>
                     <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
@@ -116,7 +117,21 @@ const Profile = () => {
                       ))}
                     </Grid>
                   </>
-                )}
+                ) : (
+                  <Block
+                    width="100%"
+                    height="100%"
+                    display={"flex"}
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    marginTop={theme.sizing.scale600}
+                  >
+                    <LabelSmall color={theme.colors.contentInverseSecondary}>
+                      Has no listings yet
+                    </LabelSmall>
+                  </Block>
+                ))}
             </Cell>
           </Grid>
         )}
