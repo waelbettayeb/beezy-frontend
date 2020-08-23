@@ -18,10 +18,8 @@ export function clearStorage(): void {
 }
 export function fireSignOut(client?: ApolloClient<any>): void {
   clearStorage();
+  client && client.clearStore();
   if (navigator.credentials && navigator.credentials.preventSilentAccess) {
     navigator.credentials.preventSilentAccess();
-  }
-  if (client) {
-    client.clearStore();
   }
 }
