@@ -44,7 +44,7 @@ const Profile = () => {
     error: listingsError,
     loading: listingsLoading,
   } = useQuery<IListingsPayload, IListingsVariables>(listingsQuery, {
-    variables: { where: { user: pid as string }, start: 0, limit: 10 },
+    variables: { where: { user: pid as string }, start: 0 },
   });
   return (
     <>
