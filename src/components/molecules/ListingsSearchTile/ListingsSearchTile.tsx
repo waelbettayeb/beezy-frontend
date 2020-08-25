@@ -37,10 +37,8 @@ const ListingsSearchTile = (props: Props) => {
         alignItems={"center"}
       >
         <Caption2>
-          {start} - {end} "About {totalResults} results (
-          {processingTimeMs / 1000} seconds)"
           <FormattedMessage
-            defaultMessage='{start} - {end} \"About {totalResults} results (
+            defaultMessage='{start} - {end} "About {totalResults} results (
           {processingTimeS} seconds)"'
             values={{
               start,

@@ -1,8 +1,305 @@
 {
+  "Auth_dot_advanced_dot_allow_register": {
+    "string": "Register action is currently disabled"
+  },
+  "Auth_dot_form_dot_error_dot_email_dot_taken": {
+    "string": "Email is already taken"
+  },
+  "Auth_dot_form_dot_error_dot_username_dot_taken": {
+    "string": "Username already taken"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1391686013": {
+    "string": "Settings"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1534468327": {
+    "string": "Profile"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_2947231211": {
+    "string": "Log Out"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_3232965882": {
+    "string": "Dark mode"
+  },
   "src_dot_components_dot_atoms_dot_ChangeLocaleButton_dot_ChangeLocaleButton_dot_3422197931": {
     "string": "Select your preferred language"
   },
+  "src_dot_components_dot_molecules_dot_AppNavBar_dot_AppNavBar_dot_2456541045": {
+    "string": "Get started"
+  },
+  "src_dot_components_dot_molecules_dot_BackHomeNavBar _dot_BackHomeNavBar _dot_1723676032": {
+    "string": "Back to home"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_1201169145": {
+    "string": "Date of birth"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2224574405": {
+    "string": "Last name"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_232570486": {
+    "string": "Male"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2621818638": {
+    "string": "First name"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2816006938": {
+    "string": "Profile saved."
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3011619271": {
+    "string": "Gender"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3252090581": {
+    "string": "Edit Profile"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3571971952": {
+    "string": "Email"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_603166252": {
+    "string": "Bio"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
+    "string": "Female"
+  },
   "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
     "string": "Learn more about beekeeping"
+  },
+  "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
+    "string": "No images are uploaded"
+  },
+  "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_794796526": {
+    "string": "{start} - {end} \"About {totalResults} results (\n          {processingTimeS} seconds)\""
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_109182747": {
+    "string": "Login"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1214263298": {
+    "string": "Have you forgotten your password?"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1405865627": {
+    "string": "Sign in"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1781368875": {
+    "string": "Click Here"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2212670355": {
+    "string": "Sign up"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2237029987": {
+    "string": "Password"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2663586870": {
+    "string": "Username"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2922773224": {
+    "string": "Sign in with Facebook"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_326989249": {
+    "string": "Don't have an account?"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3581732995": {
+    "string": "You are successfully logged in"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3708504547": {
+    "string": "Or"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_145155449": {
+    "string": "Forgot Password?"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_2055187606": {
+    "string": "Invalid email"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3350894995": {
+    "string": "Send Reset instructions"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3360184056": {
+    "string": "Not a member?"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3390487510": {
+    "string": "Sign up now"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3571971952": {
+    "string": "Email"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3821467896": {
+    "string": "Please check your email for a message with your code"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_418295238": {
+    "string": "Enter the email address you used when you joined and we’ll send you\n        instructions to reset your password."
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_692385796": {
+    "string": "For security reasons, we do NOT store your password. So rest assured\n          that we will never send your password via email."
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1150274228": {
+    "string": "Minimum 8 characters"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1209158925": {
+    "string": "Your password has been changed successfully"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1254879564": {
+    "string": "New Password"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1531180949": {
+    "string": "Reset Password"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3360184056": {
+    "string": "Not a member?"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3390487510": {
+    "string": "Sign up now"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4158656742": {
+    "string": "Reset your password "
+  },
+  "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_3229536708": {
+    "string": "Search..."
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_56258780": {
+    "string": "Create Account"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3288296915": {
+    "string": "Change Location"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3473580415": {
+    "string": "Location"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3881057767": {
+    "string": "Radius"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1391686013": {
+    "string": "Settings"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1534468327": {
+    "string": "Profile"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_2947231211": {
+    "string": "Log Out"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_3232965882": {
+    "string": "Dark mode"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
+    "string": "Home"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
+    "string": "Marketplace"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_2625394337": {
+    "string": "No data"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_4190318230": {
+    "string": "Show more"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_4244879397": {
+    "string": "People"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_3229536708": {
+    "string": "Search..."
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_4281662478": {
+    "string": "Search"
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_1253503055": {
+    "string": "Couldn't login to Beeesy. Status: {status}"
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_2526222480": {
+    "string": "An error occured."
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
+    "string": "You are successfully logged in"
+  },
+  "src_dot_pages_dot_index_dot_2731663279": {
+    "string": "Beeesy - Home"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
+    "string": "Title"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1286766551": {
+    "string": "Create New Listing"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_2905093420": {
+    "string": "Your listing has been added successfully"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_3374163063": {
+    "string": "Description"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4058993235": {
+    "string": "Photos"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4208076506": {
+    "string": "Images max size is 5mb"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_421180364": {
+    "string": "Uploading..."
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_682463427": {
+    "string": "max number of characters is 25"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1090739518": {
+    "string": "Your listing has been edited successfully"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1124600214": {
+    "string": "Title"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3374163063": {
+    "string": "Description"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3875214575": {
+    "string": "Position"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4058993235": {
+    "string": "Photos"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4208076506": {
+    "string": "Images max size is 5mb"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_421180364": {
+    "string": "Uploading..."
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_751710530": {
+    "string": "Submit"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
+    "string": "Edit Listing"
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
+    "string": "Has no listings yet "
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_603166252": {
+    "string": "Bio"
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
+    "string": "Listings"
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
+    "string": "Map"
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
+    "string": "List"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
+    "string": "Apply"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
+    "string": "Cancel"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
+    "string": "Edit"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_submit": {
+    "string": "Submit"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_incorrectCode": {
+    "string": "Password reset url is invalid or has expired."
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidError": {
+    "string": "Identifier or password invalid"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_required": {
+    "string": "Email is already taken"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_serverError": {
+    "string": "A technical error has occurred"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_userDosntExist": {
+    "string": "This email does not exist."
   }
 }

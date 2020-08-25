@@ -3,6 +3,8 @@ import { BaseProvider, createLightTheme, createDarkTheme } from "baseui";
 import { useTheme, THEME } from "src/hooks/Theme";
 import { ThemePrimitives } from "baseui/theme";
 import { PLACEMENT, ToasterContainer } from "baseui/toast";
+import useLocale from "@hooks/useLocale";
+import { Locale, localeNames } from "@components/containers/Locale";
 
 const BaseUIProvider: React.FC = ({ children }) => {
   const { theme } = useTheme();
@@ -60,9 +62,20 @@ const BaseUIProvider: React.FC = ({ children }) => {
   };
   const LightTheme = createLightTheme(primitives, overrides);
   const DarkTheme = createDarkTheme(primitivesDark, overrides);
+  const currentTheme = theme === THEME.Light ? LightTheme : DarkTheme;
+  const { locale, setLocale } = useLocale();
+
+  document
+    .getElementsByTagName("body")[0]
+    .setAttribute("dir", locale === Locale.AR ? "rtl" : "ltr");
 
   return (
-    <BaseProvider theme={theme === THEME.Light ? LightTheme : DarkTheme}>
+    <BaseProvider
+      theme={{
+        ...currentTheme,
+        direction: locale === Locale.AR ? "rtl" : "ltr",
+      }}
+    >
       <ToasterContainer autoHideDuration={5000}>{children}</ToasterContainer>
     </BaseProvider>
   );
