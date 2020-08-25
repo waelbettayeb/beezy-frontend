@@ -51,7 +51,7 @@ const Profile = () => {
   return (
     <>
       <Block
-        height="100vh"
+        minHeight="100vh"
         width={"100%"}
         display={"flex"}
         flexDirection={"column"}
@@ -80,14 +80,17 @@ const Profile = () => {
                 alignItems={"center"}
                 marginTop={theme.sizing.scale1000}
               >
-                <Block marginRight={theme.sizing.scale1000}>
+                <Block>
                   <Avatar
                     src={data?.user?.avatar?.url}
                     name={`${data?.user.firstName} ${data?.user.lastName}`}
                     size={theme.sizing.scale2400}
                   />
                 </Block>
-                <Block>
+                <Block
+                  marginRight={theme.sizing.scale1000}
+                  marginLeft={theme.sizing.scale1000}
+                >
                   <LabelLarge>{`${data?.user.firstName} ${data?.user.lastName}`}</LabelLarge>
                   <Caption1>{`${data?.user.email}`}</Caption1>
                 </Block>
