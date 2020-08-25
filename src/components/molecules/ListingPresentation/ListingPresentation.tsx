@@ -107,13 +107,16 @@ const ListingPresentation: React.FC<Props> = (props) => {
                       alignItems={"center"}
                       padding={theme.sizing.scale400}
                     >
-                      <Block marginRight={theme.sizing.scale400}>
+                      <Block>
                         <Avatar
                           src={listing?.user?.avatar?.url}
                           name={`${listing?.user.firstName} ${listing?.user.lastName}`}
                         />
                       </Block>
-                      <LabelMedium>{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
+                      <LabelMedium
+                        marginRight={theme.sizing.scale400}
+                        marginLeft={theme.sizing.scale400}
+                      >{`${listing?.user.firstName} ${listing?.user.lastName}`}</LabelMedium>
                     </Block>
                   </div>
                   {user?.id === listing.user.id && (
