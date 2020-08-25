@@ -10,12 +10,15 @@ import ListingsSearchTile from "./ListingsSearchTile";
 import LoadingScreen from "@components/molecules/LoadingScreen";
 import { useDebounce } from "use-debounce/lib";
 import { FormattedMessage, useIntl } from "react-intl";
+import { Locale } from "@components/containers/Locale";
+import useLocale from "@hooks/useLocale";
 
 interface Props extends DrawerProps {}
 
 const SearchDrawer = (props: Props) => {
   const [css, theme] = useStyletron();
   const intl = useIntl();
+  const { locale, setLocale } = useLocale();
 
   const [searchedTerm, setSearchedTerm] = useState("");
 
@@ -57,7 +60,7 @@ const SearchDrawer = (props: Props) => {
         props.onClose(args);
       }}
       autoFocus
-      anchor={ANCHOR.left}
+      anchor={locale === Locale.AR ? ANCHOR.right : ANCHOR.left}
     >
       <Block display="flex" flexDirection="column" height="100%">
         <Display4 marginBottom="scale500">

@@ -21,7 +21,8 @@ import { useAuth } from "@hooks/useAuth";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
 import { Button } from "baseui/button";
 import { FormattedList, FormattedMessage, useIntl } from "react-intl";
-
+import { Locale } from "@components/containers/Locale";
+import useLocale from "@hooks/useLocale";
 interface Props extends DrawerProps {}
 interface ItemProps {
   children?: React.ReactNode;
@@ -39,6 +40,7 @@ const NavigationDrawer: React.FC<Props> = (props) => {
   const user = auth.user;
   const signOut = auth.signOut;
   const intl = useIntl();
+  const { locale, setLocale } = useLocale();
 
   const Item: React.FC<ItemProps> = (props) => {
     const { Icon, label } = props;
@@ -120,7 +122,11 @@ const NavigationDrawer: React.FC<Props> = (props) => {
         // },
       ];
   return (
-    <Drawer {...props} autoFocus anchor={ANCHOR.left}>
+    <Drawer
+      {...props}
+      autoFocus
+      anchor={locale === Locale.AR ? ANCHOR.right : ANCHOR.left}
+    >
       <Block
         height={"100%"}
         width={"100%"}

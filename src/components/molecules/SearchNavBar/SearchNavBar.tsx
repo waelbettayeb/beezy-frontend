@@ -13,13 +13,15 @@ import { useStyletron } from "baseui";
 import { Input } from "baseui/input";
 import { useAuth } from "@hooks/useAuth";
 import AvatarButton from "@components/atoms/AvatarButton";
-import { Drawer } from "baseui/drawer";
+import { ANCHOR, Drawer } from "baseui/drawer";
 import LoginForm from "../LoginForm";
 import { AimOutlined } from "@ant-design/icons";
 import LocationPickerModal from "@components/organisms/LocationPickerModal";
 import { LabelXSmall } from "baseui/typography";
 import { Spinner } from "baseui/spinner";
 import { useIntl } from "react-intl";
+import useLocale from "@hooks/useLocale";
+import { Locale } from "@components/containers/Locale";
 
 interface Props {
   searchTerm?: string;
@@ -46,6 +48,7 @@ const SearchNavBar = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
   const intl = useIntl();
+  const { locale, setLocale } = useLocale();
 
   return (
     <>
@@ -198,6 +201,7 @@ const SearchNavBar = (props: Props) => {
                       isOpen={isOpen}
                       autoFocus
                       onClose={() => setIsOpen(false)}
+                      anchor={locale === Locale.AR && ANCHOR.left}
                     >
                       <LoginForm onCompleted={() => setIsOpen(false)} />
                     </Drawer>
