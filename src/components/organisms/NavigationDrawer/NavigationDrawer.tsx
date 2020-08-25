@@ -45,10 +45,15 @@ const NavigationDrawer: React.FC<Props> = (props) => {
     return (
       <>
         <Block display={"inline-flex"} alignItems={"center"}>
-          <Block paddingRight={theme.sizing.scale400}>
+          <Block>
             <Icon />
           </Block>
-          {label}
+          <Block
+            paddingLeft={theme.sizing.scale400}
+            paddingRight={theme.sizing.scale400}
+          >
+            {label}
+          </Block>
         </Block>
       </>
     );
