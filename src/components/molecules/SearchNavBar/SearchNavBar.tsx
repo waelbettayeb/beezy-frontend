@@ -3,7 +3,7 @@ import { HeaderNavigation } from "baseui/header-navigation";
 
 import { Button, KIND } from "baseui/button";
 import Router from "next/router";
-import { ChevronLeft, Search } from "baseui/icon";
+import { ChevronLeft, ChevronRight, Search } from "baseui/icon";
 import Logo from "src/components/atoms/Logo";
 
 import { Theme } from "baseui/theme";
@@ -91,7 +91,13 @@ const SearchNavBar = (props: Props) => {
               <Button
                 onClick={() => Router.push("/")}
                 kind={KIND.tertiary}
-                startEnhancer={() => <ChevronLeft size={24} />}
+                startEnhancer={() =>
+                  locale === Locale.AR ? (
+                    <ChevronRight size={24} />
+                  ) : (
+                    <ChevronLeft size={24} />
+                  )
+                }
               ></Button>
             </Cell>
             <Cell span={[2, 1, 1]}>
