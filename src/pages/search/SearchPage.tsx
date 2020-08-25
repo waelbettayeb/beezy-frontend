@@ -69,6 +69,7 @@ const SearchPage = () => {
     // Execute the created function directly
     searchWithMeili();
   }, [value, radius, position, currentPage]);
+
   React.useEffect(() => {
     const { q } = Router.query;
     setSearchedTerm((q as string) ?? "");
@@ -84,6 +85,15 @@ const SearchPage = () => {
         latitude: crd.latitude,
         longitude: crd.longitude,
       });
+      simpleReverseGeocoding(position.latitude, position.longitude)
+        .catch(function (error) {
+          console.log(error);
+          return "";
+        })
+        .then(function (json) {
+          setAddress(json.address);
+          return json.display_name;
+        });
       console.log(`More or less ${crd.accuracy} meters.`);
     }
 

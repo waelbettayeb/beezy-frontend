@@ -71,7 +71,7 @@ const create = () => {
     MultipleUploadVariables
   >(UploadFilesMutation);
   const { user } = useAuth();
-  const initialValues = {
+  var initialValues = {
     title: "",
     description: "",
     latitude: 35.919809,
@@ -80,6 +80,36 @@ const create = () => {
   };
   const [address, setAddress] = React.useState(null);
   React.useEffect(() => {
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+      initialValues = {
+        ...initialValues,
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+      };
+      simpleReverseGeocoding(initialValues.latitude, initialValues.longitude)
+        .catch(function (error) {
+          console.log(error);
+          return "";
+        })
+        .then(function (json) {
+          setAddress(json);
+          return json.display_name;
+        });
+
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR[geolocation] (${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, options);
     simpleReverseGeocoding(initialValues.latitude, initialValues.longitude)
       .catch(function (error) {
         console.log(error);
@@ -90,6 +120,7 @@ const create = () => {
         return json.display_name;
       });
   }, []);
+
   !user && Router.push("/");
   return (
     <React.Fragment>
