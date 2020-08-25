@@ -25,4 +25,12 @@ export const errorMessages = defineMessages({
   incorrectCode: {
     defaultMessage: "Password reset url is invalid or has expired.",
   },
+  required: {
+    defaultMessage: "Email is already taken",
+  },
+});
+export const buttonMessages = defineMessages({
+  submit: {
+    defaultMessage: "Submit",
+  },
 });

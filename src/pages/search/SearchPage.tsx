@@ -15,6 +15,7 @@ import { moveTo } from "geolocation-utils";
 import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
 import Router from "next/router";
 import { useDebounce } from "use-debounce";
+import { useIntl } from "react-intl";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -92,6 +93,7 @@ const SearchPage = () => {
       ""
     );
   };
+  const intl = useIntl();
   return (
     <Block height="100vh" display={"flex"} flexDirection={"column"}>
       <SearchNavBar
@@ -260,7 +262,11 @@ const SearchPage = () => {
                 },
               }}
             >
-              <Tab title="List">
+              <Tab
+                title={intl.formatMessage({
+                  defaultMessage: "List",
+                })}
+              >
                 <Block height={"100%"}>
                   <ListingsSearchTile
                     results={results}
@@ -271,7 +277,11 @@ const SearchPage = () => {
                   />
                 </Block>
               </Tab>
-              <Tab title={`Map`}>
+              <Tab
+                title={intl.formatMessage({
+                  defaultMessage: "Map",
+                })}
+              >
                 <Block height={"100%"}>
                   <Map
                     lat={position.latitude}
