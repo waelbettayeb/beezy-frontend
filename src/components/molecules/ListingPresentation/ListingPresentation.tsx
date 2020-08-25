@@ -14,7 +14,7 @@ import { Search } from "baseui/icon";
 import { Input, SIZE } from "baseui/input";
 import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import SearchDrawer from "@components/organisms/SearchDrawer";
 import {
   IListingPayload,
@@ -32,6 +32,7 @@ import Router from "next/router";
 import { Button } from "baseui/button";
 import { useAuth } from "@hooks/useAuth";
 import { buttonMessages } from "@utils/intl";
+import { ShareAltOutlined } from "@ant-design/icons";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -43,6 +44,7 @@ export const config = { amp: "hybrid" };
 
 const ListingPresentation: React.FC<Props> = (props) => {
   const { id } = props;
+  const intl = useIntl();
   const [css, theme] = useStyletron();
   const { data, error, loading } = useQuery<IListingPayload, IListingVariables>(
     listingQuery,
@@ -164,10 +166,40 @@ const ListingPresentation: React.FC<Props> = (props) => {
                   flexDirection={"column"}
                   height={"100%"}
                 >
-                  <LabelLarge>{listing.title}</LabelLarge>
-                  <Caption1>
-                    <TimeAgo date={listing.created_at} />
-                  </Caption1>
+                  <Block
+                    display={"flex"}
+                    flexDirection={"row"}
+                    alignItems={"flex-start"}
+                    justifyContent={"space-between"}
+                  >
+                    <Block>
+                      <LabelLarge>{listing.title}</LabelLarge>
+                      <Caption1>
+                        <TimeAgo date={listing.created_at} />
+                      </Caption1>
+                    </Block>
+                    {navigator.share && (
+                      <Button
+                        kind={"minimal"}
+                        onClick={() =>
+                          navigator
+                            .share({
+                              title: listing.title,
+                              text: intl.formatMessage({
+                                defaultMessage: "Check out beeesy.com",
+                              }),
+                              url: `https://beeesy.com/listing/${id}`,
+                            })
+                            .then(() => console.log("Successful share"))
+                            .catch((error) =>
+                              console.log("Error sharing", error)
+                            )
+                        }
+                      >
+                        <ShareAltOutlined />
+                      </Button>
+                    )}
+                  </Block>
 
                   {listing.description && (
                     <ParagraphSmall>{listing.description}</ParagraphSmall>
