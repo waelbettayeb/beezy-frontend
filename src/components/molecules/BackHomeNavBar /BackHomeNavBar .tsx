@@ -8,7 +8,7 @@ import {
 
 import { Button, KIND } from "baseui/button";
 import Router from "next/router";
-import { ChevronLeft } from "baseui/icon";
+import { ChevronLeft, ChevronRight } from "baseui/icon";
 import Logo from "src/components/atoms/Logo";
 
 import { Theme } from "baseui/theme";
@@ -16,11 +16,14 @@ import { Block } from "baseui/block";
 import { ALIGNMENT, Cell, Grid } from "baseui/layout-grid";
 import { useStyletron } from "baseui";
 import { FormattedMessage } from "react-intl";
+import useLocale from "@hooks/useLocale";
+import { Locale } from "@components/containers/Locale";
 
 interface Props {}
 
 const BackHomeNavBar = (props: Props) => {
   const [css, theme] = useStyletron();
+  const { locale, setLocale } = useLocale();
   return (
     <HeaderNavigation
       overrides={{
@@ -40,14 +43,26 @@ const BackHomeNavBar = (props: Props) => {
             <Button
               onClick={() => Router.push("/")}
               kind={KIND.tertiary}
-              startEnhancer={() => <ChevronLeft size={24} />}
+              startEnhancer={() =>
+                locale === Locale.AR ? (
+                  <ChevronRight size={24} />
+                ) : (
+                  <ChevronLeft size={24} />
+                )
+              }
             ></Button>
           </Cell>
           <Cell span={[0, 3, 4]}>
             <Button
               onClick={() => Router.push("/")}
               kind={KIND.tertiary}
-              startEnhancer={() => <ChevronLeft size={24} />}
+              startEnhancer={() =>
+                locale === Locale.AR ? (
+                  <ChevronRight size={24} />
+                ) : (
+                  <ChevronLeft size={24} />
+                )
+              }
             >
               <FormattedMessage defaultMessage="Back to home" />
             </Button>
