@@ -11,6 +11,8 @@ const Start: React.FC = ({ children }) => {
   const { theme } = useTheme();
   const color = theme === THEME.Light ? "white" : "black";
   !loading && !error && auth.setUser(data?._me);
+  (!loading && !error) ||
+    (!loading && !data?._me && localStorage.removeItem("token"));
   useEffect(() => {
     document.body.style.background = color;
   }, [color]);
