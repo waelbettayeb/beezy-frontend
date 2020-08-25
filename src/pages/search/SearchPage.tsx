@@ -72,6 +72,25 @@ const SearchPage = () => {
   React.useEffect(() => {
     const { q } = Router.query;
     setSearchedTerm((q as string) ?? "");
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+      setPosition({
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+      });
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR[geolocation] (${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, options);
     simpleReverseGeocoding(position.latitude, position.longitude)
       .catch(function (error) {
         console.log(error);

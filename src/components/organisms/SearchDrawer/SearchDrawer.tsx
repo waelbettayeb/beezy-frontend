@@ -52,6 +52,7 @@ const SearchDrawer = (props: Props) => {
     // Execute the created function directly
     searchWithMeili();
   }, [value]);
+
   return (
     <Drawer
       {...props}
