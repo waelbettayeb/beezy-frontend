@@ -31,6 +31,7 @@ import {
 } from "@graphql/queries/gqlTypes/listing";
 import { listingsQuery } from "@graphql/queries/listing";
 import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
+import { FormattedMessage } from "react-intl";
 
 const Profile = () => {
   const [css, theme] = useStyletron();
@@ -94,7 +95,7 @@ const Profile = () => {
               {data?.user.bio && (
                 <>
                   <HeadingXSmall marginBottom={theme.sizing.scale300}>
-                    Bio
+                    <FormattedMessage defaultMessage="Bio" />
                   </HeadingXSmall>
                   <ParagraphXSmall>{`${data?.user.bio}`}</ParagraphXSmall>
                 </>
@@ -103,7 +104,9 @@ const Profile = () => {
                 !listingsLoading &&
                 (listingsData.listings.length > 0 ? (
                   <>
-                    <Divider orientation={ORIENTATION.left}>Listings</Divider>
+                    <Divider orientation={ORIENTATION.left}>
+                      <FormattedMessage defaultMessage="Listings" />
+                    </Divider>
                     <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
                       {listingsData.listings.map((r) => (
                         <Cell span={[2, 2, 3]}>
@@ -128,7 +131,7 @@ const Profile = () => {
                     marginTop={theme.sizing.scale600}
                   >
                     <LabelSmall color={theme.colors.contentInverseSecondary}>
-                      Has no listings yet
+                      <FormattedMessage defaultMessage="Has no listings yet " />
                     </LabelSmall>
                   </Block>
                 ))}
