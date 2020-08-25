@@ -66,6 +66,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
         setAddress(json);
         return json.display_name;
       });
+
   const user = useAuth().user;
   return (
     <>

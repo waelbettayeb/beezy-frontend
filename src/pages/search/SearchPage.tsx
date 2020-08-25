@@ -28,7 +28,7 @@ const SearchPage = () => {
   const [results, setResults] = useState(null);
   const [position, setPosition] = React.useState({
     latitude: 35.919809,
-    longitude: 0,
+    longitude: 0.070937,
   });
   const [radius, setRadius] = React.useState(50);
   const [address, setAddress] = React.useState(null);
@@ -85,6 +85,19 @@ const SearchPage = () => {
         latitude: crd.latitude,
         longitude: crd.longitude,
       });
+      simpleReverseGeocoding(crd.latitude, crd.longitude)
+        .catch(function (error) {
+          console.log(error);
+          return "";
+        })
+        .then(function (json) {
+          setAddress(json.address);
+          return json.display_name;
+        });
+      console.log(`[geolocation]More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
       simpleReverseGeocoding(position.latitude, position.longitude)
         .catch(function (error) {
           console.log(error);
@@ -94,23 +107,11 @@ const SearchPage = () => {
           setAddress(json.address);
           return json.display_name;
         });
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
-
-    function error(err) {
       console.warn(`ERROR[geolocation] (${err.code}): ${err.message}`);
     }
     navigator.geolocation.getCurrentPosition(success, error, options);
-    simpleReverseGeocoding(position.latitude, position.longitude)
-      .catch(function (error) {
-        console.log(error);
-        return "";
-      })
-      .then(function (json) {
-        setAddress(json.address);
-        return json.display_name;
-      });
   }, []);
+
   const [activeKey, setActiveKey] = React.useState("0");
   const getCity = () => {
     return (

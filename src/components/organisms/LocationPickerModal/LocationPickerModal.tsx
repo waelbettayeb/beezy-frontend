@@ -60,7 +60,9 @@ const LocationPickerModal = (props: Props) => {
       onApply(position.latitude, position.longitude, radius[0], address);
     onClose && onClose({});
   };
-
+  React.useEffect(() => {
+    setPosition({ latitude, longitude });
+  }, [latitude, longitude]);
   return (
     <Modal
       {...props}
