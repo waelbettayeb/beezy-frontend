@@ -5,6 +5,7 @@ import AppNavBar from "src/components/molecules/AppNavBar/AppNavBar";
 import Hero from "src/components/molecules/Hero";
 import Footer from "@components/organisms/Footer";
 import { useAuth } from "@hooks/useAuth";
+import { FormattedMessage } from "react-intl";
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -12,7 +13,9 @@ const Home: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Beeesy - Home</title>
+        <title>
+          <FormattedMessage defaultMessage="Beeesy - Home" />
+        </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppNavBar />

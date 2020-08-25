@@ -10,6 +10,7 @@ import { StatefulMenu } from "baseui/menu";
 import DarkModeToggle from "../DarkModeToggle";
 import { Avatar } from "baseui/avatar";
 import Router from "next/router";
+import { FormattedMessage, useIntl } from "react-intl";
 
 interface Props {}
 
@@ -18,6 +19,7 @@ const AvatarButton = (props: Props) => {
   const user = auth.user;
   const signOut = auth.signOut;
   const [css, theme] = useStyletron();
+  const intl = useIntl();
   const content = () => {
     return (
       <Block
@@ -26,25 +28,28 @@ const AvatarButton = (props: Props) => {
         <StatefulMenu
           items={[
             {
-              label: "Profile",
+              label: intl.formatMessage({ defaultMessage: "Profile" }),
               onClick: () =>
                 Router.push("/profile/[pid]", `/profile/${user.id}`),
             },
             {
-              label: "Settings",
+              label: intl.formatMessage({ defaultMessage: "Settings" }),
               onClick: () => Router.push("/settings"),
             },
             {
               label: (
                 <React.Fragment>
                   <Block display={"flex"}>
-                    Dark mode
+                    <FormattedMessage defaultMessage="Dark mode" />
                     <DarkModeToggle />
                   </Block>
                 </React.Fragment>
               ),
             },
-            { label: "Log Out", onClick: signOut },
+            {
+              label: intl.formatMessage({ defaultMessage: "Log Out" }),
+              onClick: signOut,
+            },
           ]}
           onItemSelect={({ item }) => {
             if (item.onClick) item.onClick();
