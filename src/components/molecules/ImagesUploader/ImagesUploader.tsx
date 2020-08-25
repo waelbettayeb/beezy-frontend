@@ -4,6 +4,7 @@ import { Card } from "baseui/card";
 import { FileUploader, FileUploaderProps } from "baseui/file-uploader";
 import { Block } from "baseui/block";
 import { Label3 } from "baseui/typography";
+import { FormattedMessage } from "react-intl";
 
 interface Props extends FileUploaderProps {
   images: any[];
@@ -49,7 +50,7 @@ const ImagesUploader = (props: Props) => {
             alignItems="center"
           >
             <Label3 color={theme.colors.contentInverseSecondary}>
-              No images are uploaded
+              <FormattedMessage defaultMessage="No images are uploaded" />
             </Label3>
           </Block>
         ) : (

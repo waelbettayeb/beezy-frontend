@@ -15,6 +15,7 @@ import { Theme } from "baseui/theme";
 import { Block } from "baseui/block";
 import { ALIGNMENT, Cell, Grid } from "baseui/layout-grid";
 import { useStyletron } from "baseui";
+import { FormattedMessage } from "react-intl";
 
 interface Props {}
 
@@ -36,7 +37,6 @@ const BackHomeNavBar = (props: Props) => {
       <Block width="100%">
         <Grid align={ALIGNMENT.center}>
           <Cell span={[1, 0]}>
-            {}
             <Button
               onClick={() => Router.push("/")}
               kind={KIND.tertiary}
@@ -44,13 +44,12 @@ const BackHomeNavBar = (props: Props) => {
             ></Button>
           </Cell>
           <Cell span={[0, 3, 4]}>
-            {}
             <Button
               onClick={() => Router.push("/")}
               kind={KIND.tertiary}
               startEnhancer={() => <ChevronLeft size={24} />}
             >
-              Back to home
+              <FormattedMessage defaultMessage="Back to home" />
             </Button>
           </Cell>
           <Cell span={[2, 2, 4]}>

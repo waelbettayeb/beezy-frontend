@@ -7,6 +7,7 @@ import { Block } from "baseui/block";
 import { Cell, Grid } from "baseui/layout-grid";
 
 import ListingCard from "./ListingCard";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   results?: any;
@@ -38,6 +39,16 @@ const ListingsSearchTile = (props: Props) => {
         <Caption2>
           {start} - {end} "About {totalResults} results (
           {processingTimeMs / 1000} seconds)"
+          <FormattedMessage
+            defaultMessage='{start} - {end} \"About {totalResults} results (
+          {processingTimeS} seconds)"'
+            values={{
+              start,
+              end,
+              totalResults,
+              processingTimeS: processingTimeMs / 1000,
+            }}
+          />
         </Caption2>
       </Block>
 

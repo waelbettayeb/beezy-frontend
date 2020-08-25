@@ -19,6 +19,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { UpdateMeVariables } from "@graphql/mutations/gqlTypes/User";
 import { updateMeMutation } from "@graphql/mutations/user";
 import { toaster } from "baseui/toast";
+import { buttonMessages } from "@utils/intl";
 
 export interface IFormValues {
   email: string;
@@ -80,7 +81,10 @@ const EditProfileForm = (props) => {
               },
             },
           }).then((res) => {
-            toaster.info("Profile saved.", {});
+            toaster.info(
+              intl.formatMessage({ defaultMessage: "Profile saved." }),
+              {}
+            );
           });
           actions.setSubmitting(false);
         }}
@@ -99,11 +103,13 @@ const EditProfileForm = (props) => {
             <Form onSubmit={handleSubmit}>
               <Grid gridMargins={0} gridGaps={0}>
                 <Cell span={[4, 8, 12]}>
-                  <Display4 marginBottom="scale500">Edit Profile</Display4>
+                  <Display4 marginBottom="scale500">
+                    <FormattedMessage defaultMessage="Edit Profile" />
+                  </Display4>
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "First name"}
+                    label={intl.formatMessage({ defaultMessage: "First name" })}
                     error={() =>
                       errors.firstName && touched.firstName && errors.firstName
                     }
@@ -120,7 +126,7 @@ const EditProfileForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Last name"}
+                    label={intl.formatMessage({ defaultMessage: "Last name" })}
                     error={() =>
                       errors.lastName && touched.lastName && errors.lastName
                     }
@@ -137,7 +143,7 @@ const EditProfileForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <FormControl
-                    label={() => "Email"}
+                    label={intl.formatMessage({ defaultMessage: "Email" })}
                     error={() => errors.email && touched.email && errors.email}
                   >
                     <Input
@@ -152,7 +158,7 @@ const EditProfileForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <FormControl
-                    label={() => "Bio"}
+                    label={intl.formatMessage({ defaultMessage: "Bio" })}
                     error={errors.bio && touched.bio && errors.bio}
                   >
                     <Textarea
@@ -167,7 +173,9 @@ const EditProfileForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Date of birth"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Date of birth",
+                    })}
                     error={
                       errors.dateOfBirth &&
                       touched.dateOfBirth &&
@@ -186,7 +194,9 @@ const EditProfileForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Gender"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Gender",
+                    })}
                     error={errors.gender && touched.gender && errors.gender}
                   >
                     <RadioGroup
@@ -196,8 +206,12 @@ const EditProfileForm = (props) => {
                       value={values.gender}
                       error={errors.gender && touched.gender}
                     >
-                      <Radio value={GENDER.male}>Male</Radio>
-                      <Radio value={GENDER.female}>Female</Radio>
+                      <Radio value={GENDER.male}>
+                        <FormattedMessage defaultMessage="Male" />
+                      </Radio>
+                      <Radio value={GENDER.female}>
+                        <FormattedMessage defaultMessage="Female" />
+                      </Radio>
                     </RadioGroup>
                   </FormControl>
                 </Cell>
@@ -217,7 +231,7 @@ const EditProfileForm = (props) => {
                       },
                     }}
                   >
-                    <FormattedMessage defaultMessage={"Submit"} />
+                    <FormattedMessage {...buttonMessages.submit} />
                   </Button>
                 </Cell>
                 {/* <Cell span={12}>

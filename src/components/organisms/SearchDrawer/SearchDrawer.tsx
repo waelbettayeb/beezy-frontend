@@ -9,11 +9,13 @@ import ProfilesSearchTile from "./ProfilesSearchTile";
 import ListingsSearchTile from "./ListingsSearchTile";
 import LoadingScreen from "@components/molecules/LoadingScreen";
 import { useDebounce } from "use-debounce/lib";
+import { FormattedMessage, useIntl } from "react-intl";
 
 interface Props extends DrawerProps {}
 
 const SearchDrawer = (props: Props) => {
   const [css, theme] = useStyletron();
+  const intl = useIntl();
 
   const [searchedTerm, setSearchedTerm] = useState("");
 
@@ -58,10 +60,12 @@ const SearchDrawer = (props: Props) => {
       anchor={ANCHOR.left}
     >
       <Block display="flex" flexDirection="column" height="100%">
-        <Display4 marginBottom="scale500">Search</Display4>
+        <Display4 marginBottom="scale500">
+          <FormattedMessage defaultMessage="Search" />
+        </Display4>
         <Input
           type="search"
-          placeholder="Search..."
+          placeholder={intl.formatMessage({ defaultMessage: "Search..." })}
           value={searchedTerm}
           onChange={(e) =>
             setSearchedTerm((e.target as HTMLTextAreaElement).value)

@@ -17,6 +17,7 @@ import { Block } from "baseui/block";
 import Router from "next/router";
 import TimeAgo from "@components/atoms/TimeAgo";
 import { Card, StyledAction, StyledBody } from "baseui/card";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   results: any[];
@@ -55,7 +56,9 @@ const ProfilesSearchTile = (props: Props) => {
             marginBottom: theme.sizing.scale200,
           })}
         >
-          <Label3>People</Label3>
+          <Label3>
+            <FormattedMessage defaultMessage="People" />
+          </Label3>
           {/* <StyledLink href="#">Show more</StyledLink> */}
         </div>
       )}

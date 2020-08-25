@@ -20,6 +20,7 @@ import Logo from "@components/atoms/Logo";
 import { useAuth } from "@hooks/useAuth";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
 import { Button } from "baseui/button";
+import { FormattedList, FormattedMessage, useIntl } from "react-intl";
 
 interface Props extends DrawerProps {}
 interface ItemProps {
@@ -37,6 +38,8 @@ const NavigationDrawer: React.FC<Props> = (props) => {
   const auth = useAuth();
   const user = auth.user;
   const signOut = auth.signOut;
+  const intl = useIntl();
+
   const Item: React.FC<ItemProps> = (props) => {
     const { Icon, label } = props;
     return (
@@ -53,15 +56,30 @@ const NavigationDrawer: React.FC<Props> = (props) => {
   const items = auth.user
     ? [
         {
-          title: <Item Icon={() => <HomeOutlined />} label={"Home"} />,
+          title: (
+            <Item
+              Icon={() => <HomeOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Home" })}
+            />
+          ),
           itemId: "#",
         },
         {
-          title: <Item Icon={() => <UserOutlined />} label={"Profile"} />,
+          title: (
+            <Item
+              Icon={() => <UserOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Profile" })}
+            />
+          ),
           itemId: "#profile",
         },
         {
-          title: <Item Icon={() => <SettingOutlined />} label={"Settings"} />,
+          title: (
+            <Item
+              Icon={() => <SettingOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Settings" })}
+            />
+          ),
           itemId: "#settings",
         },
         // {
@@ -77,7 +95,12 @@ const NavigationDrawer: React.FC<Props> = (props) => {
       ]
     : [
         {
-          title: <Item Icon={() => <HomeOutlined />} label={"Home"} />,
+          title: (
+            <Item
+              Icon={() => <HomeOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Home" })}
+            />
+          ),
           itemId: "#",
         },
         // {
@@ -148,7 +171,7 @@ const NavigationDrawer: React.FC<Props> = (props) => {
             flexDirection={"row"}
             justifyContent={"space-between"}
           >
-            Dark mode
+            <FormattedMessage defaultMessage="Dark mode" />
             <DarkModeToggle />
           </Block>
           {user && (
@@ -170,7 +193,7 @@ const NavigationDrawer: React.FC<Props> = (props) => {
                 },
               }}
             >
-              Log Out
+              <FormattedMessage defaultMessage="Log Out" />
             </Button>
           )}
         </Block>

@@ -33,4 +33,13 @@ export const buttonMessages = defineMessages({
   submit: {
     defaultMessage: "Submit",
   },
+  apply: {
+    defaultMessage: "Apply",
+  },
+  cancel: {
+    defaultMessage: "Cancel",
+  },
+  edit: {
+    defaultMessage: "Edit",
+  },
 });

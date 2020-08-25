@@ -17,17 +17,25 @@ import {
   RecoverPasswordVariables,
 } from "@graphql/mutations/gqlTypes/RecoverPassword";
 import { recoverPasswordMutation } from "@graphql/mutations/recover_password";
+import { FormattedMessage, useIntl } from "react-intl";
+import { errorMessages } from "@utils/intl";
 
 interface Props {}
 export interface IFormValues {
   email: string;
 }
 
-const RecoverPasswordSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-});
-
 const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
+  const intl = useIntl();
+  const RecoverPasswordSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(
+        intl.formatMessage({
+          defaultMessage: "Invalid email",
+        })
+      )
+      .required(intl.formatMessage(errorMessages.required)),
+  });
   const auth = useAuth();
   const [RecoverPassword, { data, error, loading }] = useMutation<
     RecoverPasswordPayload,
@@ -38,18 +46,28 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
     email: "",
   };
   const showToast = () =>
-    toaster.info("Please check your email for a message with your code", {});
-
+    toaster.info(
+      intl.formatMessage({
+        defaultMessage: "Please check your email for a message with your code",
+      }),
+      {}
+    );
   return (
     <React.Fragment>
-      <Display4 marginBottom="scale500">Forgot Password?</Display4>
+      <Display4 marginBottom="scale500">
+        <FormattedMessage defaultMessage="Forgot Password?" />
+      </Display4>
       <Paragraph3>
-        Enter the email address you used when you joined and we’ll send you
-        instructions to reset your password.
+        <FormattedMessage
+          defaultMessage="Enter the email address you used when you joined and we’ll send you
+        instructions to reset your password."
+        />
       </Paragraph3>
       <Paragraph3>
-        For security reasons, we do NOT store your password. So rest assured
-        that we will never send your password via email.
+        <FormattedMessage
+          defaultMessage="For security reasons, we do NOT store your password. So rest assured
+          that we will never send your password via email."
+        />
       </Paragraph3>
       <Formik
         initialValues={initialValues}
@@ -79,7 +97,7 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
           return (
             <Form onSubmit={handleSubmit}>
               <FormControl
-                label={() => "Email"}
+                label={intl.formatMessage({ defaultMessage: "Email" })}
                 error={errors.email && touched.email && errors.email}
               >
                 <Input
@@ -106,7 +124,7 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
                   },
                 }}
               >
-                Send Reset instructions
+                <FormattedMessage defaultMessage="Send Reset instructions" />
               </Button>
               <ErrorMessage errors={error} />
             </Form>
@@ -115,9 +133,9 @@ const RecoverPasswordForm: React.FC<Props> = (props: Props) => {
       </Formik>
       <Block>
         <Paragraph3>
-          Not a member?{" "}
+          <FormattedMessage defaultMessage="Not a member?" />{" "}
           <StyledLink onClick={() => Router.push("/auth/signup")}>
-            Sign up now
+            <FormattedMessage defaultMessage="Sign up now" />
           </StyledLink>
         </Paragraph3>
       </Block>

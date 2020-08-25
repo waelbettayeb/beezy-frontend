@@ -19,6 +19,7 @@ import { AimOutlined } from "@ant-design/icons";
 import LocationPickerModal from "@components/organisms/LocationPickerModal";
 import { LabelXSmall } from "baseui/typography";
 import { Spinner } from "baseui/spinner";
+import { useIntl } from "react-intl";
 
 interface Props {
   searchTerm?: string;
@@ -44,6 +45,8 @@ const SearchNavBar = (props: Props) => {
   const auth = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLocationPickerOpen, setIsLocationPickerOpen] = React.useState(false);
+  const intl = useIntl();
+
   return (
     <>
       {/* <HeaderNavigation
@@ -121,7 +124,9 @@ const SearchNavBar = (props: Props) => {
             <Cell span={[0, 4, 6]}>
               <Input
                 type="search"
-                placeholder="Search..."
+                placeholder={intl.formatMessage({
+                  defaultMessage: "Search...",
+                })}
                 startEnhancer={
                   loading ? (
                     <Spinner size={theme.sizing.scale700} />
@@ -137,7 +142,9 @@ const SearchNavBar = (props: Props) => {
             <Cell span={[4, 0]}>
               <Input
                 type="search"
-                placeholder="Search..."
+                placeholder={intl.formatMessage({
+                  defaultMessage: "Search...",
+                })}
                 startEnhancer={
                   loading ? (
                     <Spinner size={theme.sizing.scale700} />

@@ -21,6 +21,7 @@ import { Card, StyledAction, StyledBody } from "baseui/card";
 import MeiliClient from "@utils/MeiliSearchClient";
 import { Spinner } from "baseui/spinner";
 import ListingCard from "@components/molecules/ListingsSearchTile/ListingCard";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   results: any[];
@@ -55,7 +56,7 @@ const ListingsSearchTile = (props: Props) => {
             <Spinner />
           ) : (
             <Label3 color={theme.colors.contentInverseSecondary}>
-              No data
+              <FormattedMessage defaultMessage="No data" />
             </Label3>
           )}
         </Block>
@@ -70,12 +71,14 @@ const ListingsSearchTile = (props: Props) => {
             marginBottom: theme.sizing.scale400,
           })}
         >
-          <Label3>Business</Label3>
+          <Label3>
+            <FormattedMessage defaultMessage="Marketplace" />
+          </Label3>
           {results.length > 6 && (
             <StyledLink
               onClick={() => Router.push(`/search?q=${searchedTerm}`)}
             >
-              Show more
+              <FormattedMessage defaultMessage="Show more" />
             </StyledLink>
           )}
         </div>

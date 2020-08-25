@@ -31,6 +31,7 @@ import { Avatar } from "baseui/avatar";
 import Router from "next/router";
 import { Button } from "baseui/button";
 import { useAuth } from "@hooks/useAuth";
+import { buttonMessages } from "@utils/intl";
 
 const Map = dynamic(() => import("@components/atoms/Map"), {
   ssr: false,
@@ -125,7 +126,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
                         )
                       }
                     >
-                      Edit
+                      <FormattedMessage {...buttonMessages.edit} />
                     </Button>
                   )}
                 </Block>

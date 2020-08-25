@@ -23,17 +23,27 @@ import {
   resetPasswordMutation,
 } from "@graphql/mutations/recover_password";
 import { setAuthToken } from "@utils/auth";
+import { FormattedMessage, useIntl } from "react-intl";
+import { errorMessages } from "@utils/intl";
 
 interface Props {}
 export interface IFormValues {
   password: string;
 }
 
-const RecoverPasswordSchema = Yup.object().shape({
-  password: Yup.string().min(8, "Minimum 8 characters").required("Required"),
-});
-
 const ResetPasswordForm: React.FC<Props> = (props: Props) => {
+  const intl = useIntl();
+  const RecoverPasswordSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(
+        8,
+        intl.formatMessage({
+          defaultMessage: "Minimum 8 characters",
+        })
+      )
+      .required(intl.formatMessage(errorMessages.required)),
+  });
+
   const auth = useAuth();
   const { code } = Router.query;
   const [ResetPassword, { data, error, loading }] = useMutation<
@@ -45,10 +55,17 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
     password: "",
   };
   const showToast = () =>
-    toaster.info("Your password has been changed successfully", {});
+    toaster.info(
+      intl.formatMessage({
+        defaultMessage: "Your password has been changed successfully",
+      }),
+      {}
+    );
   return (
     <React.Fragment>
-      <Display4 marginBottom="scale500">Reset your password</Display4>
+      <Display4 marginBottom="scale500">
+        <FormattedMessage defaultMessage="Reset your password " />
+      </Display4>
       <Formik
         initialValues={initialValues}
         validationSchema={RecoverPasswordSchema}
@@ -83,7 +100,9 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
           return (
             <Form onSubmit={handleSubmit}>
               <FormControl
-                label={() => "New Password"}
+                label={intl.formatMessage({
+                  defaultMessage: "New Password",
+                })}
                 error={errors.password && touched.password && errors.password}
               >
                 <Input
@@ -110,7 +129,7 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
                   },
                 }}
               >
-                Reset Password
+                <FormattedMessage defaultMessage="Reset Password" />
               </Button>
               <ErrorMessage errors={error} />
             </Form>
@@ -119,9 +138,9 @@ const ResetPasswordForm: React.FC<Props> = (props: Props) => {
       </Formik>
       <Block>
         <Paragraph3>
-          Not a member?{" "}
+          <FormattedMessage defaultMessage="Not a member?" />{" "}
           <StyledLink onClick={() => Router.push("/auth/signup")}>
-            Sign up now
+            <FormattedMessage defaultMessage="Sign up now" />
           </StyledLink>
         </Paragraph3>
       </Block>

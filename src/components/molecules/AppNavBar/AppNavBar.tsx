@@ -23,6 +23,7 @@ import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import NavigationDrawer from "@components/organisms/NavigationDrawer";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
 import LoginDrawer from "@components/organisms/LoginDrawer";
+import { FormattedMessage } from "react-intl";
 interface Props {}
 
 const AppNavBar = (props: Props) => {
@@ -109,7 +110,9 @@ const AppNavBar = (props: Props) => {
                       <Search />
                     </Button>
                   </Block>
-                  <Button onClick={() => setIsOpen(true)}>Get started</Button>
+                  <Button onClick={() => setIsOpen(true)}>
+                    <FormattedMessage defaultMessage="Get started" />
+                  </Button>
                   <LoginDrawer
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}

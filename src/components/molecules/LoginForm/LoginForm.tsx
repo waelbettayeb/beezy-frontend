@@ -19,6 +19,7 @@ import {
 } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { meQuery } from "@graphql/queries/user";
+import { FormattedMessage, useIntl } from "react-intl";
 
 interface Props {
   onCompleted?: () => void;
@@ -36,13 +37,19 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     identifier: "",
     password: "",
   };
-  const showToast = () => toaster.info("You are successfully logged in", {});
-
+  const showToast = () =>
+    toaster.info(
+      intl.formatMessage({ defaultMessage: "You are successfully logged in" }),
+      {}
+    );
+  const intl = useIntl();
   return user ? (
     <span>authentificated</span>
   ) : (
     <React.Fragment>
-      <Display4 marginBottom="scale500">Login</Display4>
+      <Display4 marginBottom="scale500">
+        <FormattedMessage defaultMessage="Login" />
+      </Display4>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -74,7 +81,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
           return (
             <Form onSubmit={handleSubmit}>
               <FormControl
-                label={() => "Username"}
+                label={intl.formatMessage({ defaultMessage: "Username" })}
                 error={
                   errors.identifier && touched.identifier && errors.identifier
                 }
@@ -91,7 +98,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               </FormControl>
               <FormControl
                 disabled={loading || isSubmitting}
-                label={() => "Password"}
+                label={intl.formatMessage({ defaultMessage: "Password" })}
                 error={errors.password && touched.password && errors.password}
               >
                 <Input
@@ -122,7 +129,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
                   },
                 }}
               >
-                Sign in
+                <FormattedMessage defaultMessage="Sign in" />
               </Button>
               <ErrorMessage errors={error} />
             </Form>
@@ -131,18 +138,20 @@ const LoginForm: React.FC<Props> = (props: Props) => {
       </Formik>
       <Block>
         <Paragraph3>
-          Don't have an account?{" "}
+          <FormattedMessage defaultMessage="Don't have an account?" />{" "}
           <StyledLink onClick={() => router.push("/auth/signup")}>
-            Sign up
+            <FormattedMessage defaultMessage="Sign up" />
           </StyledLink>
         </Paragraph3>
         <Paragraph3>
-          Have you forgotten your password?{" "}
+          <FormattedMessage defaultMessage="Have you forgotten your password?" />{" "}
           <StyledLink onClick={() => router.push("/auth/recover_password")}>
-            Click Here
+            <FormattedMessage defaultMessage="Click Here" />
           </StyledLink>
         </Paragraph3>
-        <Divider>Or</Divider>
+        <Divider>
+          <FormattedMessage defaultMessage="Or" />
+        </Divider>
         <Button
           startEnhancer={() => <FacebookFilled />}
           onClick={() =>
@@ -159,7 +168,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
             },
           }}
         >
-          Sign in with Facebook
+          <FormattedMessage defaultMessage="Sign in with Facebook" />
         </Button>
         {/* <Button
           startEnhancer={() => <GoogleOutlined />}

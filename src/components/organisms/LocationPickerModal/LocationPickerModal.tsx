@@ -17,6 +17,8 @@ import { Slider } from "baseui/slider";
 import dynamic from "next/dynamic";
 import { FormControl } from "baseui/form-control";
 import { simpleReverseGeocoding } from "@components/molecules/MapLocationPicker";
+import { FormattedMessage, useIntl } from "react-intl";
+import { buttonMessages } from "@utils/intl";
 
 const MapLocationPicker = dynamic(
   () => import("@components/molecules/MapLocationPicker"),
@@ -33,6 +35,7 @@ interface Props extends ModalProps {
 }
 
 const LocationPickerModal = (props: Props) => {
+  const intl = useIntl();
   const { defaultRadius, onApply, onClose, latitude, longitude } = props;
   const [css, theme] = useStyletron();
   const [position, setPosition] = React.useState({
@@ -68,9 +71,11 @@ const LocationPickerModal = (props: Props) => {
       size={SIZE.default}
       role={ROLE.dialog}
     >
-      <ModalHeader>Change Location</ModalHeader>
+      <ModalHeader>
+        <FormattedMessage defaultMessage="Change Location" />
+      </ModalHeader>
       <ModalBody>
-        <FormControl label={"Radius"}>
+        <FormControl label={intl.formatMessage({ defaultMessage: "Radius" })}>
           <Slider
             value={radius}
             onChange={({ value }) => value && setRadius(value)}
@@ -111,7 +116,7 @@ const LocationPickerModal = (props: Props) => {
           />
         </FormControl>
 
-        <FormControl label={"Location"}>
+        <FormControl label={intl.formatMessage({ defaultMessage: "Location" })}>
           <Block height="50vh" width="100%">
             <MapLocationPicker
               lat={position.latitude}
@@ -137,9 +142,11 @@ const LocationPickerModal = (props: Props) => {
       </ModalBody>
       <ModalFooter>
         <ModalButton kind={"tertiary"} onClick={handleOnClose}>
-          Cancel
+          <FormattedMessage {...buttonMessages.cancel} />
         </ModalButton>
-        <ModalButton onClick={handleOnApply}>Apply</ModalButton>
+        <ModalButton onClick={handleOnApply}>
+          <FormattedMessage {...buttonMessages.apply} />
+        </ModalButton>
       </ModalFooter>
     </Modal>
   );
