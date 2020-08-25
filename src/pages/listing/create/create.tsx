@@ -213,11 +213,19 @@ const create = () => {
                         onRetry={() => setErrorMessage("")}
                         disabled={CreatListingMutationTuplet.loading}
                         progressMessage={
-                          uploadMutationTuplet.loading ? `Uploading...` : ""
+                          uploadMutationTuplet.loading
+                            ? intl.formatMessage({
+                                defaultMessage: `Uploading...`,
+                              })
+                            : ""
                         }
                         onDrop={(acceptedFiles, rejectedFiles) => {
                           if (rejectedFiles && rejectedFiles[0])
-                            setErrorMessage("Images max size is 5mb");
+                            setErrorMessage(
+                              intl.formatMessage({
+                                defaultMessage: "Images max size is 5mb",
+                              })
+                            );
                           uploadFiles({
                             variables: {
                               files: acceptedFiles,

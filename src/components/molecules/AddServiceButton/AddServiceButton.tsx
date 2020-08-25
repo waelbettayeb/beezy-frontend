@@ -15,7 +15,7 @@ const AddServiceButton = (props: Props) => {
   return (
     <React.Fragment>
       <Button
-        onClick={() => Router.push("/services/create")}
+        onClick={() => Router.push("/listing/create")}
         kind={KIND.secondary}
         shape={SHAPE.round}
       >
