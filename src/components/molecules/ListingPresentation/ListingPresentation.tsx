@@ -181,6 +181,7 @@ const ListingPresentation: React.FC<Props> = (props) => {
                     {navigator.share && (
                       <Button
                         kind={"minimal"}
+                        shape="round"
                         onClick={() =>
                           navigator
                             .share({
