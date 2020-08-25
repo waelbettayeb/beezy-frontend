@@ -40,6 +40,7 @@ import {
   IListingVariables,
 } from "@graphql/queries/gqlTypes/listing";
 import { listingQuery } from "@graphql/queries/listing";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const CreateListingSchema = Yup.object().shape({
   title: Yup.string()
@@ -62,6 +63,8 @@ const CreateListingSchema = Yup.object().shape({
 });
 const EditListingPage = () => {
   const { id } = Router.query;
+  const intl = useIntl();
+
   const [errorMessage, setErrorMessage] = React.useState("");
   const [uploadFiles, uploadMutationTuplet] = useMutation<
     MultipleUploadPayload,
@@ -122,7 +125,12 @@ const EditListingPage = () => {
                 },
               },
             }).then((res) => {
-              toaster.info("Your listing has been edited successfully", {});
+              toaster.info(
+                intl.formatMessage({
+                  defaultMessage: "Your listing has been edited successfully",
+                }),
+                {}
+              );
               Router.push("/listing/[id]", `/listing/${listing.id}`);
             });
             actions.setSubmitting(false);
@@ -159,17 +167,19 @@ const EditListingPage = () => {
                           },
                         }}
                       >
-                        Submit
+                        <FormattedMessage defaultMessage="Submit" />
                       </Button>
                     </Cell>
                     <Cell span={12}>
                       <Display4 marginBottom="scale500" marginTop="scale500">
-                        Edit Listing
+                        <FormattedMessage defaultMessage="Edit Listing" />
                       </Display4>
                     </Cell>
                     <Cell span={[4, 8, 6]}>
                       <FormControl
-                        label="Title"
+                        label={intl.formatMessage({
+                          defaultMessage: "Title",
+                        })}
                         error={() =>
                           errors.title && touched.title && errors.title
                         }
@@ -185,7 +195,9 @@ const EditListingPage = () => {
                         />
                       </FormControl>
                       <FormControl
-                        label="Description"
+                        label={intl.formatMessage({
+                          defaultMessage: "Description",
+                        })}
                         error={() =>
                           errors.description &&
                           touched.description &&
@@ -203,7 +215,9 @@ const EditListingPage = () => {
                         />
                       </FormControl>
                       <FormControl
-                        label="Photos"
+                        label={intl.formatMessage({
+                          defaultMessage: "Photos",
+                        })}
                         error={errors.images && touched.images && errors.images}
                       >
                         <ImagesUploader
@@ -214,11 +228,19 @@ const EditListingPage = () => {
                           onRetry={() => setErrorMessage("")}
                           // disabled={CreatListingMutationTuplet.loading}
                           progressMessage={
-                            uploadMutationTuplet.loading ? `Uploading...` : ""
+                            uploadMutationTuplet.loading
+                              ? intl.formatMessage({
+                                  defaultMessage: `Uploading...`,
+                                })
+                              : ""
                           }
                           onDrop={(acceptedFiles, rejectedFiles) => {
                             if (rejectedFiles && rejectedFiles[0])
-                              setErrorMessage("Images max size is 5mb");
+                              setErrorMessage(
+                                intl.formatMessage({
+                                  defaultMessage: "Images max size is 5mb",
+                                })
+                              );
                             uploadFiles({
                               variables: {
                                 files: acceptedFiles,
@@ -237,7 +259,11 @@ const EditListingPage = () => {
                       </FormControl>
                     </Cell>
                     <Cell span={[4, 8, 6]}>
-                      <FormControl label="Position">
+                      <FormControl
+                        label={intl.formatMessage({
+                          defaultMessage: "Position",
+                        })}
+                      >
                         <Block height="50vh" width="100%">
                           <Caption2>{address?.display_name || ""}</Caption2>
                           <MapLocationPicker
