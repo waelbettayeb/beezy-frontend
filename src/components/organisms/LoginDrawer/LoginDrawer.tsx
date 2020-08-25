@@ -15,7 +15,7 @@ const LoginDrawer: React.FC<Props> = (props) => {
       isOpen={isOpen}
       autoFocus
       onClose={onClose}
-      anchor={locale === Locale.AR && ANCHOR.left}
+      anchor={locale === Locale.AR ? ANCHOR.left : ANCHOR.right}
     >
       <LoginForm onCompleted={() => onClose({})} />
     </Drawer>
