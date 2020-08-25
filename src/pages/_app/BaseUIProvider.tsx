@@ -5,6 +5,7 @@ import { ThemePrimitives } from "baseui/theme";
 import { PLACEMENT, ToasterContainer } from "baseui/toast";
 import useLocale from "@hooks/useLocale";
 import { Locale, localeNames } from "@components/containers/Locale";
+import { isServer } from "styletron";
 
 const BaseUIProvider: React.FC = ({ children }) => {
   const { theme } = useTheme();
@@ -65,9 +66,10 @@ const BaseUIProvider: React.FC = ({ children }) => {
   const currentTheme = theme === THEME.Light ? LightTheme : DarkTheme;
   const { locale, setLocale } = useLocale();
 
-  document
-    .getElementsByTagName("body")[0]
-    .setAttribute("dir", locale === Locale.AR ? "rtl" : "ltr");
+  !isServer &&
+    document
+      .getElementsByTagName("body")[0]
+      .setAttribute("dir", locale === Locale.AR ? "rtl" : "ltr");
 
   return (
     <BaseProvider

@@ -82,7 +82,7 @@ const AppNavBar = (props: Props) => {
             >
               {auth.user ? (
                 <>
-                  <Block marginRight={"8px"}>
+                  <Block>
                     <Button
                       onClick={() => Router.push("/search")}
                       kind={KIND.secondary}
@@ -91,17 +91,18 @@ const AppNavBar = (props: Props) => {
                       <Search />
                     </Button>
                   </Block>
-                  <Block marginRight={"8px"}>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
                     <AddServiceButton />
                   </Block>
+
                   <AvatarButton />
                 </>
               ) : (
                 <>
-                  <Block marginRight={"8px"}>
+                  <Block>
                     <DarkModeToggle button />
                   </Block>
-                  <Block marginRight={"8px"}>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
                       onClick={() => Router.push("/search")}
                       kind={KIND.secondary}
@@ -131,7 +132,7 @@ const AppNavBar = (props: Props) => {
             >
               {auth.user ? (
                 <>
-                  <Block marginRight={"8px"}>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
                       onClick={() => Router.push("/search")}
                       kind={KIND.secondary}
@@ -144,7 +145,7 @@ const AppNavBar = (props: Props) => {
                 </>
               ) : (
                 <>
-                  <Block marginRight={"8px"}>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
                       onClick={() => Router.push("/search")}
                       kind={KIND.secondary}
