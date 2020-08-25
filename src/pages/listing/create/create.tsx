@@ -30,27 +30,36 @@ import MapLocationPicker, {
 import dynamic from "next/dynamic";
 import { toaster } from "baseui/toast";
 import Router from "next/router";
+import { FormattedMessage, useIntl } from "react-intl";
+import { buttonMessages, errorMessages } from "@utils/intl";
 
-const CreateListingSchema = Yup.object().shape({
-  title: Yup.string()
-    .max(25, "max number of characters is 25")
-    .required("Required"),
-  description: Yup.string().required("Required"),
-  latitude: Yup.number().required("Required"),
-  longitude: Yup.number().required("Required"),
-  images: Yup.array()
-    .of(
-      Yup.object().shape({
-        url: Yup.string().required(),
-        id: Yup.string().required(),
-      })
-    )
-    .min(1, "Required"),
-  // phone: Yup.string()
-  //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
-  //   .required("Required"),
-});
 const create = () => {
+  const intl = useIntl();
+  const CreateListingSchema = Yup.object().shape({
+    title: Yup.string()
+      .max(
+        25,
+        intl.formatMessage({
+          defaultMessage: "max number of characters is 25",
+        })
+      )
+      .required(intl.formatMessage(errorMessages.required)),
+    description: Yup.string().required(
+      intl.formatMessage(errorMessages.required)
+    ),
+    latitude: Yup.number().required(intl.formatMessage(errorMessages.required)),
+    longitude: Yup.number().required(
+      intl.formatMessage(errorMessages.required)
+    ),
+    images: Yup.array()
+      .of(
+        Yup.object().shape({
+          url: Yup.string().required(),
+          id: Yup.string().required(),
+        })
+      )
+      .min(1, intl.formatMessage(errorMessages.required)),
+  });
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const [CreatListing, CreatListingMutationTuplet] = useMutation<
@@ -103,7 +112,12 @@ const create = () => {
               },
             },
           }).then((res) => {
-            toaster.info("Your listing has been added successfully", {});
+            toaster.info(
+              intl.formatMessage({
+                defaultMessage: "Your listing has been added successfully",
+              }),
+              {}
+            );
             Router.push("/");
           });
           actions.setSubmitting(false);
@@ -140,17 +154,17 @@ const create = () => {
                         },
                       }}
                     >
-                      Submit
+                      {intl.formatMessage(buttonMessages.submit)}
                     </Button>
                   </Cell>
                   <Cell span={12}>
                     <Display4 marginBottom="scale500" marginTop="scale500">
-                      Create New Listing
+                      <FormattedMessage defaultMessage="Create New Listing" />
                     </Display4>
                   </Cell>
                   <Cell span={[4, 8, 6]}>
                     <FormControl
-                      label="Title"
+                      label={intl.formatMessage({ defaultMessage: "Title" })}
                       error={() =>
                         errors.title && touched.title && errors.title
                       }
@@ -166,7 +180,9 @@ const create = () => {
                       />
                     </FormControl>
                     <FormControl
-                      label="Description"
+                      label={intl.formatMessage({
+                        defaultMessage: "Description",
+                      })}
                       error={() =>
                         errors.description &&
                         touched.description &&
@@ -184,7 +200,9 @@ const create = () => {
                       />
                     </FormControl>
                     <FormControl
-                      label="Photos"
+                      label={intl.formatMessage({
+                        defaultMessage: "Photos",
+                      })}
                       error={errors.images && touched.images && errors.images}
                     >
                       <ImagesUploader
