@@ -1,8 +1,308 @@
 {
-    "src_dot_components_dot_atoms_dot_ChangeLocaleButton_dot_ChangeLocaleButton_dot_3422197931": {
-        "string": "Sélectionnez votre langue préférée"
-    },
-    "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
-        "string": "En savoir plus sur l'apiculture"
-    }
+  "Auth_dot_advanced_dot_allow_register": {
+    "string": "L'action d'enregistrement est actuellement désactivée"
+  },
+  "Auth_dot_form_dot_error_dot_email_dot_taken": {
+    "string": "Cet e-mail est déjà pris"
+  },
+  "Auth_dot_form_dot_error_dot_username_dot_taken": {
+    "string": "Nom d'utilisateur existe déjà"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1391686013": {
+    "string": "Paramètres"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1534468327": {
+    "string": "Profil"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_2947231211": {
+    "string": "Se déconnecter"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_3232965882": {
+    "string": "Mode sombre"
+  },
+  "src_dot_components_dot_atoms_dot_ChangeLocaleButton_dot_ChangeLocaleButton_dot_3422197931": {
+    "string": "Sélectionnez votre langue préférée"
+  },
+  "src_dot_components_dot_molecules_dot_AppNavBar_dot_AppNavBar_dot_2456541045": {
+    "string": "Se lancer"
+  },
+  "src_dot_components_dot_molecules_dot_BackHomeNavBar _dot_BackHomeNavBar _dot_1723676032": {
+    "string": "Revenir à l'accueil "
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_1201169145": {
+    "string": "Date de naissance"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2224574405": {
+    "string": "Nom"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_232570486": {
+    "string": "Mâle"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2621818638": {
+    "string": "Prénom"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2816006938": {
+    "string": " Profil enregistré."
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3011619271": {
+    "string": "Sexe"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3252090581": {
+    "string": "Modifier profil"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3571971952": {
+    "string": "E-mail"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_603166252": {
+    "string": "Bio"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
+    "string": "Femalle"
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
+    "string": "En savoir plus sur l'apiculture"
+  },
+  "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
+    "string": "Aucunes images télécharger"
+  },
+  "src_dot_components_dot_molecules_dot_ListingPresentation_dot_ListingPresentation_dot_974444461": {
+    "string": "Découvrez beeesy.com"
+  },
+  "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_794796526": {
+    "string": "{start}-{end} \"Environ {totalResults} résultats (\n                   {processingTimeS} secondes)\""
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_109182747": {
+    "string": "Se connecter"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1214263298": {
+    "string": "Avez-vous oublié votre lot de passe ?"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1405865627": {
+    "string": "Se connecter"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1781368875": {
+    "string": "Cliquez ici"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2212670355": {
+    "string": "S'inscrire"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2237029987": {
+    "string": "Mot de passe"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2663586870": {
+    "string": "Nom d'utilisateur"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2922773224": {
+    "string": "Connectez-vous avec Facebook"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_326989249": {
+    "string": "Vous n'avez pas de compte?"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3581732995": {
+    "string": "Vous êtes connecté avec succès"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3708504547": {
+    "string": "Ou"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_145155449": {
+    "string": "Mot de passe oublié?"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_2055187606": {
+    "string": "E-mail invalide"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3350894995": {
+    "string": "Envoyer les instructions de réinitialisation"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3360184056": {
+    "string": "Vous n'êtes pas un membre ?"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3390487510": {
+    "string": "Inscrivez-vous maintenant "
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3571971952": {
+    "string": "E-mail"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3821467896": {
+    "string": "Veuillez vérifier votre e-mail pour un message avec votre code"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_418295238": {
+    "string": "Saisissez l'adresse e-mail que vous avez utilisée lors de votre inscription et on vous envoie\n des instructions pour réinitialiser votre mot de passe."
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_692385796": {
+    "string": "Ou pour des raisons de sécurité, nous ne stockons PAS votre mot de passe. Soyez donc assuré\n que nous n'enverrons jamais votre mot de passe par e-mail."
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1150274228": {
+    "string": "Minimum 8  caractères"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1209158925": {
+    "string": "Votre mot de passe a été changé avec succès"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1254879564": {
+    "string": "Nouveau mot de passe"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1531180949": {
+    "string": "Réinitialiser le mot de passe "
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3360184056": {
+    "string": "Vous n'êtes pas un membre ?"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3390487510": {
+    "string": "Inscrivez-vous maintenant "
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4158656742": {
+    "string": "Réinitialisez votre mot de passe "
+  },
+  "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_3229536708": {
+    "string": "Rechercher "
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_56258780": {
+    "string": "Créer un compte "
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3288296915": {
+    "string": "Changer la localisation "
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3473580415": {
+    "string": "Localisation "
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3881057767": {
+    "string": "Rayon "
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1391686013": {
+    "string": "Paramètres"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1534468327": {
+    "string": "Profil"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_2947231211": {
+    "string": "Se déconnecter"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_3232965882": {
+    "string": "Mode sombre"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
+    "string": "L’accueil "
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
+    "string": "Marketplace"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_2625394337": {
+    "string": "Pas de données"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_4190318230": {
+    "string": "Plus "
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_4244879397": {
+    "string": "Personnes "
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_3229536708": {
+    "string": "Rechercher "
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_4281662478": {
+    "string": "Recherche "
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_1253503055": {
+    "string": "Impossible de se connecter à Beeesy, statut: {status}"
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3464265706": {
+    "string": "Une erreur s'est produite."
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
+    "string": "Vous êtes connecté avec succès"
+  },
+  "src_dot_pages_dot_index_dot_2731663279": {
+    "string": "Beeesy - l'accueil "
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
+    "string": "Titre "
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1286766551": {
+    "string": "Créer une nouvelle annonce"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_2905093420": {
+    "string": "Votre annonce a été ajoutée avec succès"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_3374163063": {
+    "string": "Description "
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4058993235": {
+    "string": "Photos "
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4208076506": {
+    "string": "La taille maximale des images est de 5 Mo"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_421180364": {
+    "string": "téléchargement..."
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_682463427": {
+    "string": "le nombre maximum de caractères est de 25"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1090739518": {
+    "string": "Votre annonce a été modifiée avec succès"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1124600214": {
+    "string": "Titre "
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3374163063": {
+    "string": "Description "
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3875214575": {
+    "string": "Position"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4058993235": {
+    "string": "Photos "
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4208076506": {
+    "string": "La taille maximale des images est de 5 Mo"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_421180364": {
+    "string": "téléchargement..."
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_751710530": {
+    "string": "Soumettre"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
+    "string": "Modifier l'annonce"
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
+    "string": "N'a pas encore d'annonces "
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_603166252": {
+    "string": "Bio"
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
+    "string": "Annonces"
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
+    "string": "Carte "
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
+    "string": "Liste "
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
+    "string": "Appliquer "
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
+    "string": "Annuler "
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
+    "string": "Modifier "
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_submit": {
+    "string": "Soumettre"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_incorrectCode": {
+    "string": "L'URL de réinitialisation du mot de passe n'est pas valide ou a expiré"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidError": {
+    "string": "Identifiant ou mot de passe invalide"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_required": {
+    "string": "Cet e-mail est déjà pris"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_serverError": {
+    "string": "Une erreur technique s'est produite"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_userDosntExist": {
+    "string": "Cet e-mail n'existe pas. "
+  }
 }

@@ -50,7 +50,7 @@ const AuthCallbackPage = (props: Props) => {
         console.log(err);
         setText(
           intl.formatMessage({
-            defaultMessage: "An error occured.",
+            defaultMessage: "An error occurred.",
           })
         );
       });

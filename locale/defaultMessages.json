@@ -65,6 +65,9 @@
   "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
     "string": "No images are uploaded"
   },
+  "src_dot_components_dot_molecules_dot_ListingPresentation_dot_ListingPresentation_dot_974444461": {
+    "string": "Check out beeesy.com"
+  },
   "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_794796526": {
     "string": "{start} - {end} \"About {totalResults} results (\n          {processingTimeS} seconds)\""
   },
@@ -200,8 +203,8 @@
   "src_dot_pages_dot_auth_dot_[provider]_dot_1253503055": {
     "string": "Couldn't login to Beeesy. Status: {status}"
   },
-  "src_dot_pages_dot_auth_dot_[provider]_dot_2526222480": {
-    "string": "An error occured."
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3464265706": {
+    "string": "An error occurred."
   },
   "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
     "string": "You are successfully logged in"
