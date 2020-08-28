@@ -60,7 +60,9 @@ const ListingsSearchTile = (props: Props) => {
           alignItems="center"
           marginTop={theme.sizing.scale600}
         >
-          <Label3 color={theme.colors.contentInverseSecondary}>No data</Label3>
+          <Label3 color={theme.colors.contentInverseSecondary}>
+            <FormattedMessage defaultMessage="No data" />
+          </Label3>
         </Block>
       )}
       <Grid gridMargins={10} gridGaps={10} gridGutters={10}>

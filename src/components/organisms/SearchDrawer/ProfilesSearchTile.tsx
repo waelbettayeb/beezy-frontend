@@ -43,7 +43,9 @@ const ProfilesSearchTile = (props: Props) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Label3 color={theme.colors.contentInverseSecondary}>No data</Label3>
+          <Label3 color={theme.colors.contentInverseSecondary}>
+            <FormattedMessage defaultMessage="No data" />
+          </Label3>
         </Block>
       ) : (
         <div
