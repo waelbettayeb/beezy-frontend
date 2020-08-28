@@ -9,6 +9,7 @@ import {
   BookOutlined,
   HomeOutlined,
   LogoutOutlined,
+  MessageOutlined,
   SettingOutlined,
   ShopOutlined,
   UnorderedListOutlined,
@@ -74,6 +75,15 @@ const NavigationDrawer: React.FC<Props> = (props) => {
         {
           title: (
             <Item
+              Icon={() => <MessageOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Forums" })}
+            />
+          ),
+          itemId: "https://discuss.beeesy.com/",
+        },
+        {
+          title: (
+            <Item
               Icon={() => <UserOutlined />}
               label={intl.formatMessage({ defaultMessage: "Profile" })}
             />
@@ -109,6 +119,15 @@ const NavigationDrawer: React.FC<Props> = (props) => {
             />
           ),
           itemId: "#",
+        },
+        {
+          title: (
+            <Item
+              Icon={() => <MessageOutlined />}
+              label={intl.formatMessage({ defaultMessage: "Forums" })}
+            />
+          ),
+          itemId: "https://discuss.beeesy.com/",
         },
         // {
         //   title: <Item Icon={() => <ShopOutlined />} label={"Shop (soon)"} />,

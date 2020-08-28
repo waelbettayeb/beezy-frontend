@@ -48,7 +48,14 @@ const AppNavBar = (props: Props) => {
     >
       <Block width="100%">
         <Grid align={ALIGNMENT.center}>
-          <Cell span={[0, 3, 4]}></Cell>
+          <Cell span={[0, 3, 4]}>
+            <Button
+              onClick={() => Router.push("https://discuss.beeesy.com/")}
+              kind={KIND.tertiary}
+            >
+              <FormattedMessage defaultMessage="Forums" />
+            </Button>
+          </Cell>
           <Cell span={[1, 0]}>
             <Button
               onClick={() => setIsNavigationDrawerOpen(true)}
