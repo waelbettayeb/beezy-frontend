@@ -19,7 +19,7 @@ import { AimOutlined } from "@ant-design/icons";
 import LocationPickerModal from "@components/organisms/LocationPickerModal";
 import { LabelXSmall } from "baseui/typography";
 import { Spinner } from "baseui/spinner";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import useLocale from "@hooks/useLocale";
 import { Locale } from "@components/containers/Locale";
 
@@ -201,13 +201,13 @@ const SearchNavBar = (props: Props) => {
                 ) : (
                   <>
                     <Button onClick={() => setIsOpen(true)} kind={"tertiary"}>
-                      Login
+                      <FormattedMessage defaultMessage="Login" />
                     </Button>
                     <Drawer
                       isOpen={isOpen}
                       autoFocus
                       onClose={() => setIsOpen(false)}
-                      anchor={locale === Locale.AR && ANCHOR.left}
+                      anchor={locale === Locale.AR ? ANCHOR.left : ANCHOR.right}
                     >
                       <LoginForm onCompleted={() => setIsOpen(false)} />
                     </Drawer>
