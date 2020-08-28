@@ -17,6 +17,7 @@ import { DatePicker } from "baseui/datepicker";
 import { ErrorMessage } from "./ErrorMessage";
 import { StyledLink } from "baseui/link";
 import { toaster } from "baseui/toast";
+import { errorMessages } from "@utils/intl";
 
 export interface IFormValues {
   email: string;
@@ -37,31 +38,35 @@ const formateDate = (Date) => {
   const date = Date.getDate();
   return `${year}-${month}-${date}`;
 };
-const SignupSchema = Yup.object().shape({
-  // username: Yup.string()
-  //   .matches(
-  //     /^(?=[a-zA-Z0-9._]+$)(?!.*[_.]{2})[^_.].*[^_.]$/g,
-  //     "Invalid username"
-  //   )
-  //   .min(8, "Too Short!")
-  //   .max(25, "Too Long!")
-  //   .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(8, "Too Short!")
-    .max(48, "Too Long!")
-    .required("Required"),
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Required"),
-  // phone: Yup.string()
-  //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
-  //   .required("Required"),
-});
 const SignupForm = (props) => {
   const auth = useAuth();
   const [signUp, { user, error, loading }] = auth.useSignUp();
 
   const intl = useIntl();
+  const SignupSchema = Yup.object().shape({
+    // username: Yup.string()
+    //   .matches(
+    //     /^(?=[a-zA-Z0-9._]+$)(?!.*[_.]{2})[^_.].*[^_.]$/g,
+    //     "Invalid username"
+    //   )
+    //   .min(8, "Too Short!")
+    //   .max(25, "Too Long!")
+    //   .required("Required"),
+    email: Yup.string()
+      .email(intl.formatMessage(errorMessages.invalidEmail))
+      .required(intl.formatMessage(errorMessages.required)),
+    password: Yup.string()
+      .min(8, intl.formatMessage({ defaultMessage: "Too Short!" }))
+      .max(48, intl.formatMessage({ defaultMessage: "Too Long!" }))
+      .required(intl.formatMessage(errorMessages.required)),
+    firstName: Yup.string().required(
+      intl.formatMessage(errorMessages.required)
+    ),
+    lastName: Yup.string().required(intl.formatMessage(errorMessages.required)),
+    // phone: Yup.string()
+    //   .matches(/^[0-9]{9}$/g, "Invalid phone number")
+    //   .required("Required"),
+  });
 
   const initialValues: IFormValues = {
     email: "",
@@ -85,7 +90,12 @@ const SignupForm = (props) => {
               },
             },
           }).then((res) => {
-            toaster.info("You are successfully registered", {});
+            toaster.info(
+              intl.formatMessage({
+                defaultMessage: "You are successfully registered",
+              }),
+              {}
+            );
           });
           actions.setSubmitting(false);
         }}
@@ -104,11 +114,15 @@ const SignupForm = (props) => {
             <Form onSubmit={handleSubmit}>
               <Grid gridMargins={0} gridGaps={0}>
                 <Cell span={[4, 8, 12]}>
-                  <Display4 marginBottom="scale500">Create an account</Display4>
+                  <Display4 marginBottom="scale500">
+                    <FormattedMessage defaultMessage="Create an account" />
+                  </Display4>
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "First name"}
+                    label={intl.formatMessage({
+                      defaultMessage: "First name",
+                    })}
                     error={() =>
                       errors.firstName && touched.firstName && errors.firstName
                     }
@@ -125,7 +139,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Last name"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Last name",
+                    })}
                     error={() =>
                       errors.lastName && touched.lastName && errors.lastName
                     }
@@ -142,7 +158,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <FormControl
-                    label={() => "Email"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Email",
+                    })}
                     error={() => errors.email && touched.email && errors.email}
                   >
                     <Input
@@ -157,7 +175,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <FormControl
-                    label={() => "Password"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Password",
+                    })}
                     error={
                       errors.password && touched.password && errors.password
                     }
@@ -175,7 +195,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Date of birth"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Date of birth",
+                    })}
                     error={
                       errors.dateOfBirth &&
                       touched.dateOfBirth &&
@@ -192,7 +214,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={[4, 4, 6]}>
                   <FormControl
-                    label={() => "Gender"}
+                    label={intl.formatMessage({
+                      defaultMessage: "Gender",
+                    })}
                     error={errors.gender && touched.gender && errors.gender}
                   >
                     <RadioGroup
@@ -202,8 +226,12 @@ const SignupForm = (props) => {
                       value={values.gender}
                       error={errors.gender && touched.gender}
                     >
-                      <Radio value={GENDER.male}>Male</Radio>
-                      <Radio value={GENDER.female}>Female</Radio>
+                      <Radio value={GENDER.male}>
+                        <FormattedMessage defaultMessage="Male" />
+                      </Radio>
+                      <Radio value={GENDER.female}>
+                        <FormattedMessage defaultMessage="Female" />
+                      </Radio>
                     </RadioGroup>
                   </FormControl>
                 </Cell>
@@ -231,9 +259,9 @@ const SignupForm = (props) => {
                 </Cell>
                 <Cell span={12}>
                   <Paragraph3>
-                    Already a member?{" "}
+                    <FormattedMessage defaultMessage="Already a member?" />{" "}
                     <StyledLink onClick={() => Router.push("/auth/signin")}>
-                      Sign In
+                      <FormattedMessage defaultMessage="Sign In" />
                     </StyledLink>
                   </Paragraph3>
                 </Cell>

@@ -19,6 +19,9 @@ export const errorMessages = defineMessages({
   invalidError: {
     defaultMessage: "Identifier or password invalid",
   },
+  invalidEmail: {
+    defaultMessage: "Invalid email",
+  },
   userDosntExist: {
     defaultMessage: "This email does not exist.",
   },
@@ -26,7 +29,7 @@ export const errorMessages = defineMessages({
     defaultMessage: "Password reset url is invalid or has expired.",
   },
   required: {
-    defaultMessage: "Email is already taken",
+    defaultMessage: "Required",
   },
 });
 export const buttonMessages = defineMessages({
