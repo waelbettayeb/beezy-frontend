@@ -46,7 +46,7 @@ export const useProvideAuth = () => {
     !loading && data?.signin?.user && setUser(data?.signin?.user);
     !loading &&
       data?.signin?.jwt &&
-      localStorage.setItem("token", data?.signin?.jwt);
+      localStorage.setItem("jwt", data?.signin?.jwt);
 
     return [signIn, { user, error, loading }];
   };

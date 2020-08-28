@@ -11,13 +11,13 @@ const cache = new InMemoryCache();
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("token");
-  token === "undefined" && localStorage.setItem("token", null);
+  const token = localStorage.getItem("jwt");
+  token === "undefined" && localStorage.setItem("jwt", null);
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${localStorage.getItem("token")}` : "",
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });

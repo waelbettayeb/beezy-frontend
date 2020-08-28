@@ -36,7 +36,7 @@ const AuthCallbackPage = (props: Props) => {
       })
       .then((res) => res.json())
       .then((res) => {
-        localStorage.setItem("token", res.jwt);
+        localStorage.setItem("jwt", res.jwt);
         Router.push("/");
         toaster.info(
           intl.formatMessage({

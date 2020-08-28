@@ -61,7 +61,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               },
             },
           }).then((res) => {
-            localStorage.setItem("token", res?.data.signin?.jwt);
+            localStorage.setItem("jwt", res?.data.signin?.jwt);
             showToast();
             onCompleted && onCompleted();
           });

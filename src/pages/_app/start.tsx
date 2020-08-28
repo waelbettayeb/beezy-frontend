@@ -12,7 +12,7 @@ const Start: React.FC = ({ children }) => {
   const color = theme === THEME.Light ? "white" : "black";
   !loading && !error && auth.setUser(data?._me);
   (!loading && !error) ||
-    (!loading && !data?._me && localStorage.removeItem("token"));
+    (!loading && !data?._me && localStorage.removeItem("jwt"));
   useEffect(() => {
     document.body.style.background = color;
   }, [color]);

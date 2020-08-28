@@ -90,6 +90,7 @@ const SignupForm = (props) => {
               },
             },
           }).then((res) => {
+            localStorage.setItem("jwt", res?.data.signup?.jwt);
             toaster.info(
               intl.formatMessage({
                 defaultMessage: "You are successfully registered",
@@ -208,6 +209,7 @@ const SignupForm = (props) => {
                       value={values.dateOfBirth}
                       onChange={handleChange}
                       maxDate={new Date()}
+                      minDate={new Date("1900")}
                       error={errors.dateOfBirth && touched.dateOfBirth && true}
                     />
                   </FormControl>
