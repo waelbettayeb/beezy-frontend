@@ -68,6 +68,9 @@
   "src_dot_components_dot_molecules_dot_ListingPresentation_dot_ListingPresentation_dot_974444461": {
     "string": "Découvrez beeesy.com"
   },
+  "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_2625394337": {
+    "string": "Pas de données"
+  },
   "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_794796526": {
     "string": "{start}-{end} \"Environ {totalResults} résultats (\n                   {processingTimeS} secondes)\""
   },
@@ -152,11 +155,56 @@
   "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4158656742": {
     "string": "Réinitialisez votre mot de passe "
   },
+  "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_109182747": {
+    "string": "Se connecter"
+  },
   "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_3229536708": {
     "string": "Rechercher "
   },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1173110163": {
+    "string": "Se connecter"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1201169145": {
+    "string": "Date de naissance"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1873234434": {
+    "string": "Trop long!"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2224574405": {
+    "string": "Nom"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2237029987": {
+    "string": "Mot de passe"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_232570486": {
+    "string": "Mâle"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2621818638": {
+    "string": "Prénom"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2716185743": {
+    "string": "Vous êtes inscrit avec succès"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3011619271": {
+    "string": "Sexe"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3105438756": {
+    "string": "Déjà membre?"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3197676577": {
+    "string": "Trop court!"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3571971952": {
+    "string": "E-mail"
+  },
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_56258780": {
     "string": "Créer un compte "
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_991922965": {
+    "string": "Femalle"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_9921249": {
+    "string": "Créer un compte"
   },
   "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3288296915": {
     "string": "Changer la localisation "
@@ -190,6 +238,9 @@
   },
   "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_4190318230": {
     "string": "Plus "
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_2625394337": {
+    "string": "Pas de données"
   },
   "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_4244879397": {
     "string": "Personnes "
@@ -293,11 +344,14 @@
   "src_dot_utils_dot_intl_dot_errorMessages_dot_incorrectCode": {
     "string": "L'URL de réinitialisation du mot de passe n'est pas valide ou a expiré"
   },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidEmail": {
+    "string": "E-mail invalide"
+  },
   "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidError": {
     "string": "Identifiant ou mot de passe invalide"
   },
   "src_dot_utils_dot_intl_dot_errorMessages_dot_required": {
-    "string": "Cet e-mail est déjà pris"
+    "string": "Obligatoire"
   },
   "src_dot_utils_dot_intl_dot_errorMessages_dot_serverError": {
     "string": "Une erreur technique s'est produite"
