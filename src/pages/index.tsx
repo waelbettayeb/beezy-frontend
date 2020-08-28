@@ -12,12 +12,6 @@ const Home: React.FC = () => {
   auth.getUser();
   return (
     <React.Fragment>
-      <Head>
-        <title>
-          <FormattedMessage defaultMessage="Beeesy - Home" />
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <AppNavBar />
       <Hero />
       <Footer />

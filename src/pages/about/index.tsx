@@ -20,14 +20,6 @@ export interface Info {
 
 const about: React.FC = () => {
   const { loading, data } = useQuery<TData, null>(query);
-  return (
-    <div>
-      <Head>
-        <title>About</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {loading ? "loading..." : data.info.Name}
-    </div>
-  );
+  return <div>{loading ? "loading..." : data.info.Name}</div>;
 };
 export default about;
