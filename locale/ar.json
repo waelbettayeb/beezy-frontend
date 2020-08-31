@@ -1,8 +1,362 @@
 {
-    "src_dot_components_dot_atoms_dot_ChangeLocaleButton_dot_ChangeLocaleButton_dot_3422197931": {
-        "string": "اختر لغتك المفضلة"
-    },
-    "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
-        "string": "تعرف على المزيد حول تربية النحل"
-    }
+  "Auth_dot_advanced_dot_allow_register": {
+    "string": "التسجيل معطل حاليا"
+  },
+  "Auth_dot_form_dot_error_dot_email_dot_taken": {
+    "string": "هذا البريد الإلكتروني مستخدم من قبل"
+  },
+  "Auth_dot_form_dot_error_dot_username_dot_taken": {
+    "string": "الاسم مستخدم من قبل"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1391686013": {
+    "string": "الإعدادات"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_1534468327": {
+    "string": "الملف الشخصي"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_2947231211": {
+    "string": "تسجيل خروج"
+  },
+  "src_dot_components_dot_atoms_dot_AvatarButton_dot_AvatarButton_dot_3232965882": {
+    "string": "الوضع الليلي"
+  },
+  "src_dot_components_dot_atoms_dot_ChangeLocaleButton_dot_ChangeLocaleButton_dot_3422197931": {
+    "string": "اختر لغتك المفضلة"
+  },
+  "src_dot_components_dot_molecules_dot_AppNavBar_dot_AppNavBar_dot_2456541045": {
+    "string": "ابدأ"
+  },
+  "src_dot_components_dot_molecules_dot_BackHomeNavBar _dot_BackHomeNavBar _dot_1723676032": {
+    "string": "العودة إلى الصفحة الرئيسية"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_1201169145": {
+    "string": "تاريخ الميلاد"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2224574405": {
+    "string": "اللقب"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_232570486": {
+    "string": "الذكر"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2621818638": {
+    "string": "الاسم"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_2816006938": {
+    "string": "تم حفظ الملف الشخصي"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3011619271": {
+    "string": "جنس"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3252090581": {
+    "string": "تعديل الملف الشخصي"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_3571971952": {
+    "string": "البريد الإلكتروني"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_603166252": {
+    "string": "السيرة الذاتية"
+  },
+  "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
+    "string": "أنثى"
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
+    "string": "تعلم المزيد عن تربية النحل"
+  },
+  "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
+    "string": "لم يتم تحميل أي صور"
+  },
+  "src_dot_components_dot_molecules_dot_ListingPresentation_dot_ListingPresentation_dot_974444461": {
+    "string": "إكتشف beeesy.com"
+  },
+  "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_2625394337": {
+    "string": "لايوجد بيانات"
+  },
+  "src_dot_components_dot_molecules_dot_ListingsSearchTile_dot_ListingsSearchTile_dot_794796526": {
+    "string": "{start} - {end}\"نحو {totalResults}  نتيجة (\n              {processingTimeS} ثواني)\""
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_109182747": {
+    "string": "تسجيل الدخول"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1214263298": {
+    "string": "هل نسيت كلمة المرور؟"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1405865627": {
+    "string": "تسجيل الدخول"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_1781368875": {
+    "string": "انقر هنا"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2212670355": {
+    "string": "سجل"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2237029987": {
+    "string": "كلمه السر"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2663586870": {
+    "string": "اسم المستخدم"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_2922773224": {
+    "string": "قم بتسجيل الدخول باستخدام الفيسبوك"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_326989249": {
+    "string": "ليس لديك حساب؟"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3581732995": {
+    "string": "لقد قمت بتسجيل الدخول بنجاح"
+  },
+  "src_dot_components_dot_molecules_dot_LoginForm_dot_LoginForm_dot_3708504547": {
+    "string": "أو"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_145155449": {
+    "string": "هل نسيت كلمة المرور؟"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_2055187606": {
+    "string": "بريد إلكتروني خاطئ"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3350894995": {
+    "string": "إرسال تعليمات إعادة التعيين"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3360184056": {
+    "string": "لست عضوا؟"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3390487510": {
+    "string": "سجل الآن"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3571971952": {
+    "string": "البريد الإلكتروني"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_3821467896": {
+    "string": "يرجى التحقق من بريدك الإلكتروني بحثًا عن رسالة تحتوي على الرمز الخاص بك"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_418295238": {
+    "string": "أدخل عنوان البريد الإلكتروني الذي استخدمته عند انضمامك وسنرسل لك إرشادات إدراج علامة\nلإعادة تعيين كلمة المرور الخاصة بك"
+  },
+  "src_dot_components_dot_molecules_dot_RecoverPasswordForm_dot_RecoverPasswordForm_dot_692385796": {
+    "string": "لأسباب أمنية ، لا نقوم بتخزين كلمة المرور الخاصة بك. لذا كن متأكدا\n إلى أننا لن نرسل كلمة مرورك أبدًا عبر البريد الإلكتروني"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1150274228": {
+    "string": "8 أحرف على الأقل"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1209158925": {
+    "string": "تم تغيير كلمة المرور الخاصة بك بنجاح"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1254879564": {
+    "string": "كلمة سر جديدة"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1531180949": {
+    "string": "إعادة تعيين كلمة المرور"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3360184056": {
+    "string": "لست عضوا؟"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3390487510": {
+    "string": "سجل الآن"
+  },
+  "src_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4158656742": {
+    "string": "اعد ضبط كلمه السر "
+  },
+  "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_109182747": {
+    "string": "تسجيل الدخول"
+  },
+  "src_dot_components_dot_molecules_dot_SearchNavBar_dot_SearchNavBar_dot_3229536708": {
+    "string": "بحث..."
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1173110163": {
+    "string": "تسجيل الدخول"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1201169145": {
+    "string": "تاريخ الميلاد"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_1873234434": {
+    "string": "طويل جدا!"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2224574405": {
+    "string": "اللقب"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2237029987": {
+    "string": "كلمه السر"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_232570486": {
+    "string": "الذكر"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2621818638": {
+    "string": "الاسم"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2716185743": {
+    "string": "لقد تم تسجيلك بنجاح"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3011619271": {
+    "string": "جنس"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3105438756": {
+    "string": "هل أنت عضو بالفعل؟"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3197676577": {
+    "string": "قصير جدا!"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_3571971952": {
+    "string": "البريد الإلكتروني"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_56258780": {
+    "string": "إنشاء حساب"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_991922965": {
+    "string": "أنثى"
+  },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_9921249": {
+    "string": "انشئ حساب"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3288296915": {
+    "string": "تغيير الموقع"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3473580415": {
+    "string": " الموقع"
+  },
+  "src_dot_components_dot_organisms_dot_LocationPickerModal_dot_LocationPickerModal_dot_3881057767": {
+    "string": "نصف القطر"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1391686013": {
+    "string": "الإعدادات"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_1534468327": {
+    "string": "الملف الشخصي"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_2947231211": {
+    "string": "تسجيل خروج"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_3232965882": {
+    "string": "الوضع الليلي"
+  },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
+    "string": "الصفحة الرئيسية"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
+    "string": "المتجر"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_2625394337": {
+    "string": "لايوجد بيانات"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_4190318230": {
+    "string": "أظهر المزيد"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_2625394337": {
+    "string": "لايوجد بيانات"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ProfilesSearchTile_dot_4244879397": {
+    "string": "اشخاص"
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_3229536708": {
+    "string": "بحث..."
+  },
+  "src_dot_components_dot_organisms_dot_SearchDrawer_dot_SearchDrawer_dot_4281662478": {
+    "string": "بحث"
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_1253503055": {
+    "string": "تعذر تسجيل الدخول إلى Beeesy. الحالة:                {status}"
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3464265706": {
+    "string": "حدث خطأ."
+  },
+  "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
+    "string": "لقد قمت بتسجيل الدخول بنجاح"
+  },
+  "src_dot_pages_dot_index_dot_2731663279": {
+    "string": "Beeesy - الصفحة الرئيسية"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
+    "string": "عنوان"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_1286766551": {
+    "string": "إنشاء قائمة جديدة"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_2905093420": {
+    "string": "تم إضافة قائمتك بنجاح"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_3374163063": {
+    "string": "وصف"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4058993235": {
+    "string": "الصور"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_4208076506": {
+    "string": "الحجم الأقصى للصور هو 5 ميغا بايت"
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_421180364": {
+    "string": "جارٍ التحميل ..."
+  },
+  "src_dot_pages_dot_listing_dot_create_dot_create_dot_682463427": {
+    "string": "الحد الأقصى لعدد الأحرف هو 25 حرفًا"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1090739518": {
+    "string": "تم تعديل قائمتك بنجاح"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_1124600214": {
+    "string": "عنوان"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3374163063": {
+    "string": "وصف"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_3875214575": {
+    "string": "موضع"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4058993235": {
+    "string": "الصور"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_4208076506": {
+    "string": "الحجم الأقصى للصور هو 5 ميغا بايت"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_421180364": {
+    "string": "جارٍ التحميل ..."
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_751710530": {
+    "string": "إرسال"
+  },
+  "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
+    "string": "تعديل الإعلان "
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
+    "string": "ليس لديه قوائم حتى الآن "
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_603166252": {
+    "string": "السيرة الذاتية"
+  },
+  "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
+    "string": "القوائم"
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
+    "string": "خريطة"
+  },
+  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
+    "string": "قائمة"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
+    "string": "التقدم بطلب"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
+    "string": "إلغاء"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
+    "string": "تعديل"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_submit": {
+    "string": "إرسال"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_incorrectCode": {
+    "string": "المعرف أو كلمة المرور غير صالحة"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidEmail": {
+    "string": "بريد إلكتروني خاطئ"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_invalidError": {
+    "string": "المعرف أو كلمة المرور غير صالحة"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_required": {
+    "string": "مطلوب"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_serverError": {
+    "string": "حدث خطأ تقني"
+  },
+  "src_dot_utils_dot_intl_dot_errorMessages_dot_userDosntExist": {
+    "string": "هذا البريد الإلكتروني غير موجود."
+  }
 }
