@@ -20,6 +20,8 @@ import {
 import { useQuery } from "@apollo/react-hooks";
 import { meQuery } from "@graphql/queries/user";
 import { FormattedMessage, useIntl } from "react-intl";
+import { setAuthToken } from "@utils/auth";
+import client from "@utils/apolloClient";
 
 interface Props {
   onCompleted?: () => void;
@@ -61,9 +63,12 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               },
             },
           }).then((res) => {
-            localStorage.setItem("jwt", res?.data.signin?.jwt);
-            showToast();
-            onCompleted && onCompleted();
+            setAuthToken(res?.data.signin?.jwt, () => {
+              console.log("set jwt", localStorage.getItem("jwt"));
+              showToast();
+              onCompleted && onCompleted();
+              client.resetStore();
+            });
           });
           actions.setSubmitting(false);
         }}
