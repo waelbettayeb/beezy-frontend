@@ -19,7 +19,7 @@ import { Block } from "baseui/block";
 import { Search } from "baseui/icon";
 import { Input } from "baseui/input";
 import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
-import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuOutlined, MessageOutlined, UserOutlined } from "@ant-design/icons";
 import NavigationDrawer from "@components/organisms/NavigationDrawer";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
 import LoginDrawer from "@components/organisms/LoginDrawer";
@@ -48,14 +48,7 @@ const AppNavBar = (props: Props) => {
     >
       <Block width="100%">
         <Grid align={ALIGNMENT.center}>
-          <Cell span={[0, 3, 4]}>
-            <Button
-              onClick={() => Router.push("https://discuss.beeesy.com/")}
-              kind={KIND.tertiary}
-            >
-              <FormattedMessage defaultMessage="Forums" />
-            </Button>
-          </Cell>
+          <Cell span={[0, 3, 4]}></Cell>
           <Cell span={[1, 0]}>
             <Button
               onClick={() => setIsNavigationDrawerOpen(true)}
@@ -87,6 +80,15 @@ const AppNavBar = (props: Props) => {
               justifyContent="flex-end"
               alignItems="center"
             >
+              <Block marginLeft={"8px"} marginRight={"8px"}>
+                <Button
+                  onClick={() => Router.push("https://discuss.beeesy.com/")}
+                  kind={KIND.secondary}
+                  shape={SHAPE.round}
+                >
+                  <MessageOutlined />
+                </Button>
+              </Block>
               {auth.user ? (
                 <>
                   <Block>
