@@ -56,7 +56,7 @@ const BaseUIProvider: React.FC = ({ children }) => {
     borders: {
       useRoundedCorners: true,
       buttonBorderRadius: "8px",
-      inputBorderRadius: "4px",
+      inputBorderRadius: "8px",
       popoverBorderRadius: "8px",
       surfaceBorderRadius: "4px",
     },
