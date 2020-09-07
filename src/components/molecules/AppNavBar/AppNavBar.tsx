@@ -16,10 +16,15 @@ import Router from "next/router";
 import { Theme } from "baseui/theme";
 import AddServiceButton from "../AddServiceButton";
 import { Block } from "baseui/block";
-import { Search } from "baseui/icon";
+import { marketplace } from "baseui/icon";
 import { Input } from "baseui/input";
 import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
-import { MenuOutlined, MessageOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  MessageOutlined,
+  ShopOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import NavigationDrawer from "@components/organisms/NavigationDrawer";
 import DarkModeToggle from "@components/atoms/DarkModeToggle";
 import LoginDrawer from "@components/organisms/LoginDrawer";
@@ -93,11 +98,11 @@ const AppNavBar = (props: Props) => {
                 <>
                   <Block>
                     <Button
-                      onClick={() => Router.push("/search")}
+                      onClick={() => Router.push("/marketplace")}
                       kind={KIND.secondary}
                       shape={SHAPE.round}
                     >
-                      <Search />
+                      <ShopOutlined />
                     </Button>
                   </Block>
                   <Block marginLeft={"8px"} marginRight={"8px"}>
@@ -113,11 +118,11 @@ const AppNavBar = (props: Props) => {
                   </Block>
                   <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
-                      onClick={() => Router.push("/search")}
+                      onClick={() => Router.push("/marketplace")}
                       kind={KIND.secondary}
                       shape={SHAPE.round}
                     >
-                      <Search />
+                      <ShopOutlined />
                     </Button>
                   </Block>
                   <Button onClick={() => setIsOpen(true)}>
@@ -143,11 +148,11 @@ const AppNavBar = (props: Props) => {
                 <>
                   <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
-                      onClick={() => Router.push("/search")}
+                      onClick={() => Router.push("/marketplace")}
                       kind={KIND.secondary}
                       shape={SHAPE.round}
                     >
-                      <Search />
+                      <ShopOutlined />
                     </Button>
                   </Block>
                   <AddServiceButton />
@@ -156,11 +161,11 @@ const AppNavBar = (props: Props) => {
                 <>
                   <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
-                      onClick={() => Router.push("/search")}
+                      onClick={() => Router.push("/marketplace")}
                       kind={KIND.secondary}
                       shape={SHAPE.round}
                     >
-                      <Search />
+                      <ShopOutlined />
                     </Button>
                   </Block>
                   <Button

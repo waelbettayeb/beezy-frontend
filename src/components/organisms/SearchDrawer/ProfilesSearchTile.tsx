@@ -23,7 +23,7 @@ interface Props {
   results: any[];
 }
 
-const ProfilesSearchTile = (props: Props) => {
+export const ProfilesSearchTile = (props: Props) => {
   const { results } = props;
   const [css, theme] = useStyletron();
 

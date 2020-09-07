@@ -8,6 +8,9 @@ import { StyledLink } from "baseui/link";
 import { Block } from "baseui/block";
 import { FormattedMessage } from "react-intl";
 import SearchDrawer from "@components/organisms/SearchDrawer";
+import Router from "next/router";
+import { useDebouncedCallback } from "use-debounce";
+import { StatefulPopover } from "baseui/popover";
 
 interface Props {}
 
@@ -17,6 +20,16 @@ function Hero({}: Props): ReactElement {
     "Good things happen when people can connect, find the right place where your hives can produce more. ";
   const [isOpen, setIsOpen] = React.useState(false);
   const [css, _theme] = useStyletron();
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [debouncedCallback] = useDebouncedCallback(
+    // function
+    (value) => {
+      setSearchTerm(value as string);
+      value && Router.push(`/marketplace?q=${value}`);
+    },
+    // delay in ms
+    1000
+  );
 
   return (
     <Grid
@@ -25,11 +38,12 @@ function Hero({}: Props): ReactElement {
       gridGutters={[1, 2, 8]}
       gridMargins={[1, 4, 6]}
     >
-      <Cell span={[4, 4, 6]}>
-        <Block paddingTop={"5vh"} paddingBottom={"5vh"}>
+      <Cell span={[4, 8, 12]}>
+        <Inner h={80}>
           {/* <Label1>{"About us"}</Label1> */}
           <DisplaySmall>{textString}</DisplaySmall>
           <Paragraph1>{bodyString}</Paragraph1>
+
           <Input
             type="search"
             startEnhancer={<Search size="18px" />}
@@ -37,22 +51,11 @@ function Hero({}: Props): ReactElement {
             placeholder="Search for a person, a bee yard..."
             onKeyDown={() => setIsOpen(true)}
           />
-          <br />
           <SearchDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <br />
           <StyledLink href="#">
             <FormattedMessage defaultMessage={"Learn more about beekeeping"} />
           </StyledLink>
-        </Block>
-      </Cell>
-      <Cell span={[0, 4, 6]}>
-        <Inner h={80}>
-          <img
-            src={"/hero-illustration.svg"}
-            alt="Beeesy Logo"
-            className={css({
-              width: "100%",
-            })}
-          />
         </Inner>
       </Cell>
     </Grid>
@@ -67,6 +70,7 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
     <div
       className={css({
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         color: theme.colors.accent700,

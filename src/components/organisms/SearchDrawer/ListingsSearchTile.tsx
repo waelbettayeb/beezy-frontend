@@ -29,7 +29,7 @@ interface Props {
   searchedTerm?: string;
 }
 
-const ListingsSearchTile = (props: Props) => {
+export const ListingsSearchTile = (props: Props) => {
   const { results, loading, searchedTerm } = props;
   const [css, theme] = useStyletron();
 
@@ -76,17 +76,18 @@ const ListingsSearchTile = (props: Props) => {
           </Label3>
           {results.length > 6 && (
             <StyledLink
-              onClick={() => Router.push(`/search?q=${searchedTerm}`)}
+              onClick={() => Router.push(`/marketplace?q=${searchedTerm}`)}
             >
               <FormattedMessage defaultMessage="Show more" />
             </StyledLink>
           )}
         </div>
       )}
-      <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
+      <Block display="flex" overflow={"scrollY"} width={"100%"}>
         {results &&
-          results.slice(0, 6).map((r) => (
-            <Cell span={[2, 4, 4]}>
+          results
+            .slice(0, 6)
+            .map((r) => (
               <ListingCard
                 id={r.id}
                 imageUrl={r.images[0]?.file.url}
@@ -94,9 +95,8 @@ const ListingsSearchTile = (props: Props) => {
                 title={r.title}
                 small
               />
-            </Cell>
-          ))}
-      </Grid>
+            ))}
+      </Block>
     </div>
   );
 };

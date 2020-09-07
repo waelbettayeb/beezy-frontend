@@ -22,6 +22,14 @@ const ListingCard = (props: Props) => {
         headerImage={imageUrl}
         title={<LabelMedium>{title}</LabelMedium>}
         overrides={{
+          Root: {
+            style: ({ $theme }) => {
+              return {
+                marginRight: theme.sizing.scale200,
+                marginBottom: theme.sizing.scale200,
+              };
+            },
+          },
           HeaderImage: {
             style: ({ $theme }) => {
               return {

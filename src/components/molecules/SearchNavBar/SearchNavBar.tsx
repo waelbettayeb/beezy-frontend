@@ -132,6 +132,7 @@ const SearchNavBar = (props: Props) => {
             </Cell>
             <Cell span={[0, 4, 6]}>
               <Input
+                autoFocus
                 type="search"
                 placeholder={intl.formatMessage({
                   defaultMessage: "Search...",
