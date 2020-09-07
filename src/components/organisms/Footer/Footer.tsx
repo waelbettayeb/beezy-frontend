@@ -20,7 +20,7 @@ const Footer = (props: Props) => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      backgroundColor={theme.colors.backgroundSecondary}
+      backgroundColor={theme.colors.backgroundTertiary}
       paddingTop={theme.sizing.scale1000}
       paddingBottom={theme.sizing.scale1000}
     >

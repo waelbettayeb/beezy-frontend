@@ -16,8 +16,6 @@ import Router from "next/router";
 import { Theme } from "baseui/theme";
 import AddServiceButton from "../AddServiceButton";
 import { Block } from "baseui/block";
-import { marketplace } from "baseui/icon";
-import { Input } from "baseui/input";
 import { Grid, ALIGNMENT, Cell } from "baseui/layout-grid";
 import {
   MenuOutlined,
