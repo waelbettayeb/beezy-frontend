@@ -17,6 +17,7 @@ import en from "javascript-time-ago/locale/en";
 import ar from "javascript-time-ago/locale/ar";
 import fr from "javascript-time-ago/locale/fr";
 import Head from "next/head";
+import React from "react";
 
 JavascriptTimeAgo.addLocale(en);
 JavascriptTimeAgo.addLocale(ar);
@@ -24,6 +25,23 @@ JavascriptTimeAgo.addLocale(fr);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const auth = useProvideAuth();
+  React.useEffect(() => {
+    var d = window.document;
+    var t = "script";
+
+    var BASE_URL = "https://app.chatwoot.com";
+    var g = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    (g as any).src = BASE_URL + "/packs/js/sdk.js";
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      (window as any).chatwootSDK.run({
+        websiteToken: "AYU42TCn91SQAJsobazhgfAr",
+        baseUrl: BASE_URL,
+      });
+    };
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <authContext.Provider value={auth}>
