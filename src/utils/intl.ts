@@ -45,4 +45,7 @@ export const buttonMessages = defineMessages({
   edit: {
     defaultMessage: "Edit",
   },
+  clickHere: {
+    defaultMessage: "Click here",
+  },
 });

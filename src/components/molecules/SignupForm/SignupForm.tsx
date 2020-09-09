@@ -17,7 +17,7 @@ import { DatePicker } from "baseui/datepicker";
 import { ErrorMessage } from "./ErrorMessage";
 import { StyledLink } from "baseui/link";
 import { toaster } from "baseui/toast";
-import { errorMessages } from "@utils/intl";
+import { buttonMessages, errorMessages } from "@utils/intl";
 
 export interface IFormValues {
   email: string;
@@ -190,7 +190,9 @@ const SignupForm = (props) => {
                       onBlur={handleBlur}
                       value={values.password}
                       error={errors.password && touched.password}
-                      placeholder="8+ characters"
+                      placeholder={intl.formatMessage({
+                        defaultMessage: "8+ characters",
+                      })}
                     />
                   </FormControl>
                 </Cell>

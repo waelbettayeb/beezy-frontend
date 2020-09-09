@@ -25,7 +25,7 @@ export interface IListingsPayload {
   listings?: IListing[];
 }
 export interface IListingsVariables {
-  where: any;
-  start: number;
+  where?: any;
+  start?: number;
   limit?: number;
 }
