@@ -45,11 +45,9 @@ function Hero({}: Props): ReactElement {
               textAlign: "center",
             }}
           >
-            <FormattedMessage
-              defaultMessage={
-                "We ignite bee hives \n by companying beekeepers."
-              }
-            />
+            <FormattedMessage defaultMessage={`We ignite bee hives`} />
+            <br />
+            <FormattedMessage defaultMessage={`by companying beekeepers.`} />
           </DisplaySmall>
           <ParagraphMedium
             $style={{

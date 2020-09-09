@@ -59,8 +59,17 @@
   "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
     "string": "Female"
   },
-  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
-    "string": "Learn more about beekeeping"
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_1430531241": {
+    "string": "by companying beekeepers."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_3229536708": {
+    "string": "Search..."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_83033045": {
+    "string": "Good things happen when people can connect, find the right place where your hives can produce more."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_854692483": {
+    "string": "We ignite bee hives"
   },
   "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
     "string": "No images are uploaded"
@@ -176,6 +185,9 @@
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2237029987": {
     "string": "Password"
   },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_224315808": {
+    "string": "8+ characters"
+  },
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_232570486": {
     "string": "Male"
   },
@@ -230,6 +242,9 @@
   "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
     "string": "Home"
   },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_903228836": {
+    "string": "Forums"
+  },
   "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
     "string": "Marketplace"
   },
@@ -260,8 +275,14 @@
   "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
     "string": "You are successfully logged in"
   },
-  "src_dot_pages_dot_index_dot_2731663279": {
-    "string": "Beeesy - Home"
+  "src_dot_pages_dot_index_dot_2074762980": {
+    "string": "Join the community"
+  },
+  "src_dot_pages_dot_index_dot_2804647946": {
+    "string": "This is the place for you\n                to listen, learn, ask questions, and share your story with\n                others who are going through the same thing"
+  },
+  "src_dot_pages_dot_index_dot_3335466021": {
+    "string": "Latest listings"
   },
   "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
     "string": "Title"
@@ -314,6 +335,12 @@
   "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
     "string": "Edit Listing"
   },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_1142698207": {
+    "string": "Map"
+  },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_179601186": {
+    "string": "List"
+  },
   "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
     "string": "Has no listings yet "
   },
@@ -323,17 +350,20 @@
   "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
     "string": "Listings"
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
-    "string": "Map"
+  "src_dot_pages_dot_search_dot_SearchPage_dot_3229536708": {
+    "string": "Search..."
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
-    "string": "List"
+  "src_dot_pages_dot_search_dot_SearchPage_dot_4281662478": {
+    "string": "Search"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
     "string": "Apply"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
     "string": "Cancel"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_clickHere": {
+    "string": "Click here"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
     "string": "Edit"
