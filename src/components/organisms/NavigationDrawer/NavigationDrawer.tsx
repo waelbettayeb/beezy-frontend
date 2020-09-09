@@ -145,6 +145,13 @@ const NavigationDrawer: React.FC<Props> = (props) => {
       {...props}
       autoFocus
       anchor={locale === Locale.AR ? ANCHOR.right : ANCHOR.left}
+      overrides={{
+        Root: {
+          style: {
+            zIndex: 2147483001,
+          },
+        },
+      }}
     >
       <Block
         height={"100%"}

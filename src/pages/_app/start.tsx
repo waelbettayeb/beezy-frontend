@@ -27,7 +27,7 @@ const Start: React.FC = ({ children }) => {
       hideMessageBubble: false,
       position: "right", // This can be left or right
       locale: locale, // Language to be set
-      type: "expanded_bubble", // [standard, expanded_bubble]
+      type: "standard", // [standard, expanded_bubble]
     };
   }, []);
   return (
