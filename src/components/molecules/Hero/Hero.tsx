@@ -101,7 +101,7 @@ const Inner: React.FunctionComponent<{ h: number }> = ({
         alignItems: "center",
         color: theme.colors.accent700,
         padding: ".25rem",
-        height: h + "vh",
+        minHeight: h + "vh",
         maxHeight: "700px",
       })}
     >
