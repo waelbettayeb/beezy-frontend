@@ -83,17 +83,17 @@ const AppNavBar = (props: Props) => {
               justifyContent="flex-end"
               alignItems="center"
             >
-              <Block marginLeft={"8px"} marginRight={"8px"}>
-                <Button
-                  onClick={() => Router.push("https://discuss.beeesy.com/")}
-                  kind={KIND.secondary}
-                  shape={SHAPE.round}
-                >
-                  <MessageOutlined />
-                </Button>
-              </Block>
               {auth.user ? (
                 <>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
+                    <Button
+                      onClick={() => Router.push("https://discuss.beeesy.com/")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <MessageOutlined />
+                    </Button>
+                  </Block>
                   <Block>
                     <Button
                       onClick={() => Router.push("/marketplace")}
@@ -111,8 +111,17 @@ const AppNavBar = (props: Props) => {
                 </>
               ) : (
                 <>
-                  <Block>
+                  <Block marginLeft={"8px"} marginRight={"8px"}>
                     <DarkModeToggle button />
+                  </Block>
+                  <Block>
+                    <Button
+                      onClick={() => Router.push("https://discuss.beeesy.com/")}
+                      kind={KIND.secondary}
+                      shape={SHAPE.round}
+                    >
+                      <MessageOutlined />
+                    </Button>
                   </Block>
                   <Block marginLeft={"8px"} marginRight={"8px"}>
                     <Button
