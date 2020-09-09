@@ -8,6 +8,7 @@ import { Block } from "baseui/block";
 import useLocale from "@hooks/useLocale";
 import { Locale, localeNames } from "@components/containers/Locale";
 import Router from "next/router";
+import { StyledLink } from "baseui/link";
 
 interface Props {}
 
@@ -80,13 +81,13 @@ const Footer = (props: Props) => {
           </Cell>
         ))}
       </Block>
-      <a
+      <StyledLink
         href="https://www.iubenda.com/privacy-policy/27567358"
         className="iubenda-white iubenda-embed"
         title="Privacy Policy "
       >
         Privacy Policy
-      </a>
+      </StyledLink>
     </Block>
   );
 };
