@@ -103,8 +103,8 @@ const Home: React.FC = () => {
           paddingTop={theme.sizing.scale1000}
           paddingBottom={theme.sizing.scale1000}
         >
-          <Grid>
-            <Cell skip={[0, 0, 1]} span={[4, 8, 10]}>
+          <Grid gridMargins={200}>
+            <Cell span={[4, 8, 12]}>
               <Block
                 display={"flex"}
                 flexDirection={"column"}
@@ -134,7 +134,6 @@ const Home: React.FC = () => {
                 </Grid>
               </Block>
             </Cell>
-            <Cell span={[0, 0, 1]}></Cell>
           </Grid>
         </Block>
       )}
