@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           paddingTop={theme.sizing.scale1000}
           paddingBottom={theme.sizing.scale1000}
         >
-          <Grid gridMargins={200}>
+          <Grid gridMargins={[0, 0, 200]}>
             <Cell span={[4, 8, 12]}>
               <Block
                 display={"flex"}
@@ -120,7 +120,11 @@ const Home: React.FC = () => {
                 >
                   <FormattedMessage defaultMessage="Latest listings" />
                 </DisplayXSmall>
-                <Grid gridMargins={10} gridGaps={10} gridGutters={10}>
+                <Grid
+                  gridMargins={[0, 10]}
+                  gridGaps={[0, 10]}
+                  gridGutters={[0, 10]}
+                >
                   {listingsData.listings.map((r) => (
                     <Cell span={[2, 2, 3]}>
                       <ListingCard
