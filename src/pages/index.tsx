@@ -134,6 +134,7 @@ const Home: React.FC = () => {
                 </Grid>
               </Block>
             </Cell>
+            <Cell span={[0, 0, 1]}></Cell>
           </Grid>
         </Block>
       )}

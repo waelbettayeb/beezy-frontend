@@ -59,8 +59,17 @@
   "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
     "string": "أنثى"
   },
-  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
-    "string": "تعلم المزيد عن تربية النحل"
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_1430531241": {
+    "string": "عن طريق مرافقة النحالين."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_3229536708": {
+    "string": "بحث..."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_83033045": {
+    "string": "الأشياء الجيدة تحدث عندما يمكن للناس الاتصال، والعثور على المكان المناسب حيث خلايا الخاص بك يمكن إنتاج المزيد."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_854692483": {
+    "string": "نحن نضيء خلايا النحل"
   },
   "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
     "string": "لم يتم تحميل أي صور"
@@ -176,6 +185,9 @@
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2237029987": {
     "string": "كلمه السر"
   },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_224315808": {
+    "string": "8+ الأحرف"
+  },
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_232570486": {
     "string": "الذكر"
   },
@@ -230,6 +242,9 @@
   "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
     "string": "الصفحة الرئيسية"
   },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_903228836": {
+    "string": "المنتديات"
+  },
   "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
     "string": "المتجر"
   },
@@ -260,8 +275,14 @@
   "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
     "string": "لقد قمت بتسجيل الدخول بنجاح"
   },
-  "src_dot_pages_dot_index_dot_2731663279": {
-    "string": "Beeesy - الصفحة الرئيسية"
+  "src_dot_pages_dot_index_dot_2074762980": {
+    "string": "انضم إلى المجتمع"
+  },
+  "src_dot_pages_dot_index_dot_2804647946": {
+    "string": "هذا هو المكان المناسب لك\n للاستماع والتعلم، وطرح الأسئلة، وتبادل قصتك مع الآخرين\n الذين يمرون بنفس الشيء"
+  },
+  "src_dot_pages_dot_index_dot_3335466021": {
+    "string": "أحدث الإعلانات"
   },
   "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
     "string": "عنوان"
@@ -314,6 +335,12 @@
   "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
     "string": "تعديل الإعلان "
   },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_1142698207": {
+    "string": "خريطة"
+  },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_179601186": {
+    "string": "قائمة"
+  },
   "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
     "string": "ليس لديه قوائم حتى الآن "
   },
@@ -323,17 +350,20 @@
   "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
     "string": "القوائم"
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
-    "string": "خريطة"
+  "src_dot_pages_dot_search_dot_SearchPage_dot_3229536708": {
+    "string": "بحث..."
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
-    "string": "قائمة"
+  "src_dot_pages_dot_search_dot_SearchPage_dot_4281662478": {
+    "string": "بحث"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
     "string": "التقدم بطلب"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
     "string": "إلغاء"
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_clickHere": {
+    "string": "انقر هنا"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
     "string": "تعديل"

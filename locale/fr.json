@@ -59,8 +59,17 @@
   "src_dot_components_dot_molecules_dot_EditProfileForm_dot_EditProfileForm_dot_991922965": {
     "string": "Femalle"
   },
-  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_64477215": {
-    "string": "En savoir plus sur l'apiculture"
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_1430531241": {
+    "string": "en compagnie les apiculteurs."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_3229536708": {
+    "string": "Rechercher "
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_83033045": {
+    "string": "De bonnes choses se produisent lorsque les gens peuvent se connecter, trouver le bon endroit où vos ruches peuvent produire plus."
+  },
+  "src_dot_components_dot_molecules_dot_Hero_dot_Hero_dot_854692483": {
+    "string": "Nous allumons des ruches d'abeilles "
   },
   "src_dot_components_dot_molecules_dot_ImagesUploader_dot_ImagesUploader_dot_3736824100": {
     "string": "Aucunes images télécharger"
@@ -176,6 +185,9 @@
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_2237029987": {
     "string": "Mot de passe"
   },
+  "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_224315808": {
+    "string": "8+ caractères"
+  },
   "src_dot_components_dot_molecules_dot_SignupForm_dot_SignupForm_dot_232570486": {
     "string": "Mâle"
   },
@@ -230,6 +242,9 @@
   "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_874908955": {
     "string": "L’accueil "
   },
+  "src_dot_components_dot_organisms_dot_NavigationDrawer_dot_NavigationDrawer_dot_903228836": {
+    "string": "Forums"
+  },
   "src_dot_components_dot_organisms_dot_SearchDrawer_dot_ListingsSearchTile_dot_1856987662": {
     "string": "Marketplace"
   },
@@ -260,8 +275,14 @@
   "src_dot_pages_dot_auth_dot_[provider]_dot_3581732995": {
     "string": "Vous êtes connecté avec succès"
   },
-  "src_dot_pages_dot_index_dot_2731663279": {
-    "string": "Beeesy - l'accueil "
+  "src_dot_pages_dot_index_dot_2074762980": {
+    "string": "Rejoignez la communauté"
+  },
+  "src_dot_pages_dot_index_dot_2804647946": {
+    "string": "C'est l'endroit où \n         vous pouvez écouter, apprendre, poser des questions et partager votre histoire avec \n       d'autres personnes qui vivent la même chose"
+  },
+  "src_dot_pages_dot_index_dot_3335466021": {
+    "string": "Dernières annonces"
   },
   "src_dot_pages_dot_listing_dot_create_dot_create_dot_1124600214": {
     "string": "Titre "
@@ -314,6 +335,12 @@
   "src_dot_pages_dot_listing_dot_edit_dot_[id]_dot_865829319": {
     "string": "Modifier l'annonce"
   },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_1142698207": {
+    "string": "Carte "
+  },
+  "src_dot_pages_dot_marketplace_dot_SearchPage_dot_179601186": {
+    "string": "Liste "
+  },
   "src_dot_pages_dot_profile_dot_[pid]_dot_3447007849": {
     "string": "N'a pas encore d'annonces "
   },
@@ -323,17 +350,20 @@
   "src_dot_pages_dot_profile_dot_[pid]_dot_948613009": {
     "string": "Annonces"
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_1142698207": {
-    "string": "Carte "
+  "src_dot_pages_dot_search_dot_SearchPage_dot_3229536708": {
+    "string": "Rechercher "
   },
-  "src_dot_pages_dot_search_dot_SearchPage_dot_179601186": {
-    "string": "Liste "
+  "src_dot_pages_dot_search_dot_SearchPage_dot_4281662478": {
+    "string": "Recherche "
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_apply": {
     "string": "Appliquer "
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_cancel": {
     "string": "Annuler "
+  },
+  "src_dot_utils_dot_intl_dot_buttonMessages_dot_clickHere": {
+    "string": "Cliquez ici"
   },
   "src_dot_utils_dot_intl_dot_buttonMessages_dot_edit": {
     "string": "Modifier "
